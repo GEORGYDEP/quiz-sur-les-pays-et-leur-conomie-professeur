@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Tour d'Europe Économique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg1:#0a0a1a;--bg2:#1a1040;--bg3:#12102e;--gold:#ffd700;--coral:#ff6b6b;--cyan:#4ecdc4;--purple:#a855f7;--choice-a:#e74c3c;--choice-b:#3498db;--choice-c:#2ecc71;--choice-d:#f39c12;--glass:rgba(255,255,255,0.06);--glass-border:rgba(255,255,255,0.1);--correct:#00e676;--wrong:#ff1744}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));color:#fff;overflow-y:auto}
+.screen{display:none;flex-direction:column;align-items:center;min-height:100vh;width:100%;position:absolute;top:0;left:0;opacity:0;transition:opacity .4s}
+.screen.active{display:flex;opacity:1;position:relative}
+h1,h2{font-family:'Fredoka',sans-serif;font-weight:700}
+.card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:24px;padding:40px;width:100%;max-width:500px}
+.btn{font-family:'Poppins',sans-serif;font-weight:700;border:none;border-radius:16px;padding:16px 32px;font-size:1.1rem;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:1px}
+.btn:active{transform:scale(.96)}.btn:disabled{opacity:.4;cursor:default;transform:none!important}
+.btn-gold{background:linear-gradient(135deg,#ffd700,#ffaa00);color:#1a1040;box-shadow:0 4px 20px rgba(255,215,0,.3)}
+.btn-gold:hover:not(:disabled){box-shadow:0 6px 30px rgba(255,215,0,.5);transform:translateY(-2px)}
+.btn-purple{background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff}
+.btn-coral{background:linear-gradient(135deg,#ff6b6b,#ee5a24);color:#fff}
+.btn-cyan{background:linear-gradient(135deg,#4ecdc4,#00b894);color:#1a1040}
+.btn-dark{background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--glass-border)}
+.btn-dark:hover{background:rgba(255,255,255,.15)}
+.btn-sm{padding:10px 20px;font-size:.85rem;border-radius:12px}
+.input-field{width:100%;padding:16px 20px;border-radius:16px;border:2px solid var(--glass-border);background:rgba(255,255,255,.05);color:#fff;font-family:'Poppins',sans-serif;font-size:1.1rem;outline:none;transition:border-color .3s}
+.input-field:focus{border-color:var(--gold)}.input-field::placeholder{color:rgba(255,255,255,.3)}
+.emoji-big{font-size:4rem;line-height:1}
+.title-xl{font-size:clamp(2rem,6vw,3.5rem);text-align:center;background:linear-gradient(135deg,#fff,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.subtitle{color:rgba(255,255,255,.6);text-align:center;font-size:1rem;margin-top:8px}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 15px rgba(255,107,107,.5)}50%{box-shadow:0 0 40px rgba(255,107,107,.9)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fadeIn{animation:fadeIn .5s ease}.pulse{animation:pulse 2s ease-in-out infinite}
+.player-tag{display:inline-block;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:8px 16px;margin:4px;font-weight:600;animation:slideUp .4s ease;font-size:.95rem}
+.player-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--correct);display:inline-block;margin-right:6px}
+.css-flag{display:inline-block;flex-shrink:0;border-radius:6px;border:2px solid rgba(255,255,255,.2)}
+.css-flag.sm{width:32px;height:21px;border-radius:3px;border-width:1px}.css-flag.md{width:60px;height:40px}.css-flag.lg{width:90px;height:60px;border-radius:8px}
+.flag-fr{background:linear-gradient(90deg,#002395 33.3%,#fff 33.3%,#fff 66.6%,#ED2939 66.6%)}
+.flag-be{background:linear-gradient(90deg,#000 33.3%,#FDDA24 33.3%,#FDDA24 66.6%,#EF3340 66.6%)}
+.flag-de{background:linear-gradient(180deg,#000 33.3%,#DD0000 33.3%,#DD0000 66.6%,#FFCE00 66.6%)}
+.flag-it{background:linear-gradient(90deg,#008C45 33.3%,#fff 33.3%,#fff 66.6%,#CD212A 66.6%)}
+.flag-gb{background:#012169;position:relative;overflow:hidden}
+.flag-gb::before{content:'';position:absolute;top:50%;left:50%;width:200%;height:20%;background:#fff;transform:translate(-50%,-50%)}
+.flag-gb::after{content:'';position:absolute;top:50%;left:50%;width:20%;height:200%;background:#fff;transform:translate(-50%,-50%)}
+.flag-nl{background:linear-gradient(180deg,#AE1C28 33.3%,#fff 33.3%,#fff 66.6%,#21468B 66.6%)}
+.flag-lu{background:linear-gradient(180deg,#EF3340 33.3%,#fff 33.3%,#fff 66.6%,#00A2E1 66.6%)}
+.flag-at{background:linear-gradient(180deg,#ED2939 33.3%,#fff 33.3%,#fff 66.6%,#ED2939 66.6%)}
+.flag-ie{background:linear-gradient(90deg,#169B62 33.3%,#fff 33.3%,#fff 66.6%,#FF883E 66.6%)}
+.flag-ro{background:linear-gradient(90deg,#002B7F 33.3%,#FCD116 33.3%,#FCD116 66.6%,#CE1126 66.6%)}
+.flag-hu{background:linear-gradient(180deg,#CE2939 33.3%,#fff 33.3%,#fff 66.6%,#477050 66.6%)}
+.flag-no{background:#EF2B2D;position:relative;overflow:hidden}
+.flag-no::before{content:'';position:absolute;top:0;left:28%;width:16%;height:100%;background:#fff}
+.flag-no::after{content:'';position:absolute;top:38%;left:0;width:100%;height:24%;background:#fff}
+.choices-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.choice-btn{border:none;border-radius:16px;padding:16px;font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:#fff;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:12px;text-align:left;min-height:56px}
+.choice-btn:hover{transform:scale(1.03);filter:brightness(1.1)}.choice-btn:active{transform:scale(.97)}
+.choice-btn.c0{background:var(--choice-a)}.choice-btn.c1{background:var(--choice-b)}.choice-btn.c2{background:var(--choice-c)}.choice-btn.c3{background:var(--choice-d)}
+.choice-btn.selected-answer{outline:4px solid #fff;outline-offset:2px;box-shadow:0 0 20px rgba(255,255,255,.3)}
+.choice-btn .flag-in-btn{width:48px;height:32px;flex-shrink:0}
+.choice-btn:disabled{cursor:default;transform:none!important;filter:none!important}
+.choice-btn.correct-reveal{outline:4px solid var(--correct);outline-offset:2px;box-shadow:0 0 20px rgba(0,230,118,.4)}
+.choice-btn.wrong-reveal{opacity:.4;filter:grayscale(.5)}
+
+/* Professor map page */
+.prof-map-page{width:100%;height:100vh;display:flex;flex-direction:column}
+.prof-topbar{padding:10px 20px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.5);border-bottom:1px solid var(--glass-border);flex-shrink:0;gap:10px;z-index:10}
+.prof-topbar .q-num{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--gold);white-space:nowrap}
+.prof-topbar .country-badge{display:flex;align-items:center;gap:6px;font-weight:700;font-size:.95rem}
+.prof-topbar .country-badge.mystery{opacity:.5;font-style:italic}
+.prof-progress{height:4px;background:rgba(255,255,255,.1);width:100%;flex-shrink:0}
+.prof-progress .bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--coral));transition:width .5s;border-radius:2px}
+#map-container{flex:1;position:relative;min-height:0}
+#prof-map{width:100%;height:100%;z-index:1}
+.leaflet-container{background:#e8ecf1!important}
+.map-question-overlay{position:absolute;bottom:90px;left:20px;right:20px;z-index:1000;pointer-events:none}
+.map-question-box{background:rgba(10,10,26,.88);backdrop-filter:blur(12px);border:2px solid var(--gold);border-radius:16px;padding:18px 24px;pointer-events:all}
+.map-question-box h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:#fff}
+.map-choices-overlay{position:absolute;top:60px;right:16px;z-index:1000;width:280px;display:flex;flex-direction:column;gap:8px}
+.map-choice{border-radius:12px;padding:12px 16px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px;font-size:.95rem;transition:all .3s;box-shadow:0 2px 10px rgba(0,0,0,.3)}
+.map-choice.c0{background:var(--choice-a)}.map-choice.c1{background:var(--choice-b)}.map-choice.c2{background:var(--choice-c)}.map-choice.c3{background:var(--choice-d)}
+.map-choice.correct-reveal{outline:3px solid var(--correct);box-shadow:0 0 25px rgba(0,230,118,.4)}
+.map-choice.wrong-reveal{opacity:.25}
+.map-choice .flag-in-choice{width:56px;height:37px;flex-shrink:0}
+.prof-bottombar{position:absolute;bottom:0;left:0;right:0;z-index:1000;padding:14px 20px;display:flex;align-items:center;gap:12px;background:rgba(10,10,26,.92);backdrop-filter:blur(12px);border-top:1px solid var(--glass-border)}
+.response-counter{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid var(--glass-border);border-radius:12px;padding:8px 16px;font-weight:700;font-size:1rem;white-space:nowrap}
+.response-counter .count-num{font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--gold)}
+.response-counter.all-in{border-color:var(--correct);background:rgba(0,230,118,.1)}
+.response-counter.all-in .count-num{color:var(--correct)}
+.prof-bottombar .spacer{flex:1}
+.prof-bottombar .btn{padding:12px 24px;font-size:.95rem}
+
+/* Responses page */
+.prof-page{width:100%;min-height:100vh;padding:30px 20px;display:flex;flex-direction:column;align-items:center}
+.prof-page-header{text-align:center;margin-bottom:24px}
+.prof-page-header h2{font-family:'Fredoka',sans-serif;font-size:2rem;color:var(--gold)}
+.prof-page-header p{color:rgba(255,255,255,.5);margin-top:6px}
+.responses-grid{width:100%;max-width:900px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-bottom:24px}
+.resp-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:16px;display:flex;align-items:center;gap:12px;animation:slideUp .4s ease;transition:all .3s}
+.resp-card .resp-avatar{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;font-family:'Fredoka',sans-serif;flex-shrink:0}
+.resp-card .resp-avatar.waiting{background:rgba(255,255,255,.06);color:rgba(255,255,255,.2)}
+.resp-card .resp-avatar.answered{background:rgba(168,85,247,.2);color:var(--purple)}
+.resp-card .resp-avatar.correct{background:rgba(0,230,118,.15);color:var(--correct)}
+.resp-card .resp-avatar.wrong{background:rgba(255,23,68,.15);color:var(--wrong)}
+.resp-card .resp-info{flex:1;min-width:0}
+.resp-card .resp-name{font-weight:700;font-size:.95rem}
+.resp-card .resp-answer{font-size:.82rem;color:rgba(255,255,255,.4);margin-top:2px}
+.resp-card .resp-answer.rok{color:var(--correct);font-weight:600}
+.resp-card .resp-answer.rko{color:var(--wrong);font-weight:600}
+.resp-card.revealed-correct{border-color:rgba(0,230,118,.3);background:rgba(0,230,118,.05)}
+.resp-card.revealed-wrong{border-color:rgba(255,23,68,.2);background:rgba(255,23,68,.03)}
+.info-banner{width:100%;max-width:900px;background:linear-gradient(135deg,rgba(78,205,196,.1),rgba(168,85,247,.08));border:1px solid rgba(78,205,196,.25);border-radius:16px;padding:20px 24px;margin-bottom:20px;display:none}
+.info-banner.visible{display:block;animation:slideUp .5s ease}
+.info-banner h3{color:var(--cyan);font-family:'Fredoka',sans-serif;margin-bottom:8px;font-size:1.1rem}
+.info-banner p{font-size:.95rem;color:rgba(255,255,255,.85);line-height:1.6}
+.page-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+
+/* Leaderboard page */
+.lb-container{width:100%;max-width:600px}
+.lb-entry{display:flex;align-items:center;gap:16px;padding:16px 20px;background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;margin-bottom:8px;animation:slideUp .4s ease}
+.lb-entry .lb-pos{font-family:'Fredoka',sans-serif;font-size:1.8rem;width:50px;text-align:center;flex-shrink:0}
+.lb-entry .lb-pos.gold{color:#ffd700}.lb-entry .lb-pos.silver{color:#c0c0c0}.lb-entry .lb-pos.bronze{color:#cd7f32}
+.lb-entry .lb-name{flex:1;font-size:1.1rem;font-weight:700}
+.lb-entry .lb-score{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--cyan);font-weight:700}
+.lb-entry .lb-bar-wrap{width:120px;height:8px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden;flex-shrink:0}
+.lb-entry .lb-bar-fill{height:100%;border-radius:4px;transition:width .8s ease}
+.lb-entry:nth-child(1) .lb-bar-fill{background:var(--gold)}
+.lb-entry:nth-child(2) .lb-bar-fill{background:#c0c0c0}
+.lb-entry:nth-child(3) .lb-bar-fill{background:#cd7f32}
+.lb-entry:nth-child(n+4) .lb-bar-fill{background:var(--cyan)}
+
+/* Student */
+.student-quiz-container{width:100%;max-width:500px;padding:16px}
+.student-header{text-align:center;margin-bottom:16px}
+.student-header .q-label{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--gold)}
+.student-header .q-text{font-size:1.05rem;margin-top:8px;line-height:1.4}
+.student-feedback{text-align:center;padding:20px;border-radius:16px;margin-top:14px;font-weight:700;font-size:1.1rem;animation:slideUp .3s ease}
+.student-feedback.neutral{background:rgba(168,85,247,.12);border:2px solid var(--purple);color:var(--purple)}
+.student-wait-msg{text-align:center;color:rgba(255,255,255,.4);font-size:.9rem;margin-top:16px}
+.student-score-display{text-align:center;margin-top:14px}
+.student-score-display .score-num{font-family:'Fredoka',sans-serif;font-size:1.8rem;color:var(--gold)}
+
+.lobby-players{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:24px 0;min-height:60px}
+.lobby-count{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:var(--gold);text-align:center;margin:16px 0}
+.lobby-waiting{text-align:center;color:rgba(255,255,255,.4);font-size:.9rem}
+.results-table{width:100%;max-width:600px;border-collapse:separate;border-spacing:0 6px}
+.results-table th{text-align:left;padding:8px 16px;color:rgba(255,255,255,.5);font-size:.8rem;text-transform:uppercase;letter-spacing:1px}
+.results-table td{padding:12px 16px;background:var(--glass);font-weight:600}
+.results-table tr td:first-child{border-radius:12px 0 0 12px}
+.results-table tr td:last-child{border-radius:0 12px 12px 0}
+.results-table .rank{font-family:'Fredoka',sans-serif;color:var(--gold);font-size:1.3rem}
+.podium-1{background:linear-gradient(90deg,rgba(255,215,0,.2),transparent)!important}
+.podium-2{background:linear-gradient(90deg,rgba(192,192,192,.15),transparent)!important}
+.podium-3{background:linear-gradient(90deg,rgba(205,127,50,.15),transparent)!important}
+#confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+@media(max-width:768px){.card{padding:24px;margin:10px}.choices-grid{grid-template-columns:1fr}.map-choices-overlay{width:200px;top:10px;right:8px}.map-choice{padding:8px 12px;font-size:.8rem}}
+</style>
+</head>
+<body>
+<div id="screen-home" class="screen active">
+  <div style="text-align:center;padding:40px 20px">
+    <div class="emoji-big" style="margin-bottom:16px">🌍</div>
+    <h1 class="title-xl">Tour d'Europe<br>Économique</h1>
+    <p class="subtitle">Découvrez les pays d'Europe à travers un quiz interactif</p>
+    <div style="margin-top:48px;display:flex;flex-direction:column;gap:16px;align-items:center">
+      <button class="btn btn-gold" style="width:280px;font-size:1.2rem;padding:20px" onclick="enterProfessor()">🎓 Professeur</button>
+      <button class="btn btn-purple" style="width:280px;font-size:1.2rem;padding:20px" onclick="showScreen('screen-student-join')">🎮 Élève</button>
+    </div>
+    <p style="margin-top:40px;font-size:.75rem;color:rgba(255,255,255,.25)">Institut Saint-Luc de Frameries — Comptabilité</p>
+  </div>
+</div>
+<div id="screen-prof-password" class="screen"><div class="card fadeIn" style="text-align:center"><div class="emoji-big" style="margin-bottom:16px">🔐</div><h2 style="margin-bottom:24px">Accès Professeur</h2><input type="password" id="prof-password" class="input-field" placeholder="Code d'accès" onkeydown="if(event.key==='Enter')checkPassword()"><div style="margin-top:20px;display:flex;gap:12px"><button class="btn btn-sm btn-coral" onclick="showScreen('screen-home')" style="flex:1">Retour</button><button class="btn btn-sm btn-gold" onclick="checkPassword()" style="flex:1">Entrer</button></div><p id="pwd-error" style="color:var(--coral);font-size:.85rem;margin-top:12px;display:none">Code incorrect</p></div></div>
+<div id="screen-student-join" class="screen"><div class="card fadeIn" style="text-align:center"><div class="emoji-big" style="margin-bottom:16px">👋</div><h2 style="margin-bottom:8px">Rejoindre le quiz</h2><p class="subtitle" style="margin-bottom:24px">Entre ton prénom pour participer</p><input type="text" id="student-name" class="input-field" placeholder="Ton prénom" maxlength="20" autocomplete="off" onkeydown="if(event.key==='Enter')registerStudent()"><div style="margin-top:20px;display:flex;gap:12px"><button class="btn btn-sm btn-coral" onclick="showScreen('screen-home')" style="flex:1">Retour</button><button class="btn btn-sm btn-purple" onclick="registerStudent()" style="flex:1">C'est parti !</button></div><p id="join-error" style="color:var(--coral);font-size:.85rem;margin-top:12px;display:none"></p></div></div>
+<div id="screen-student-wait" class="screen"><div class="card fadeIn" style="text-align:center"><div class="emoji-big pulse" style="margin-bottom:16px">⏳</div><h2>Bienvenue <span id="wait-name"></span> !</h2><p class="subtitle" style="margin-top:8px">En attente du professeur...</p><div style="margin-top:32px"><div style="width:60px;height:60px;border-radius:50%;border:3px solid var(--gold);border-top-color:transparent;animation:spin 1s linear infinite;margin:0 auto"></div></div></div></div>
+<div id="screen-student-quiz" class="screen"><div class="student-quiz-container"><div class="student-header"><div class="q-label" id="sq-label">Question 1/40</div><div class="q-text" id="sq-text"></div></div><div class="choices-grid" id="sq-choices"></div><div id="sq-feedback" style="display:none"></div><div class="student-wait-msg" id="sq-wait" style="display:none"><div class="pulse">⏳</div><p>En attente de la question suivante...</p></div><div class="student-score-display"><span style="font-size:.85rem;color:rgba(255,255,255,.5)">Réponses : </span><span class="score-num" id="sq-score">0</span><span style="font-size:.85rem;color:rgba(255,255,255,.3)"> / <span id="sq-total">40</span></span></div></div></div>
+<div id="screen-prof-lobby" class="screen"><div style="text-align:center;padding:40px 20px;width:100%;max-width:800px"><div class="emoji-big" style="margin-bottom:12px">🌍</div><h1 class="title-xl" style="font-size:2.5rem">Tour d'Europe Économique</h1><p class="subtitle">Les joueurs rejoignent la partie...</p><div class="lobby-count"><span id="lobby-count">0</span> joueur(s)</div><div class="lobby-players" id="lobby-players"></div><div class="lobby-waiting" id="lobby-waiting">En attente de joueurs...</div><div style="margin-top:32px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap"><button class="btn btn-gold" onclick="startQuiz()" id="btn-start-quiz" disabled>🚀 Démarrer le Quiz</button><button class="btn btn-sm btn-coral" onclick="resetGame()">🔄 Réinitialiser</button></div></div></div>
+
+<div id="screen-prof-map" class="screen" style="padding:0"><div class="prof-map-page"><div class="prof-topbar"><span class="q-num" id="pq-num">Q1/40</span><span class="country-badge mystery" id="pq-country">❓ Pays mystère</span></div><div class="prof-progress"><div class="bar" id="pq-bar" style="width:0%"></div></div><div id="map-container"><div id="prof-map"></div><div class="map-choices-overlay" id="pq-choices"></div><div class="map-question-overlay"><div class="map-question-box"><h3 id="pq-question-text"></h3></div></div></div><div class="prof-bottombar"><div class="response-counter" id="pq-counter"><span>📝</span><span class="count-num" id="pq-count-num">0</span><span style="color:rgba(255,255,255,.4)">/ <span id="pq-count-total">0</span></span></div><div class="spacer"></div><button class="btn btn-sm btn-purple" onclick="showProfResponses()">📝 Réponses</button><button class="btn btn-sm btn-cyan" onclick="showProfLeaderboard()">🏆 Classement</button><button class="btn btn-sm btn-gold" onclick="nextQuestion()" id="btn-next">Suivant ➜</button></div></div></div>
+
+<div id="screen-prof-responses" class="screen"><div class="prof-page"><div class="prof-page-header"><h2>📝 Réponses</h2><p id="pr-subtitle"></p></div><div class="responses-grid" id="pr-grid"></div><div class="info-banner" id="pr-info"><h3 id="pr-info-title"></h3><p id="pr-info-text"></p></div><div class="page-actions"><button class="btn btn-cyan" onclick="revealAnswer()" id="btn-reveal">👁 Révéler la bonne réponse</button><button class="btn btn-dark" onclick="showScreen('screen-prof-map')">← Retour à la carte</button></div></div></div>
+
+<div id="screen-prof-leaderboard" class="screen"><div class="prof-page"><div class="prof-page-header"><h2>🏆 Classement</h2><p>Score après <span id="pl-qcount">0</span> question(s)</p></div><div class="lb-container" id="pl-list"></div><div class="page-actions" style="margin-top:24px"><button class="btn btn-dark" onclick="showScreen('screen-prof-map')">← Retour à la carte</button></div></div></div>
+
+<div id="screen-results" class="screen"><canvas id="confetti"></canvas><div style="text-align:center;padding:40px 20px;width:100%;max-width:700px"><div class="emoji-big" style="margin-bottom:16px">🏆</div><h1 class="title-xl">Résultats</h1><table class="results-table" id="results-table" style="margin-top:32px"></table><div style="margin-top:32px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap"><button class="btn btn-gold" onclick="resetGame()">🔄 Nouvelle partie</button><button class="btn btn-sm btn-purple" onclick="showScreen('screen-home')">🏠 Accueil</button></div></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbw6Z3doouzcNw1U7jocBLnwYrMoLZ-NwlEayVYkn2C1gEWmxV5Wv16UcZc1Sd3kxuzu/exec';
+const SHEETS_ENABLED=SCRIPT_URL&&!SCRIPT_URL.includes('%%');
+const POLL_INTERVAL=3000,PROF_CODE='';
+const FN={'flag-fr':'France','flag-be':'Belgique','flag-de':'Allemagne','flag-it':'Italie','flag-gb':'Royaume-Uni','flag-nl':'Pays-Bas','flag-lu':'Luxembourg','flag-at':'Autriche','flag-ie':'Irlande','flag-ro':'Roumanie','flag-hu':'Hongrie','flag-no':'Norvège'};
+
+const COUNTRIES=[
+{name:'France',flag:'🇫🇷',flagClass:'flag-fr',capital:{name:'Paris',lat:48.8566,lng:2.3522},center:{lat:46.6,lng:2.5},zoom:6,
+  info:'La France est le pays le plus visité au monde (~90 M touristes/an). 2e économie de l\'UE, membre fondateur de la CEE (1957). On l\'appelle « l\'Hexagone » à cause de sa forme géométrique.',
+  questions:[
+    {type:'identify',question:'Quel est ce pays ?',choices:['Espagne','France','Portugal','Italie'],correct:1,
+      hint:'🗺️ La France est surnommée « l\'Hexagone » à cause de sa forme. Avec 551 500 km², c\'est le plus grand pays de l\'UE. Elle possède aussi des territoires outre-mer (Guadeloupe, Réunion, Guyane…).'},
+    {type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-nl','flag-fr','flag-be','flag-lu'],correct:1,
+      hint:'🇫🇷 Le tricolore naît de la Révolution (1789) : le bleu et le rouge sont les couleurs de Paris, le blanc celle du roi. Attention : les Pays-Bas ont les mêmes couleurs mais à l\'horizontale !'},
+    {type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Lyon','Marseille','Paris','Strasbourg'],correct:2,
+      hint:'🏙️ Paris est la « Ville Lumière » — l\'une des premières éclairées au gaz (1820). La Tour Eiffel (1889) devait être démontée après 20 ans ! Elle a été sauvée grâce aux antennes radio installées à son sommet.'},
+    {type:'info',question:'Quelle est la monnaie de la France ?',choices:['Franc français','Euro','Livre sterling','Dollar'],correct:1,
+      hint:'💶 L\'euro circule en France depuis 2002. Avant, c\'était le franc français, créé en 1360 pour payer la rançon du roi Jean II le Bon, prisonnier des Anglais ! Un euro = 6,55957 francs.'},
+    {type:'info',question:'La France est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1986','Non, candidate','Non'],correct:0,
+      hint:'🇪🇺 La France est l\'un des 6 membres fondateurs de la CEE (1957, Traité de Rome). Robert Schuman, considéré comme le « père de l\'Europe », était un homme politique français né au Luxembourg.'},
+    {type:'info',question:'Quelle est la population de la France ?',choices:['47 millions','58 millions','68 millions','82 millions'],correct:2,
+      hint:'👥 Avec 68,6 millions d\'habitants, la France est le 2e pays le plus peuplé de l\'UE. C\'est aussi le seul grand pays européen où il naît encore plus de bébés qu\'il n\'y a de décès.'},
+    {type:'info',question:'Quel est le PIB de la France ?',choices:['900 Mds €','1 600 Mds €','2 900 Mds €','4 300 Mds €'],correct:2,
+      hint:'📊 Le PIB (Produit Intérieur Brut) mesure toute la richesse produite par un pays en un an. La France (2 900 Mds €) est la 7e économie mondiale et la 2e de l\'UE derrière l\'Allemagne.'},
+    {type:'info',question:'Quelle entreprise française est leader mondial du luxe ?',choices:['Renault','Danone','TotalEnergies','LVMH'],correct:3,
+      hint:'👜 LVMH (Louis Vuitton Moët Hennessy) possède 75 marques dont Dior, Givenchy, Bulgari et Tiffany. Son fondateur Bernard Arnault a été brièvement l\'homme le plus riche du monde en 2023 !'}
+  ]},
+{name:'Belgique',flag:'🇧🇪',flagClass:'flag-be',capital:{name:'Bruxelles',lat:50.8503,lng:4.3517},center:{lat:50.5,lng:4.5},zoom:8,
+  info:'La Belgique abrite les institutions européennes. Bruxelles est la « capitale de l\'Europe ». Fondée en 1830, elle a 3 langues officielles : français, néerlandais et allemand.',
+  questions:[
+    {type:'identify',question:'Quel est ce pays ?',choices:['Pays-Bas','Luxembourg','Belgique','Suisse'],correct:2,
+      hint:'🇧🇪 La Belgique est née en 1830 d\'une révolution contre les Pays-Bas. C\'est un tout petit pays (30 528 km²) mais stratégiquement placé au cœur de l\'Europe, entre la France, l\'Allemagne et les Pays-Bas.'},
+    {type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-de','flag-be','flag-fr','flag-ro'],correct:1,
+      hint:'🏴 Le noir-jaune-rouge s\'inspire du blason du Duché de Brabant (lion d\'or sur fond noir, griffes rouges). La confusion avec l\'Allemagne (noir-rouge-or) est fréquente — mais la Belgique est verticale et l\'Allemagne horizontale !'},
+    {type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Anvers','Liège','Namur','Bruxelles'],correct:3,
+      hint:'🏛️ Bruxelles est la « capitale de l\'Europe » : siège de la Commission européenne, du Conseil de l\'UE et de l\'OTAN. La Grand-Place de Bruxelles, classée UNESCO, est considérée comme l\'une des plus belles places du monde.'},
+    {type:'info',question:'Quelle est la monnaie de la Belgique ?',choices:['Franc belge','Euro','Couronne','Florin'],correct:1,
+      hint:'💶 Avant l\'euro (2002), la Belgique utilisait le franc belge. Fait amusant : le franc belge et le franc luxembourgeois avaient exactement la même valeur grâce à une union monétaire entre les deux pays !'},
+    {type:'info',question:'La Belgique est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1973','Non, OTAN seulement','Non'],correct:0,
+      hint:'🇪🇺 La Belgique est membre fondateur de la CECA (1951) puis de la CEE (1957). Le Belge Paul-Henri Spaak a rédigé le rapport qui a mené au Traité de Rome — un texte fondateur de la construction européenne.'},
+    {type:'info',question:'Quelle est la population de la Belgique ?',choices:['5 millions','8 millions','12 millions','17 millions'],correct:2,
+      hint:'👥 Avec 12 millions d\'habitants sur 30 528 km², la Belgique a une densité de 383 hab/km² — l\'une des plus élevées d\'Europe. À titre de comparaison, la France n\'a que 119 hab/km² !'},
+    {type:'info',question:'Quel est le PIB de la Belgique ?',choices:['200 Mds €','600 Mds €','1 200 Mds €','2 000 Mds €'],correct:1,
+      hint:'📊 Le port d\'Anvers est le 2e plus grand d\'Europe. L\'industrie chimique et pharmaceutique belge (UCB, Solvay, Janssen) est un pilier de l\'économie. Le chocolat belge est aussi un empire : Godiva, Neuhaus, Leonidas…'},
+    {type:'info',question:'Quelle entreprise belge est le plus grand brasseur mondial ?',choices:['Solvay','UCB','AB InBev','Delhaize'],correct:2,
+      hint:'🍺 AB InBev, basée à Louvain, produit la Jupiler, la Leffe, la Stella Artois et la Budweiser. Elle est née de la fusion de la belge Interbrew avec la brésilienne AmBev (2004), puis l\'américaine Anheuser-Busch (2008).'}
+  ]},
+{name:'Allemagne',flag:'🇩🇪',flagClass:'flag-de',capital:{name:'Berlin',lat:52.52,lng:13.405},center:{lat:51.2,lng:10.4},zoom:6,
+  info:'1re économie de l\'UE, 3e mondiale. Pays le plus peuplé de l\'UE. Réunifiée en 1990 après la chute du mur de Berlin.',
+  questions:[
+    {type:'identify',question:'Quel est ce pays ?',choices:['Pologne','Autriche','Allemagne','France'],correct:2,
+      hint:'🏗️ L\'Allemagne n\'est unifiée que depuis 1871 (par Bismarck). Divisée en deux (RFA/RDA) de 1949 à 1990, la chute du mur de Berlin le 9 novembre 1989 reste un moment clé de l\'histoire mondiale.'},
+    {type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-be','flag-de','flag-at','flag-nl'],correct:1,
+      hint:'🏴 Le noir-rouge-or date des guerres napoléoniennes (1813) : les soldats allemands portaient des uniformes noirs à boutons dorés avec des parements rouges. Les bandes sont horizontales (≠ Belgique : verticales).'},
+    {type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Munich','Francfort','Hambourg','Berlin'],correct:3,
+      hint:'🧱 Berlin a été coupée en deux par un mur de 1961 à 1989. La Porte de Brandebourg, autrefois en zone interdite, est aujourd\'hui le symbole de la réunification. Francfort est la capitale financière (siège de la BCE).'},
+    {type:'info',question:'Quelle est la monnaie de l\'Allemagne ?',choices:['Mark allemand','Euro','Franc suisse','Couronne'],correct:1,
+      hint:'💶 Avant l\'euro, l\'Allemagne utilisait le Deutschmark, monnaie très stable. Mais dans les années 1920, l\'hyperinflation était telle qu\'un pain coûtait des milliards de marks — les gens transportaient l\'argent en brouettes !'},
+    {type:'info',question:'L\'Allemagne est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1990','Non, OTAN','Non'],correct:0,
+      hint:'🇪🇺 L\'Allemagne (de l\'Ouest) est membre fondateur de la CEE (1957). Le couple franco-allemand est le « moteur » de l\'Europe. La réconciliation entre ces deux pays, ennemis lors de 3 guerres, est le socle du projet européen.'},
+    {type:'info',question:'Quelle est la population de l\'Allemagne ?',choices:['60 millions','68 millions','84 millions','95 millions'],correct:2,
+      hint:'👥 L\'Allemagne est le pays le plus peuplé de l\'UE (84 M). Mais son taux de natalité est très bas (1,3 enfant/femme) et sa population vieillit vite — un défi majeur pour financer les retraites et trouver de la main-d\'œuvre.'},
+    {type:'info',question:'Quel est le PIB de l\'Allemagne ?',choices:['2 200 Mds €','2 900 Mds €','4 300 Mds €','5 500 Mds €'],correct:2,
+      hint:'📊 Avec 4 300 Mds €, l\'Allemagne est la 1re économie de l\'UE. Son modèle repose sur l\'exportation industrielle. Le « Made in Germany » est un label de qualité reconnu mondialement, surtout pour les machines et l\'automobile.'},
+    {type:'info',question:'Quel constructeur auto allemand est le plus grand d\'Europe ?',choices:['BMW','Mercedes','Volkswagen','Audi'],correct:2,
+      hint:'🚗 Volkswagen signifie « voiture du peuple ». Créée en 1937, la marque possède aussi Audi, Porsche, Lamborghini, Bentley, SEAT et Škoda. La Golf est la voiture la plus vendue d\'Europe avec plus de 37 millions d\'exemplaires !'}
+  ]},
+{name:'Italie',flag:'🇮🇹',flagClass:'flag-it',capital:{name:'Rome',lat:41.9028,lng:12.4964},center:{lat:42.5,lng:12.5},zoom:6,
+  info:'3e économie de l\'UE. En forme de botte. Célèbre pour Ferrari, la gastronomie et le patrimoine culturel. Rome abrite le Vatican.',
+  questions:[
+    {type:'identify',question:'Quel est ce pays ?',choices:['Espagne','Grèce','Italie','Croatie'],correct:2,
+      hint:'👢 L\'Italie a la forme d\'une botte — impossible à confondre ! L\'unification italienne (le Risorgimento) s\'achève en 1871. Avant, la péninsule était divisée en royaumes, duchés et États pontificaux.'},
+    {type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-ie','flag-hu','flag-it','flag-ro'],correct:2,
+      hint:'🏴 Le vert-blanc-rouge vient de Napoléon qui l\'a introduit en 1797, inspiré du drapeau français. Le vert = l\'espoir, le blanc = la foi, le rouge = l\'amour. Ne pas confondre avec l\'Irlande (vert-blanc-orange) !'},
+    {type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Milan','Rome','Florence','Naples'],correct:1,
+      hint:'🏛️ Rome, « la Ville Éternelle », fondée en 753 av. J.-C. (selon la légende de Romulus et Rémus). Le Colisée pouvait accueillir 50 000 spectateurs. Rome contient aussi le Vatican, le plus petit État du monde (0,44 km²) !'},
+    {type:'info',question:'Quelle est la monnaie de l\'Italie ?',choices:['Lire italienne','Euro','Franc','Florin'],correct:1,
+      hint:'💶 Avant l\'euro (2002), l\'Italie utilisait la lire. Les prix donnaient le vertige : une pizza coûtait ~10 000 lires, un café 1 500 lires ! Le passage à l\'euro a beaucoup simplifié les choses.'},
+    {type:'info',question:'L\'Italie est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1973','Non, a quitté','Non'],correct:0,
+      hint:'🇪🇺 L\'Italie est membre fondateur : le Traité de Rome a été signé… à Rome ! Le 25 mars 1957, dans la Salle des Horaces et des Curiaces du Capitole. C\'est l\'acte de naissance de la construction européenne.'},
+    {type:'info',question:'Quelle est la population de l\'Italie ?',choices:['42 millions','59 millions','68 millions','75 millions'],correct:1,
+      hint:'👥 L\'Italie a un des taux de natalité les plus bas au monde (1,2 enfant/femme). Plus de 24% des Italiens ont plus de 65 ans. Le pays perd des habitants chaque année — un vrai défi pour l\'avenir.'},
+    {type:'info',question:'Quel est le PIB de l\'Italie ?',choices:['900 Mds €','1 500 Mds €','2 200 Mds €','3 500 Mds €'],correct:2,
+      hint:'📊 3e économie de l\'UE, l\'Italie est marquée par une fracture Nord/Sud : le Nord (Milan, Turin) est très industrialisé tandis que le Sud (Mezzogiorno) reste plus agricole — un écart économique qui dure depuis des siècles.'},
+    {type:'info',question:'Quelle marque italienne est célèbre pour ses voitures de sport ?',choices:['Fiat','Lamborghini','Ferrari','Vespa'],correct:2,
+      hint:'🏎️ Ferrari, fondée en 1939 par Enzo Ferrari à Maranello, limite sa production à ~14 000 voitures/an pour rester exclusive. Le cheval cabré (Cavallino Rampante) vient du blason d\'un pilote de la 1re Guerre mondiale.'}
+  ]},
+{name:'Royaume-Uni',flag:'🇬🇧',flagClass:'flag-gb',capital:{name:'Londres',lat:51.5074,lng:-0.1278},center:{lat:54.5,lng:-2.5},zoom:6,
+  info:'A quitté l\'UE en 2020 (Brexit). 4 nations : Angleterre, Écosse, Galles, Irlande du Nord. Londres est un des plus grands centres financiers mondiaux.',
+  questions:[
+    {type:'identify',question:'Quel est ce pays ?',choices:['Irlande','Royaume-Uni','Islande','Norvège'],correct:1,
+      hint:'🏝️ Le Royaume-Uni est composé de 4 nations : Angleterre, Écosse, Pays de Galles et Irlande du Nord. C\'est la plus grande île d\'Europe, séparée du continent par la Manche (34 km au point le plus étroit, relié par l\'Eurotunnel).'},
+    {type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-no','flag-fr','flag-nl','flag-gb'],correct:3,
+      hint:'🇬🇧 L\'Union Jack superpose 3 croix : St George (Angleterre), St Andrew (Écosse) et St Patrick (Irlande). Fait marquant : le Pays de Galles n\'est PAS représenté sur le drapeau car il était déjà rattaché à l\'Angleterre lors de sa création !'},
+    {type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Édimbourg','Manchester','Londres','Dublin'],correct:2,
+      hint:'🏙️ Londres (~9 millions d\'habitants) est la plus grande ville d\'Europe occidentale. « Big Ben » n\'est pas la tour mais la cloche de 13,7 tonnes à l\'intérieur ! La tour s\'appelle en réalité Elizabeth Tower depuis 2012.'},
+    {type:'info',question:'Quelle est la monnaie du Royaume-Uni ?',choices:['Euro','Dollar US','Livre sterling','Franc'],correct:2,
+      hint:'💷 La livre sterling est la plus ancienne monnaie encore en circulation (depuis ~775 !). Le symbole £ vient du latin « Libra » (balance). Le Royaume-Uni n\'a jamais adopté l\'euro, même quand il était dans l\'UE.'},
+    {type:'info',question:'Le Royaume-Uni est-il membre de l\'UE ?',choices:['Oui, depuis 1973','Oui, fondateur','Non, Brexit 2020','Non, jamais'],correct:2,
+      hint:'🚪 Entré en 1973, sorti en 2020 : le Brexit est le résultat du référendum de 2016 (51,9% pour la sortie). C\'est le seul pays à avoir quitté l\'UE. Attention : Dublin est la capitale de l\'Irlande (République), qui reste dans l\'UE !'},
+    {type:'info',question:'Quelle est la population du Royaume-Uni ?',choices:['48 millions','56 millions','68 millions','80 millions'],correct:2,
+      hint:'👥 68 millions d\'habitants, presque autant que la France. L\'Angleterre seule en compte 56 millions — l\'un des territoires les plus densément peuplés d\'Europe. L\'Écosse n\'a que 5,4 millions d\'habitants.'},
+    {type:'info',question:'Quel est le PIB du Royaume-Uni ?',choices:['1 500 Mds €','2 200 Mds €','3 200 Mds €','4 500 Mds €'],correct:2,
+      hint:'📊 6e économie mondiale. Les services financiers (la City de Londres) représentent ~7% du PIB. La City traite plus de transactions en devises étrangères que New York — c\'est le 1er centre financier mondial !'},
+    {type:'info',question:'Pour quel secteur Londres est-elle connue ?',choices:['Industrie auto','Agriculture','Services financiers','Tourisme balnéaire'],correct:2,
+      hint:'🏦 La City de Londres ne fait que 2,9 km² mais c\'est une entité quasi-indépendante avec son propre maire ! Plus de 500 banques internationales y ont leur siège. La Bourse de Londres existe depuis 1801.'}
+  ]}
+];
+
+const ALL_QUESTIONS=[];
+COUNTRIES.forEach((c,ci)=>c.questions.forEach((q,qi)=>ALL_QUESTIONS.push({...q,countryIndex:ci,questionInCountry:qi})));
+const TOTAL_QUESTIONS=ALL_QUESTIONS.length;
+
+let state={mode:null,playerName:'',currentQuestion:0,studentScore:0,studentAnswered:{},revealed:false,gameStatus:'lobby',players:[],responses:[],scores:{}};
+let profMap=null,profMarker=null,profPulse=null,profCapitalMarker=null,bordersLayer=null,pollTimer=null;
+
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id)?.classList.add('active');if(id==='screen-prof-map'&&profMap)setTimeout(()=>profMap.invalidateSize(),100)}
+function escapeHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+function postToSheets(d){if(!SHEETS_ENABLED){console.log('[DEMO]',d);return}fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)}).catch(e=>console.error(e))}
+function fetchFromSheets(cb){
+  if(!SHEETS_ENABLED){cb({questionActuelle:state.currentQuestion,statut:state.gameStatus,joueurs:state.players,reponses:state.responses,scores:state.scores});return}
+  const n='_gs_'+Date.now()+'_'+Math.random().toString(36).substr(2,5);window[n]=d=>{cb(d);delete window[n]};
+  const s=document.createElement('script');s.src=SCRIPT_URL+'?action=getState&callback='+n+'&t='+Date.now();
+  s.onerror=()=>{delete window[n];s.remove();cb(null)};document.head.appendChild(s);
+  setTimeout(()=>{if(window[n])delete window[n];s.parentNode&&s.remove()},10000);
+}
+function startPolling(){stopPolling();pollTimer=setInterval(pollState,POLL_INTERVAL);pollState()}
+function stopPolling(){if(pollTimer){clearInterval(pollTimer);pollTimer=null}}
+function pollState(){
+  fetchFromSheets(data=>{
+    if(!data)return;state.players=data.joueurs||[];state.responses=data.reponses||[];state.scores=data.scores||{};
+    const nq=Number(data.questionActuelle)||0,ns=data.statut||'lobby';
+    if(state.mode==='student'){
+      if(state.gameStatus==='lobby'&&ns==='playing'){state.gameStatus='playing';state.currentQuestion=nq;showScreen('screen-student-quiz');renderStudentQuestion()}
+      else if(state.gameStatus==='playing'&&nq!==state.currentQuestion){state.currentQuestion=nq;if(ns==='finished'){state.gameStatus='finished';showResults()}else renderStudentQuestion()}
+      if(ns==='finished'&&state.gameStatus!=='finished'){state.gameStatus='finished';showResults()}
+    }
+    if(state.mode==='prof'){updateProfLobby();updateProfCounter()}
+  });
+}
+
+function getBadgeHtml(qi){const q=ALL_QUESTIONS[qi],c=COUNTRIES[q.countryIndex];if(q.questionInCountry===0)return{cls:'mystery',html:'❓ Pays mystère'};if(q.questionInCountry===1)return{cls:'',html:'🔍 '+c.name};return{cls:'',html:'<div class="css-flag sm '+c.flagClass+'"></div> '+c.name}}
+
+function enterProfessor(){PROF_CODE?showScreen('screen-prof-password'):initProfessor();if(PROF_CODE)document.getElementById('prof-password').focus()}
+function checkPassword(){document.getElementById('prof-password').value===PROF_CODE?initProfessor():(document.getElementById('pwd-error').style.display='block',setTimeout(()=>document.getElementById('pwd-error').style.display='none',2000))}
+function initProfessor(){state.mode='prof';state.gameStatus='lobby';showScreen('screen-prof-lobby');startPolling()}
+function updateProfLobby(){
+  const c=document.getElementById('lobby-players'),ct=document.getElementById('lobby-count'),w=document.getElementById('lobby-waiting'),b=document.getElementById('btn-start-quiz');
+  ct.textContent=state.players.length;
+  const ex=Array.from(c.querySelectorAll('.player-tag')).map(e=>e.dataset.name);
+  state.players.forEach(name=>{if(!ex.includes(name)){const t=document.createElement('div');t.className='player-tag';t.dataset.name=name;t.innerHTML='<span class="dot"></span>'+escapeHtml(name);c.appendChild(t)}});
+  w.style.display=state.players.length>0?'none':'block';b.disabled=state.players.length===0;
+}
+
+function startQuiz(){state.gameStatus='playing';state.currentQuestion=0;state.revealed=false;postToSheets({action:'setStatus',statut:'playing'});postToSheets({action:'setQuestion',question:0});showScreen('screen-prof-map');initProfMap();renderProfQuestion()}
+
+function initProfMap(){
+  if(profMap){profMap.remove();profMap=null}
+  setTimeout(()=>{
+    profMap=L.map('prof-map',{zoomControl:false,attributionControl:false}).setView([54,10],4);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png',{maxZoom:12,subdomains:'abcd'}).addTo(profMap);
+    L.control.zoom({position:'topright'}).addTo(profMap);
+    // Load country borders
+    loadBorders();
+    updateProfMap();
+  },150);
+}
+
+function loadBorders(){
+  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+    .then(r=>r.json())
+    .then(world=>{
+      if(typeof topojson!=='undefined'&&world.objects&&world.objects.countries){
+        const geo=topojson.feature(world,world.objects.countries);
+        bordersLayer=L.geoJSON(geo,{
+          style:{color:'#222',weight:2.5,fillOpacity:0,opacity:0.7,interactive:false}
+        }).addTo(profMap);
+      }
+    }).catch(e=>console.log('Borders not loaded:',e));
+}
+
+function clearMarkers(){
+  if(profMarker){profMap.removeLayer(profMarker);profMarker=null}
+  if(profPulse){profMap.removeLayer(profPulse);profPulse=null}
+  if(profCapitalMarker){profMap.removeLayer(profCapitalMarker);profCapitalMarker=null}
+}
+function updateProfMap(){
+  if(!profMap)return;const q=ALL_QUESTIONS[state.currentQuestion],c=COUNTRIES[q.countryIndex];clearMarkers();
+  if(q.type==='identify'){
+    profMap.flyTo([54,10],4,{duration:1});
+    setTimeout(()=>{profMarker=L.circleMarker([c.center.lat,c.center.lng],{radius:30,color:'#ffd700',weight:3,fillColor:'#ffd700',fillOpacity:0.12,dashArray:'8 4'}).addTo(profMap);profPulse=L.circleMarker([c.center.lat,c.center.lng],{radius:14,color:'#ff6b6b',weight:2,fillColor:'#ff6b6b',fillOpacity:0.25}).addTo(profMap)},600);
+  }else if(q.type==='capital'){
+    profMap.flyTo([c.center.lat,c.center.lng],c.zoom,{duration:1});
+    setTimeout(()=>{profCapitalMarker=L.marker([c.capital.lat,c.capital.lng],{icon:L.divIcon({className:'',html:'<div style="width:22px;height:22px;background:#ff6b6b;border:3px solid #fff;border-radius:50%;animation:pulseGlow 2s ease infinite"></div>',iconSize:[22,22],iconAnchor:[11,11]})}).addTo(profMap)},800);
+  }else{profMap.flyTo([c.center.lat,c.center.lng],c.zoom,{duration:1})}
+}
+
+function renderProfQuestion(){
+  const q=ALL_QUESTIONS[state.currentQuestion],c=COUNTRIES[q.countryIndex];state.revealed=false;
+  document.getElementById('pq-num').textContent='Q'+(state.currentQuestion+1)+'/'+TOTAL_QUESTIONS;
+  const badge=document.getElementById('pq-country'),bi=getBadgeHtml(state.currentQuestion);badge.className='country-badge '+bi.cls;badge.innerHTML=bi.html;
+  document.getElementById('pq-bar').style.width=((state.currentQuestion/TOTAL_QUESTIONS)*100)+'%';
+  document.getElementById('pq-count-total').textContent=state.players.length;document.getElementById('pq-count-num').textContent='0';
+  document.getElementById('pq-counter').classList.remove('all-in');
+  document.getElementById('pq-question-text').textContent=q.question;
+  const ch=document.getElementById('pq-choices');ch.innerHTML='';const L2=['A','B','C','D'];
+  q.choices.forEach((choice,i)=>{const d=document.createElement('div');d.className='map-choice c'+i;d.id='mc-'+i;
+    if(q.type==='flag'&&q.flagClasses)d.innerHTML='<strong>'+L2[i]+'</strong><div class="css-flag flag-in-choice '+q.flagClasses[i]+'"></div>';
+    else d.innerHTML='<strong>'+L2[i]+'</strong> '+escapeHtml(choice);ch.appendChild(d)});
+  document.getElementById('btn-reveal').disabled=false;
+  document.getElementById('btn-next').textContent=state.currentQuestion<TOTAL_QUESTIONS-1?'Suivant ➜':'🏆 Résultats';
+  if(profMap)updateProfMap();
+}
+
+function updateProfCounter(){
+  if(state.mode!=='prof'||state.gameStatus!=='playing')return;
+  const rc=state.responses.length,total=state.players.length;
+  document.getElementById('pq-count-num').textContent=rc;document.getElementById('pq-count-total').textContent=total;
+  const ct=document.getElementById('pq-counter');rc>=total&&total>0?ct.classList.add('all-in'):ct.classList.remove('all-in');
+}
+
+function showProfResponses(){
+  const q=ALL_QUESTIONS[state.currentQuestion],c=COUNTRIES[q.countryIndex];
+  document.getElementById('pr-subtitle').textContent='Question '+(state.currentQuestion+1)+' — '+q.question;
+  const grid=document.getElementById('pr-grid');grid.innerHTML='';
+  const am={};state.responses.forEach(r=>{am[r.nom]=r});
+  state.players.forEach((name,i)=>{
+    const card=document.createElement('div');card.className='resp-card';const r=am[name];
+    let ac='waiting',ah='En attente...',acls='';
+    if(r){if(state.revealed){const ok=Number(r.correct)===1;ac=ok?'correct':'wrong';acls=ok?'rok':'rko';ah=escapeHtml(r.reponse)+' '+(ok?'✓':'✗');card.classList.add(ok?'revealed-correct':'revealed-wrong')}else{ac='answered';ah='A répondu ✓'}}
+    card.innerHTML='<div class="resp-avatar '+ac+'">'+name.charAt(0).toUpperCase()+'</div><div class="resp-info"><div class="resp-name">'+escapeHtml(name)+'</div><div class="resp-answer '+acls+'">'+ah+'</div></div>';
+    grid.appendChild(card);
+  });
+  const ib=document.getElementById('pr-info');state.revealed?ib.classList.add('visible'):ib.classList.remove('visible');
+  document.getElementById('btn-reveal').disabled=state.revealed;
+  showScreen('screen-prof-responses');
+}
+
+function revealAnswer(){
+  state.revealed=true;const q=ALL_QUESTIONS[state.currentQuestion],c=COUNTRIES[q.countryIndex];
+  q.choices.forEach((_,i)=>{const el=document.getElementById('mc-'+i);if(el){i===q.correct?el.classList.add('correct-reveal'):el.classList.add('wrong-reveal')}});
+  const badge=document.getElementById('pq-country');
+  if(q.questionInCountry===0){badge.className='country-badge';badge.innerHTML='🔍 '+c.name}
+  else if(q.questionInCountry===1){badge.className='country-badge';badge.innerHTML='<div class="css-flag sm '+c.flagClass+'"></div> '+c.name}
+  if(q.type==='capital'&&profCapitalMarker)profCapitalMarker.bindPopup('<strong style="font-size:1.1rem">'+c.capital.name+'</strong>',{closeButton:false,autoClose:false}).openPopup();
+  // Info with rich hint
+  const ib=document.getElementById('pr-info'),ih=document.getElementById('pr-info-title'),it=document.getElementById('pr-info-text');
+  ih.textContent=q.questionInCountry===7?'📌 '+c.name+' en bref':'💡 Le saviez-vous ?';
+  it.textContent=q.hint||(q.questionInCountry===7?c.info:'Bonne réponse : '+q.choices[q.correct]);
+  showProfResponses();
+}
+
+function showProfLeaderboard(){
+  document.getElementById('pl-qcount').textContent=state.currentQuestion+(state.revealed?1:0);
+  const el=document.getElementById('pl-list');el.innerHTML='';const sc=state.scores;
+  if(!sc||!Object.keys(sc).length){el.innerHTML='<p style="text-align:center;color:rgba(255,255,255,.4);padding:40px">Pas encore de scores</p>';showScreen('screen-prof-leaderboard');return}
+  const sorted=Object.entries(sc).sort((a,b)=>b[1]-a[1]);const mx=sorted[0]?sorted[0][1]:1;const medals=['🥇','🥈','🥉'];
+  sorted.forEach(([name,score],i)=>{const d=document.createElement('div');d.className='lb-entry';d.style.animationDelay=(i*.08)+'s';
+    d.innerHTML='<div class="lb-pos '+(i===0?'gold':i===1?'silver':i===2?'bronze':'')+'">'+( i<3?medals[i]:(i+1))+'</div><div class="lb-name">'+escapeHtml(name)+'</div><div class="lb-bar-wrap"><div class="lb-bar-fill" style="width:'+(mx>0?Math.round(score/mx*100):0)+'%"></div></div><div class="lb-score">'+score+' pts</div>';
+    el.appendChild(d)});
+  showScreen('screen-prof-leaderboard');
+}
+
+function nextQuestion(){if(state.currentQuestion>=TOTAL_QUESTIONS-1){endGame();return}clearMarkers();state.currentQuestion++;state.revealed=false;postToSheets({action:'setQuestion',question:state.currentQuestion});showScreen('screen-prof-map');renderProfQuestion()}
+function endGame(){state.gameStatus='finished';postToSheets({action:'setStatus',statut:'finished'});showResults()}
+function resetGame(){if(!confirm('Réinitialiser la partie ?'))return;state={...state,currentQuestion:0,gameStatus:'lobby',players:[],responses:[],scores:{},revealed:false,studentScore:0,studentAnswered:{}};postToSheets({action:'reset'});document.getElementById('lobby-players').innerHTML='';showScreen('screen-prof-lobby')}
+
+function showResults(){
+  stopPolling();const sm={};if(SHEETS_ENABLED&&Object.keys(state.scores).length)Object.assign(sm,state.scores);else if(state.mode==='student')sm[state.playerName]=state.studentScore;
+  const sorted=Object.entries(sm).sort((a,b)=>b[1]-a[1]);const t=document.getElementById('results-table');
+  let h='<thead><tr><th>#</th><th>Joueur</th><th>Score</th></tr></thead><tbody>';
+  sorted.forEach(([name,score],i)=>{const p=i<3?' podium-'+(i+1):'';h+='<tr><td class="rank'+p+'">'+(i===0?'🥇':i===1?'🥈':i===2?'🥉':(i+1))+'</td><td class="'+p+'">'+escapeHtml(name)+'</td><td class="'+p+'">'+score+'/'+TOTAL_QUESTIONS+'</td></tr>'});
+  t.innerHTML=h+'</tbody>';showScreen('screen-results');launchConfetti();
+}
+
+// STUDENT — ne révèle PAS la bonne réponse
+function registerStudent(){
+  const n=document.getElementById('student-name').value.trim(),e=document.getElementById('join-error');
+  if(!n||n.length<2){e.textContent=n?'Minimum 2 caractères':'Entre ton prénom !';e.style.display='block';return}
+  state.mode='student';state.playerName=n;state.studentScore=0;state.studentAnswered={};
+  postToSheets({action:'register',nom:n});if(!SHEETS_ENABLED)state.players.push(n);
+  document.getElementById('wait-name').textContent=n;document.getElementById('sq-total').textContent=TOTAL_QUESTIONS;
+  showScreen('screen-student-wait');startPolling();
+}
+function renderStudentQuestion(){
+  const qi=state.currentQuestion;if(qi>=TOTAL_QUESTIONS){showResults();return}const q=ALL_QUESTIONS[qi];
+  document.getElementById('sq-label').textContent='Question '+(qi+1)+'/'+TOTAL_QUESTIONS;
+  document.getElementById('sq-text').textContent=q.question;
+  document.getElementById('sq-score').textContent=Object.keys(state.studentAnswered).length;
+  document.getElementById('sq-feedback').style.display='none';document.getElementById('sq-wait').style.display='none';
+  if(state.studentAnswered[qi]!==undefined){showStudentAnswered(qi);return}
+  const g=document.getElementById('sq-choices');g.innerHTML='';g.style.display='';const L2=['A','B','C','D'];
+  q.choices.forEach((choice,i)=>{const b=document.createElement('button');b.className='choice-btn c'+i;
+    if(q.type==='flag'&&q.flagClasses)b.innerHTML='<strong>'+L2[i]+'</strong><div class="css-flag flag-in-btn '+q.flagClasses[i]+'"></div>';
+    else b.innerHTML='<strong>'+L2[i]+'</strong> <span>'+escapeHtml(choice)+'</span>';
+    b.onclick=()=>submitStudentAnswer(i);g.appendChild(b)});
+}
+function submitStudentAnswer(ci){
+  const qi=state.currentQuestion,q=ALL_QUESTIONS[qi],c=COUNTRIES[q.countryIndex],ok=ci===q.correct;
+  state.studentAnswered[qi]=ci;if(ok)state.studentScore++;
+  let ans=q.choices[ci];if(q.type==='flag'&&q.flagClasses)ans=FN[q.flagClasses[ci]]||('Choix '+(ci+1));
+  postToSheets({action:'answer',nom:state.playerName,question:qi,reponse:ans,correct:ok,pays:c.name});
+  if(!SHEETS_ENABLED){state.responses.push({nom:state.playerName,reponse:ans,correct:ok?1:0});if(!state.scores[state.playerName])state.scores[state.playerName]=0;state.scores[state.playerName]+=ok?1:0}
+  showStudentAnswered(qi);
+}
+function showStudentAnswered(qi){
+  // NE PAS révéler la bonne réponse — juste marquer le choix
+  const q=ALL_QUESTIONS[qi],ci=state.studentAnswered[qi];
+  const btns=document.getElementById('sq-choices').querySelectorAll('.choice-btn');
+  btns.forEach((b,i)=>{b.disabled=true;b.onclick=null;if(i===ci)b.classList.add('selected-answer')});
+  const fb=document.getElementById('sq-feedback');fb.style.display='block';
+  fb.className='student-feedback neutral';
+  fb.innerHTML='✅ Ta réponse a été enregistrée !<br><small style="opacity:.7">Le résultat sera dévoilé par le professeur.</small>';
+  document.getElementById('sq-score').textContent=Object.keys(state.studentAnswered).length;
+  document.getElementById('sq-wait').style.display='block';
+}
+
+function launchConfetti(){const cv=document.getElementById('confetti');if(!cv)return;const ctx=cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;const P=[],C=['#ffd700','#ff6b6b','#4ecdc4','#a855f7','#3498db','#2ecc71','#f39c12'];for(let i=0;i<120;i++)P.push({x:Math.random()*cv.width,y:Math.random()*cv.height-cv.height,w:Math.random()*10+5,h:Math.random()*6+3,c:C[~~(Math.random()*C.length)],vx:(Math.random()-.5)*4,vy:Math.random()*3+2,r:Math.random()*360,vr:(Math.random()-.5)*10});let f=0;(function a(){if(f>200){ctx.clearRect(0,0,cv.width,cv.height);return}ctx.clearRect(0,0,cv.width,cv.height);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.vy+=.05;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r*Math.PI/180);ctx.fillStyle=p.c;ctx.globalAlpha=Math.max(0,1-f/200);ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore()});f++;requestAnimationFrame(a)})()}
+</script>
+</body>
+</html>
