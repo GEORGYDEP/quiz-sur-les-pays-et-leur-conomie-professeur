@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Tour d'Europe Économique</title>
+<title>Tour d'Europe Économique — Professeur</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
@@ -12,298 +12,298 @@
 :root{--bg1:#0a0a1a;--bg2:#1a1040;--bg3:#12102e;--gold:#ffd700;--coral:#ff6b6b;--cyan:#4ecdc4;--purple:#a855f7;--choice-a:#e74c3c;--choice-b:#3498db;--choice-c:#2ecc71;--choice-d:#f39c12;--glass:rgba(255,255,255,0.06);--glass-border:rgba(255,255,255,0.1);--correct:#00e676;--wrong:#ff1744}
 html,body{height:100%;overflow:hidden}
 body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));color:#fff;overflow-y:auto}
-.screen{display:none;flex-direction:column;align-items:center;min-height:100vh;width:100%;position:absolute;top:0;left:0;opacity:0;transition:opacity .4s}
-.screen.active{display:flex;opacity:1;position:relative}
+.screen{display:none;flex-direction:column;align-items:center;min-height:100vh;width:100%;position:absolute;top:0;left:0;opacity:0;transition:opacity .4s}.screen.active{display:flex;opacity:1;position:relative}
 h1,h2{font-family:'Fredoka',sans-serif;font-weight:700}
 .card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:24px;padding:40px;width:100%;max-width:500px}
-.btn{font-family:'Poppins',sans-serif;font-weight:700;border:none;border-radius:16px;padding:16px 32px;font-size:1.1rem;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:1px}
-.btn:active{transform:scale(.96)}.btn:disabled{opacity:.4;cursor:default;transform:none!important}
-.btn-gold{background:linear-gradient(135deg,#ffd700,#ffaa00);color:#1a1040;box-shadow:0 4px 20px rgba(255,215,0,.3)}
-.btn-gold:hover:not(:disabled){box-shadow:0 6px 30px rgba(255,215,0,.5);transform:translateY(-2px)}
-.btn-purple{background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff}
-.btn-coral{background:linear-gradient(135deg,#ff6b6b,#ee5a24);color:#fff}
-.btn-cyan{background:linear-gradient(135deg,#4ecdc4,#00b894);color:#1a1040}
-.btn-dark{background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--glass-border)}
-.btn-dark:hover{background:rgba(255,255,255,.15)}
-.btn-sm{padding:10px 20px;font-size:.85rem;border-radius:12px}
-.input-field{width:100%;padding:16px 20px;border-radius:16px;border:2px solid var(--glass-border);background:rgba(255,255,255,.05);color:#fff;font-family:'Poppins',sans-serif;font-size:1.1rem;outline:none;transition:border-color .3s}
-.input-field:focus{border-color:var(--gold)}.input-field::placeholder{color:rgba(255,255,255,.3)}
+.btn{font-family:'Poppins',sans-serif;font-weight:700;border:none;border-radius:16px;padding:16px 32px;font-size:1.1rem;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:1px}.btn:active{transform:scale(.96)}.btn:disabled{opacity:.4;cursor:default;transform:none!important}
+.btn-gold{background:linear-gradient(135deg,#ffd700,#ffaa00);color:#1a1040;box-shadow:0 4px 20px rgba(255,215,0,.3)}.btn-gold:hover:not(:disabled){box-shadow:0 6px 30px rgba(255,215,0,.5);transform:translateY(-2px)}
+.btn-purple{background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff}.btn-coral{background:linear-gradient(135deg,#ff6b6b,#ee5a24);color:#fff}.btn-cyan{background:linear-gradient(135deg,#4ecdc4,#00b894);color:#1a1040}.btn-dark{background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--glass-border)}.btn-dark:hover{background:rgba(255,255,255,.15)}.btn-sm{padding:10px 20px;font-size:.85rem;border-radius:12px}
+.input-field{width:100%;padding:16px 20px;border-radius:16px;border:2px solid var(--glass-border);background:rgba(255,255,255,.05);color:#fff;font-family:'Poppins',sans-serif;font-size:1.1rem;outline:none;transition:border-color .3s}.input-field:focus{border-color:var(--gold)}.input-field::placeholder{color:rgba(255,255,255,.3)}
 .emoji-big{font-size:4rem;line-height:1}
 .title-xl{font-size:clamp(2rem,6vw,3.5rem);text-align:center;background:linear-gradient(135deg,#fff,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .subtitle{color:rgba(255,255,255,.6);text-align:center;font-size:1rem;margin-top:8px}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulseGlow{0%,100%{box-shadow:0 0 15px rgba(255,107,107,.5)}50%{box-shadow:0 0 40px rgba(255,107,107,.9)}}
-@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@keyframes pulseGlow{0%,100%{box-shadow:0 0 15px rgba(255,107,107,.5)}50%{box-shadow:0 0 40px rgba(255,107,107,.9)}}@keyframes spin{to{transform:rotate(360deg)}}
 .fadeIn{animation:fadeIn .5s ease}.pulse{animation:pulse 2s ease-in-out infinite}
-.player-tag{display:inline-block;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:8px 16px;margin:4px;font-weight:600;animation:slideUp .4s ease;font-size:.95rem}
-.player-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--correct);display:inline-block;margin-right:6px}
-.css-flag{display:inline-block;flex-shrink:0;border-radius:6px;border:2px solid rgba(255,255,255,.2)}
-.css-flag.sm{width:32px;height:21px;border-radius:3px;border-width:1px}.css-flag.md{width:60px;height:40px}.css-flag.lg{width:90px;height:60px;border-radius:8px}
+.player-tag{display:inline-block;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:8px 16px;margin:4px;font-weight:600;animation:slideUp .4s ease;font-size:.95rem}.player-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--correct);display:inline-block;margin-right:6px}
+.css-flag{display:inline-block;flex-shrink:0;border-radius:6px;border:2px solid rgba(255,255,255,.2)}.css-flag.sm{width:32px;height:21px;border-radius:3px;border-width:1px}.css-flag.md{width:60px;height:40px}.css-flag.lg{width:90px;height:60px;border-radius:8px}
 .flag-fr{background:linear-gradient(90deg,#002395 33.3%,#fff 33.3%,#fff 66.6%,#ED2939 66.6%)}
 .flag-be{background:linear-gradient(90deg,#000 33.3%,#FDDA24 33.3%,#FDDA24 66.6%,#EF3340 66.6%)}
 .flag-de{background:linear-gradient(180deg,#000 33.3%,#DD0000 33.3%,#DD0000 66.6%,#FFCE00 66.6%)}
 .flag-it{background:linear-gradient(90deg,#008C45 33.3%,#fff 33.3%,#fff 66.6%,#CD212A 66.6%)}
-.flag-gb{background:#012169;position:relative;overflow:hidden}
-.flag-gb::before{content:'';position:absolute;top:50%;left:50%;width:200%;height:20%;background:#fff;transform:translate(-50%,-50%)}
-.flag-gb::after{content:'';position:absolute;top:50%;left:50%;width:20%;height:200%;background:#fff;transform:translate(-50%,-50%)}
+.flag-gb{background:#012169;position:relative;overflow:hidden}.flag-gb::before{content:'';position:absolute;top:50%;left:50%;width:200%;height:20%;background:#fff;transform:translate(-50%,-50%)}.flag-gb::after{content:'';position:absolute;top:50%;left:50%;width:20%;height:200%;background:#fff;transform:translate(-50%,-50%)}
 .flag-nl{background:linear-gradient(180deg,#AE1C28 33.3%,#fff 33.3%,#fff 66.6%,#21468B 66.6%)}
 .flag-lu{background:linear-gradient(180deg,#EF3340 33.3%,#fff 33.3%,#fff 66.6%,#00A2E1 66.6%)}
 .flag-at{background:linear-gradient(180deg,#ED2939 33.3%,#fff 33.3%,#fff 66.6%,#ED2939 66.6%)}
 .flag-ie{background:linear-gradient(90deg,#169B62 33.3%,#fff 33.3%,#fff 66.6%,#FF883E 66.6%)}
 .flag-ro{background:linear-gradient(90deg,#002B7F 33.3%,#FCD116 33.3%,#FCD116 66.6%,#CE1126 66.6%)}
 .flag-hu{background:linear-gradient(180deg,#CE2939 33.3%,#fff 33.3%,#fff 66.6%,#477050 66.6%)}
-.flag-no{background:#EF2B2D;position:relative;overflow:hidden}
-.flag-no::before{content:'';position:absolute;top:0;left:28%;width:16%;height:100%;background:#fff}
-.flag-no::after{content:'';position:absolute;top:38%;left:0;width:100%;height:24%;background:#fff}
+.flag-no{background:#EF2B2D;position:relative;overflow:hidden}.flag-no::before{content:'';position:absolute;top:0;left:28%;width:16%;height:100%;background:#fff}.flag-no::after{content:'';position:absolute;top:38%;left:0;width:100%;height:24%;background:#fff}
+.flag-pt{background:linear-gradient(90deg,#006600 40%,#FF0000 40%)}
+.flag-gr{background:linear-gradient(180deg,#0D5EAF 11%,#fff 11%,#fff 22%,#0D5EAF 22%,#0D5EAF 33%,#fff 33%,#fff 44%,#0D5EAF 44%,#0D5EAF 55%,#fff 55%,#fff 66%,#0D5EAF 66%,#0D5EAF 77%,#fff 77%,#fff 88%,#0D5EAF 88%)}
+.flag-ch{background:#FF0000;position:relative}.flag-ch::before{content:'';position:absolute;top:50%;left:50%;width:50%;height:16%;background:#fff;transform:translate(-50%,-50%)}.flag-ch::after{content:'';position:absolute;top:50%;left:50%;width:16%;height:50%;background:#fff;transform:translate(-50%,-50%)}
+.flag-pl{background:linear-gradient(180deg,#fff 50%,#DC143C 50%)}
+.flag-se{background:#006AA7;position:relative;overflow:hidden}.flag-se::before{content:'';position:absolute;top:0;left:28%;width:14%;height:100%;background:#FECC00}.flag-se::after{content:'';position:absolute;top:38%;left:0;width:100%;height:24%;background:#FECC00}
+.flag-dk{background:#C8102E;position:relative;overflow:hidden}.flag-dk::before{content:'';position:absolute;top:0;left:28%;width:12%;height:100%;background:#fff}.flag-dk::after{content:'';position:absolute;top:38%;left:0;width:100%;height:24%;background:#fff}
+.flag-ua{background:linear-gradient(180deg,#005BBB 50%,#FFD500 50%)}
+.flag-ee{background:linear-gradient(180deg,#0072CE 33.3%,#000 33.3%,#000 66.6%,#fff 66.6%)}
+.flag-ge{background:#fff;position:relative;overflow:hidden}.flag-ge::before{content:'';position:absolute;top:50%;left:0;width:100%;height:20%;background:#FF0000;transform:translateY(-50%)}.flag-ge::after{content:'';position:absolute;top:0;left:50%;width:20%;height:100%;background:#FF0000;transform:translateX(-50%)}
+.flag-sy{background:linear-gradient(180deg,#CE1126 33.3%,#fff 33.3%,#fff 66.6%,#000 66.6%)}
 .choices-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
-.choice-btn{border:none;border-radius:16px;padding:16px;font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:#fff;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:12px;text-align:left;min-height:56px}
-.choice-btn:hover{transform:scale(1.03);filter:brightness(1.1)}.choice-btn:active{transform:scale(.97)}
-.choice-btn.c0{background:var(--choice-a)}.choice-btn.c1{background:var(--choice-b)}.choice-btn.c2{background:var(--choice-c)}.choice-btn.c3{background:var(--choice-d)}
-.choice-btn.selected-answer{outline:4px solid #fff;outline-offset:2px;box-shadow:0 0 20px rgba(255,255,255,.3)}
-.choice-btn .flag-in-btn{width:48px;height:32px;flex-shrink:0}
-.choice-btn:disabled{cursor:default;transform:none!important;filter:none!important}
-.choice-btn.correct-reveal{outline:4px solid var(--correct);outline-offset:2px;box-shadow:0 0 20px rgba(0,230,118,.4)}
-.choice-btn.wrong-reveal{opacity:.4;filter:grayscale(.5)}
-
-/* Professor map page */
-.prof-map-page{width:100%;height:100vh;display:flex;flex-direction:column}
-.prof-topbar{padding:10px 20px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.5);border-bottom:1px solid var(--glass-border);flex-shrink:0;gap:10px;z-index:10}
-.prof-topbar .q-num{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--gold);white-space:nowrap}
-.prof-topbar .country-badge{display:flex;align-items:center;gap:6px;font-weight:700;font-size:.95rem}
-.prof-topbar .country-badge.mystery{opacity:.5;font-style:italic}
-.prof-progress{height:4px;background:rgba(255,255,255,.1);width:100%;flex-shrink:0}
-.prof-progress .bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--coral));transition:width .5s;border-radius:2px}
-#map-container{flex:1;position:relative;min-height:0}
-#prof-map{width:100%;height:100%;z-index:1}
-.leaflet-container{background:#e8ecf1!important}
-.map-question-overlay{position:absolute;bottom:90px;left:20px;right:20px;z-index:1000;pointer-events:none}
-.map-question-box{background:rgba(10,10,26,.88);backdrop-filter:blur(12px);border:2px solid var(--gold);border-radius:16px;padding:18px 24px;pointer-events:all}
-.map-question-box h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:#fff}
-.map-choices-overlay{position:absolute;top:60px;right:16px;z-index:1000;width:280px;display:flex;flex-direction:column;gap:8px}
-.map-choice{border-radius:12px;padding:12px 16px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px;font-size:.95rem;transition:all .3s;box-shadow:0 2px 10px rgba(0,0,0,.3)}
-.map-choice.c0{background:var(--choice-a)}.map-choice.c1{background:var(--choice-b)}.map-choice.c2{background:var(--choice-c)}.map-choice.c3{background:var(--choice-d)}
-.map-choice.correct-reveal{outline:3px solid var(--correct);box-shadow:0 0 25px rgba(0,230,118,.4)}
-.map-choice.wrong-reveal{opacity:.25}
-.map-choice .flag-in-choice{width:56px;height:37px;flex-shrink:0}
-.prof-bottombar{position:absolute;bottom:0;left:0;right:0;z-index:1000;padding:14px 20px;display:flex;align-items:center;gap:12px;background:rgba(10,10,26,.92);backdrop-filter:blur(12px);border-top:1px solid var(--glass-border)}
-.response-counter{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid var(--glass-border);border-radius:12px;padding:8px 16px;font-weight:700;font-size:1rem;white-space:nowrap}
-.response-counter .count-num{font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--gold)}
-.response-counter.all-in{border-color:var(--correct);background:rgba(0,230,118,.1)}
-.response-counter.all-in .count-num{color:var(--correct)}
-.prof-bottombar .spacer{flex:1}
-.prof-bottombar .btn{padding:12px 24px;font-size:.95rem}
-
-/* Responses page */
-.prof-page{width:100%;min-height:100vh;padding:30px 20px;display:flex;flex-direction:column;align-items:center}
-.prof-page-header{text-align:center;margin-bottom:24px}
-.prof-page-header h2{font-family:'Fredoka',sans-serif;font-size:2rem;color:var(--gold)}
-.prof-page-header p{color:rgba(255,255,255,.5);margin-top:6px}
-.responses-grid{width:100%;max-width:900px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-bottom:24px}
-.resp-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:16px;display:flex;align-items:center;gap:12px;animation:slideUp .4s ease;transition:all .3s}
-.resp-card .resp-avatar{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;font-family:'Fredoka',sans-serif;flex-shrink:0}
-.resp-card .resp-avatar.waiting{background:rgba(255,255,255,.06);color:rgba(255,255,255,.2)}
-.resp-card .resp-avatar.answered{background:rgba(168,85,247,.2);color:var(--purple)}
-.resp-card .resp-avatar.correct{background:rgba(0,230,118,.15);color:var(--correct)}
-.resp-card .resp-avatar.wrong{background:rgba(255,23,68,.15);color:var(--wrong)}
-.resp-card .resp-info{flex:1;min-width:0}
-.resp-card .resp-name{font-weight:700;font-size:.95rem}
-.resp-card .resp-answer{font-size:.82rem;color:rgba(255,255,255,.4);margin-top:2px}
-.resp-card .resp-answer.rok{color:var(--correct);font-weight:600}
-.resp-card .resp-answer.rko{color:var(--wrong);font-weight:600}
-.resp-card.revealed-correct{border-color:rgba(0,230,118,.3);background:rgba(0,230,118,.05)}
-.resp-card.revealed-wrong{border-color:rgba(255,23,68,.2);background:rgba(255,23,68,.03)}
-.info-banner{width:100%;max-width:900px;background:linear-gradient(135deg,rgba(78,205,196,.1),rgba(168,85,247,.08));border:1px solid rgba(78,205,196,.25);border-radius:16px;padding:20px 24px;margin-bottom:20px;display:none}
-.info-banner.visible{display:block;animation:slideUp .5s ease}
-.info-banner h3{color:var(--cyan);font-family:'Fredoka',sans-serif;margin-bottom:8px;font-size:1.1rem}
-.info-banner p{font-size:.95rem;color:rgba(255,255,255,.85);line-height:1.6}
+.choice-btn{border:none;border-radius:16px;padding:16px;font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;color:#fff;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:12px;text-align:left;min-height:56px}.choice-btn:hover{transform:scale(1.03);filter:brightness(1.1)}.choice-btn:active{transform:scale(.97)}.choice-btn.c0{background:var(--choice-a)}.choice-btn.c1{background:var(--choice-b)}.choice-btn.c2{background:var(--choice-c)}.choice-btn.c3{background:var(--choice-d)}.choice-btn.selected-answer{outline:4px solid #fff;outline-offset:2px;box-shadow:0 0 20px rgba(255,255,255,.3)}.choice-btn .flag-in-btn{width:48px;height:32px;flex-shrink:0}.choice-btn:disabled{cursor:default;transform:none!important;filter:none!important}.choice-btn.correct-reveal{outline:4px solid var(--correct);outline-offset:2px;box-shadow:0 0 20px rgba(0,230,118,.4)}.choice-btn.wrong-reveal{opacity:.4;filter:grayscale(.5)}
+.prof-map-page{width:100%;height:100vh;display:flex;flex-direction:column}.prof-topbar{padding:10px 20px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.5);border-bottom:1px solid var(--glass-border);flex-shrink:0;gap:10px;z-index:10}.prof-topbar .q-num{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--gold);white-space:nowrap}.prof-topbar .country-badge{display:flex;align-items:center;gap:6px;font-weight:700;font-size:.95rem}.prof-topbar .country-badge.mystery{opacity:.5;font-style:italic}
+.prof-progress{height:4px;background:rgba(255,255,255,.1);width:100%;flex-shrink:0}.prof-progress .bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--coral));transition:width .5s;border-radius:2px}
+#map-container{flex:1;position:relative;min-height:0}#prof-map{width:100%;height:100%;z-index:1}.leaflet-container{background:#e8ecf1!important}
+.map-question-overlay{position:absolute;bottom:90px;left:20px;right:20px;z-index:1000;pointer-events:none}.map-question-box{background:rgba(10,10,26,.88);backdrop-filter:blur(12px);border:2px solid var(--gold);border-radius:16px;padding:18px 24px;pointer-events:all}.map-question-box h3{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:#fff}
+.map-choices-overlay{position:absolute;top:60px;right:16px;z-index:1000;width:280px;display:flex;flex-direction:column;gap:8px}.map-choice{border-radius:12px;padding:12px 16px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px;font-size:.95rem;transition:all .3s;box-shadow:0 2px 10px rgba(0,0,0,.3)}.map-choice.c0{background:var(--choice-a)}.map-choice.c1{background:var(--choice-b)}.map-choice.c2{background:var(--choice-c)}.map-choice.c3{background:var(--choice-d)}.map-choice.correct-reveal{outline:3px solid var(--correct);box-shadow:0 0 25px rgba(0,230,118,.4)}.map-choice.wrong-reveal{opacity:.25}.map-choice .flag-in-choice{width:56px;height:37px;flex-shrink:0}
+.prof-bottombar{position:absolute;bottom:0;left:0;right:0;z-index:1000;padding:14px 20px;display:flex;align-items:center;gap:12px;background:rgba(10,10,26,.92);backdrop-filter:blur(12px);border-top:1px solid var(--glass-border)}.response-counter{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid var(--glass-border);border-radius:12px;padding:8px 16px;font-weight:700;font-size:1rem;white-space:nowrap}.response-counter .count-num{font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--gold)}.response-counter.all-in{border-color:var(--correct);background:rgba(0,230,118,.1)}.response-counter.all-in .count-num{color:var(--correct)}.prof-bottombar .spacer{flex:1}.prof-bottombar .btn{padding:12px 24px;font-size:.95rem}
+.prof-page{width:100%;min-height:100vh;padding:30px 20px;display:flex;flex-direction:column;align-items:center}.prof-page-header{text-align:center;margin-bottom:24px}.prof-page-header h2{font-family:'Fredoka',sans-serif;font-size:2rem;color:var(--gold)}.prof-page-header p{color:rgba(255,255,255,.5);margin-top:6px}
+.responses-grid{width:100%;max-width:900px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-bottom:24px}.resp-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:16px;display:flex;align-items:center;gap:12px;animation:slideUp .4s ease;transition:all .3s}.resp-card .resp-avatar{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;font-family:'Fredoka',sans-serif;flex-shrink:0}.resp-card .resp-avatar.waiting{background:rgba(255,255,255,.06);color:rgba(255,255,255,.2)}.resp-card .resp-avatar.answered{background:rgba(168,85,247,.2);color:var(--purple)}.resp-card .resp-avatar.correct{background:rgba(0,230,118,.15);color:var(--correct)}.resp-card .resp-avatar.wrong{background:rgba(255,23,68,.15);color:var(--wrong)}.resp-card .resp-info{flex:1;min-width:0}.resp-card .resp-name{font-weight:700;font-size:.95rem}.resp-card .resp-answer{font-size:.82rem;color:rgba(255,255,255,.4);margin-top:2px}.resp-card .resp-answer.rok{color:var(--correct);font-weight:600}.resp-card .resp-answer.rko{color:var(--wrong);font-weight:600}.resp-card.revealed-correct{border-color:rgba(0,230,118,.3);background:rgba(0,230,118,.05)}.resp-card.revealed-wrong{border-color:rgba(255,23,68,.2);background:rgba(255,23,68,.03)}
+.info-banner{width:100%;max-width:900px;background:linear-gradient(135deg,rgba(78,205,196,.1),rgba(168,85,247,.08));border:1px solid rgba(78,205,196,.25);border-radius:16px;padding:20px 24px;margin-bottom:20px;display:none}.info-banner.visible{display:block;animation:slideUp .5s ease}.info-banner h3{color:var(--cyan);font-family:'Fredoka',sans-serif;margin-bottom:8px;font-size:1.1rem}.info-banner p{font-size:.95rem;color:rgba(255,255,255,.85);line-height:1.6}
 .page-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px}
-
-/* Leaderboard page */
-.lb-container{width:100%;max-width:600px}
-.lb-entry{display:flex;align-items:center;gap:16px;padding:16px 20px;background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;margin-bottom:8px;animation:slideUp .4s ease}
-.lb-entry .lb-pos{font-family:'Fredoka',sans-serif;font-size:1.8rem;width:50px;text-align:center;flex-shrink:0}
-.lb-entry .lb-pos.gold{color:#ffd700}.lb-entry .lb-pos.silver{color:#c0c0c0}.lb-entry .lb-pos.bronze{color:#cd7f32}
-.lb-entry .lb-name{flex:1;font-size:1.1rem;font-weight:700}
-.lb-entry .lb-score{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--cyan);font-weight:700}
-.lb-entry .lb-bar-wrap{width:120px;height:8px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden;flex-shrink:0}
-.lb-entry .lb-bar-fill{height:100%;border-radius:4px;transition:width .8s ease}
-.lb-entry:nth-child(1) .lb-bar-fill{background:var(--gold)}
-.lb-entry:nth-child(2) .lb-bar-fill{background:#c0c0c0}
-.lb-entry:nth-child(3) .lb-bar-fill{background:#cd7f32}
-.lb-entry:nth-child(n+4) .lb-bar-fill{background:var(--cyan)}
-
-/* Student */
-.student-quiz-container{width:100%;max-width:500px;padding:16px}
-.student-header{text-align:center;margin-bottom:16px}
-.student-header .q-label{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--gold)}
-.student-header .q-text{font-size:1.05rem;margin-top:8px;line-height:1.4}
-.student-feedback{text-align:center;padding:20px;border-radius:16px;margin-top:14px;font-weight:700;font-size:1.1rem;animation:slideUp .3s ease}
-.student-feedback.neutral{background:rgba(168,85,247,.12);border:2px solid var(--purple);color:var(--purple)}
-.student-wait-msg{text-align:center;color:rgba(255,255,255,.4);font-size:.9rem;margin-top:16px}
-.student-score-display{text-align:center;margin-top:14px}
-.student-score-display .score-num{font-family:'Fredoka',sans-serif;font-size:1.8rem;color:var(--gold)}
-
-.lobby-players{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:24px 0;min-height:60px}
-.lobby-count{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:var(--gold);text-align:center;margin:16px 0}
-.lobby-waiting{text-align:center;color:rgba(255,255,255,.4);font-size:.9rem}
-.results-table{width:100%;max-width:600px;border-collapse:separate;border-spacing:0 6px}
-.results-table th{text-align:left;padding:8px 16px;color:rgba(255,255,255,.5);font-size:.8rem;text-transform:uppercase;letter-spacing:1px}
-.results-table td{padding:12px 16px;background:var(--glass);font-weight:600}
-.results-table tr td:first-child{border-radius:12px 0 0 12px}
-.results-table tr td:last-child{border-radius:0 12px 12px 0}
-.results-table .rank{font-family:'Fredoka',sans-serif;color:var(--gold);font-size:1.3rem}
-.podium-1{background:linear-gradient(90deg,rgba(255,215,0,.2),transparent)!important}
-.podium-2{background:linear-gradient(90deg,rgba(192,192,192,.15),transparent)!important}
-.podium-3{background:linear-gradient(90deg,rgba(205,127,50,.15),transparent)!important}
+.lb-container{width:100%;max-width:600px}.lb-entry{display:flex;align-items:center;gap:16px;padding:16px 20px;background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;margin-bottom:8px;animation:slideUp .4s ease}.lb-entry .lb-pos{font-family:'Fredoka',sans-serif;font-size:1.8rem;width:50px;text-align:center;flex-shrink:0}.lb-entry .lb-pos.gold{color:#ffd700}.lb-entry .lb-pos.silver{color:#c0c0c0}.lb-entry .lb-pos.bronze{color:#cd7f32}.lb-entry .lb-name{flex:1;font-size:1.1rem;font-weight:700}.lb-entry .lb-score{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--cyan);font-weight:700}.lb-entry .lb-bar-wrap{width:120px;height:8px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden;flex-shrink:0}.lb-entry .lb-bar-fill{height:100%;border-radius:4px;transition:width .8s ease}.lb-entry:nth-child(1) .lb-bar-fill{background:var(--gold)}.lb-entry:nth-child(2) .lb-bar-fill{background:#c0c0c0}.lb-entry:nth-child(3) .lb-bar-fill{background:#cd7f32}.lb-entry:nth-child(n+4) .lb-bar-fill{background:var(--cyan)}
+.student-quiz-container{width:100%;max-width:500px;padding:16px}.student-header{text-align:center;margin-bottom:16px}.student-header .q-label{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--gold)}.student-header .q-text{font-size:1.05rem;margin-top:8px;line-height:1.4}.student-feedback{text-align:center;padding:20px;border-radius:16px;margin-top:14px;font-weight:700;font-size:1.1rem;animation:slideUp .3s ease}.student-feedback.neutral{background:rgba(168,85,247,.12);border:2px solid var(--purple);color:var(--purple)}.student-wait-msg{text-align:center;color:rgba(255,255,255,.4);font-size:.9rem;margin-top:16px}.student-score-display{text-align:center;margin-top:14px}.student-score-display .score-num{font-family:'Fredoka',sans-serif;font-size:1.8rem;color:var(--gold)}
+.lobby-players{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:24px 0;min-height:60px}.lobby-count{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:var(--gold);text-align:center;margin:16px 0}.lobby-waiting{text-align:center;color:rgba(255,255,255,.4);font-size:.9rem}
+.results-table{width:100%;max-width:600px;border-collapse:separate;border-spacing:0 6px}.results-table th{text-align:left;padding:8px 16px;color:rgba(255,255,255,.5);font-size:.8rem;text-transform:uppercase;letter-spacing:1px}.results-table td{padding:12px 16px;background:var(--glass);font-weight:600}.results-table tr td:first-child{border-radius:12px 0 0 12px}.results-table tr td:last-child{border-radius:0 12px 12px 0}.results-table .rank{font-family:'Fredoka',sans-serif;color:var(--gold);font-size:1.3rem}.podium-1{background:linear-gradient(90deg,rgba(255,215,0,.2),transparent)!important}.podium-2{background:linear-gradient(90deg,rgba(192,192,192,.15),transparent)!important}.podium-3{background:linear-gradient(90deg,rgba(205,127,50,.15),transparent)!important}
 #confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--bg1);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999}.loading-overlay .spinner{width:60px;height:60px;border:4px solid var(--glass-border);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite}
 @media(max-width:768px){.card{padding:24px;margin:10px}.choices-grid{grid-template-columns:1fr}.map-choices-overlay{width:200px;top:10px;right:8px}.map-choice{padding:8px 12px;font-size:.8rem}}
 </style>
 </head>
 <body>
-<div id="screen-home" class="screen active">
-  <div style="text-align:center;padding:40px 20px">
-    <div class="emoji-big" style="margin-bottom:16px">🌍</div>
-    <h1 class="title-xl">Tour d'Europe<br>Économique</h1>
-    <p class="subtitle">Découvrez les pays d'Europe à travers un quiz interactif</p>
-    <div style="margin-top:48px;display:flex;flex-direction:column;gap:16px;align-items:center">
-      <button class="btn btn-gold" style="width:280px;font-size:1.2rem;padding:20px" onclick="enterProfessor()">🎓 Professeur</button>
-      <button class="btn btn-purple" style="width:280px;font-size:1.2rem;padding:20px" onclick="showScreen('screen-student-join')">🎮 Élève</button>
-    </div>
-    <p style="margin-top:40px;font-size:.75rem;color:rgba(255,255,255,.25)">Institut Saint-Luc de Frameries — Comptabilité</p>
-  </div>
-</div>
+<div id="loading-overlay" class="loading-overlay"><div class="spinner"></div><p style="margin-top:20px;color:rgba(255,255,255,.5);font-family:Fredoka,sans-serif">Chargement des pays...</p></div>
+<div id="screen-home" class="screen active"><div style="text-align:center;padding:40px 20px"><div class="emoji-big" style="margin-bottom:16px">🌍</div><h1 class="title-xl">Tour d'Europe<br>Économique</h1><p class="subtitle">Quiz interactif — Économie & Géographie</p><div style="margin-top:48px;display:flex;flex-direction:column;gap:16px;align-items:center"><button class="btn btn-gold" style="width:280px;font-size:1.2rem;padding:20px" onclick="enterProfessor()">🎓 Professeur</button><button class="btn btn-purple" style="width:280px;font-size:1.2rem;padding:20px" onclick="showScreen('screen-student-join')">🎮 Élève</button></div><p style="margin-top:40px;font-size:.75rem;color:rgba(255,255,255,.25)">Institut Saint-Luc de Frameries — Comptabilité</p></div></div>
 <div id="screen-prof-password" class="screen"><div class="card fadeIn" style="text-align:center"><div class="emoji-big" style="margin-bottom:16px">🔐</div><h2 style="margin-bottom:24px">Accès Professeur</h2><input type="password" id="prof-password" class="input-field" placeholder="Code d'accès" onkeydown="if(event.key==='Enter')checkPassword()"><div style="margin-top:20px;display:flex;gap:12px"><button class="btn btn-sm btn-coral" onclick="showScreen('screen-home')" style="flex:1">Retour</button><button class="btn btn-sm btn-gold" onclick="checkPassword()" style="flex:1">Entrer</button></div><p id="pwd-error" style="color:var(--coral);font-size:.85rem;margin-top:12px;display:none">Code incorrect</p></div></div>
-<div id="screen-student-join" class="screen"><div class="card fadeIn" style="text-align:center"><div class="emoji-big" style="margin-bottom:16px">👋</div><h2 style="margin-bottom:8px">Rejoindre le quiz</h2><p class="subtitle" style="margin-bottom:24px">Entre ton prénom pour participer</p><input type="text" id="student-name" class="input-field" placeholder="Ton prénom" maxlength="20" autocomplete="off" onkeydown="if(event.key==='Enter')registerStudent()"><div style="margin-top:20px;display:flex;gap:12px"><button class="btn btn-sm btn-coral" onclick="showScreen('screen-home')" style="flex:1">Retour</button><button class="btn btn-sm btn-purple" onclick="registerStudent()" style="flex:1">C'est parti !</button></div><p id="join-error" style="color:var(--coral);font-size:.85rem;margin-top:12px;display:none"></p></div></div>
+<div id="screen-student-join" class="screen"><div class="card fadeIn" style="text-align:center"><div class="emoji-big" style="margin-bottom:16px">👋</div><h2 style="margin-bottom:8px">Rejoindre le quiz</h2><p class="subtitle" style="margin-bottom:24px">Entre ton prénom</p><input type="text" id="student-name" class="input-field" placeholder="Ton prénom" maxlength="20" autocomplete="off" onkeydown="if(event.key==='Enter')registerStudent()"><div style="margin-top:20px;display:flex;gap:12px"><button class="btn btn-sm btn-coral" onclick="showScreen('screen-home')" style="flex:1">Retour</button><button class="btn btn-sm btn-purple" onclick="registerStudent()" style="flex:1">C'est parti !</button></div><p id="join-error" style="color:var(--coral);font-size:.85rem;margin-top:12px;display:none"></p></div></div>
 <div id="screen-student-wait" class="screen"><div class="card fadeIn" style="text-align:center"><div class="emoji-big pulse" style="margin-bottom:16px">⏳</div><h2>Bienvenue <span id="wait-name"></span> !</h2><p class="subtitle" style="margin-top:8px">En attente du professeur...</p><div style="margin-top:32px"><div style="width:60px;height:60px;border-radius:50%;border:3px solid var(--gold);border-top-color:transparent;animation:spin 1s linear infinite;margin:0 auto"></div></div></div></div>
-<div id="screen-student-quiz" class="screen"><div class="student-quiz-container"><div class="student-header"><div class="q-label" id="sq-label">Question 1/40</div><div class="q-text" id="sq-text"></div></div><div class="choices-grid" id="sq-choices"></div><div id="sq-feedback" style="display:none"></div><div class="student-wait-msg" id="sq-wait" style="display:none"><div class="pulse">⏳</div><p>En attente de la question suivante...</p></div><div class="student-score-display"><span style="font-size:.85rem;color:rgba(255,255,255,.5)">Réponses : </span><span class="score-num" id="sq-score">0</span><span style="font-size:.85rem;color:rgba(255,255,255,.3)"> / <span id="sq-total">40</span></span></div></div></div>
-<div id="screen-prof-lobby" class="screen"><div style="text-align:center;padding:40px 20px;width:100%;max-width:800px"><div class="emoji-big" style="margin-bottom:12px">🌍</div><h1 class="title-xl" style="font-size:2.5rem">Tour d'Europe Économique</h1><p class="subtitle">Les joueurs rejoignent la partie...</p><div class="lobby-count"><span id="lobby-count">0</span> joueur(s)</div><div class="lobby-players" id="lobby-players"></div><div class="lobby-waiting" id="lobby-waiting">En attente de joueurs...</div><div style="margin-top:32px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap"><button class="btn btn-gold" onclick="startQuiz()" id="btn-start-quiz" disabled>🚀 Démarrer le Quiz</button><button class="btn btn-sm btn-coral" onclick="resetGame()">🔄 Réinitialiser</button></div></div></div>
-
-<div id="screen-prof-map" class="screen" style="padding:0"><div class="prof-map-page"><div class="prof-topbar"><span class="q-num" id="pq-num">Q1/40</span><span class="country-badge mystery" id="pq-country">❓ Pays mystère</span></div><div class="prof-progress"><div class="bar" id="pq-bar" style="width:0%"></div></div><div id="map-container"><div id="prof-map"></div><div class="map-choices-overlay" id="pq-choices"></div><div class="map-question-overlay"><div class="map-question-box"><h3 id="pq-question-text"></h3></div></div></div><div class="prof-bottombar"><div class="response-counter" id="pq-counter"><span>📝</span><span class="count-num" id="pq-count-num">0</span><span style="color:rgba(255,255,255,.4)">/ <span id="pq-count-total">0</span></span></div><div class="spacer"></div><button class="btn btn-sm btn-purple" onclick="showProfResponses()">📝 Réponses</button><button class="btn btn-sm btn-cyan" onclick="showProfLeaderboard()">🏆 Classement</button><button class="btn btn-sm btn-gold" onclick="nextQuestion()" id="btn-next">Suivant ➜</button></div></div></div>
-
+<div id="screen-student-quiz" class="screen"><div class="student-quiz-container"><div class="student-header"><div class="q-label" id="sq-label">Question 1</div><div class="q-text" id="sq-text"></div></div><div class="choices-grid" id="sq-choices"></div><div id="sq-feedback" style="display:none"></div><div class="student-wait-msg" id="sq-wait" style="display:none"><div class="pulse">⏳</div><p>En attente de la question suivante...</p></div><div class="student-score-display"><span style="font-size:.85rem;color:rgba(255,255,255,.5)">Réponses : </span><span class="score-num" id="sq-score">0</span><span style="font-size:.85rem;color:rgba(255,255,255,.3)"> / <span id="sq-total">40</span></span></div></div></div>
+<div id="screen-prof-lobby" class="screen"><div style="text-align:center;padding:40px 20px;width:100%;max-width:800px"><div class="emoji-big" style="margin-bottom:12px">🌍</div><h1 class="title-xl" style="font-size:2.5rem">Tour d'Europe Économique</h1><p class="subtitle">Les joueurs rejoignent la partie...</p><div style="margin:16px 0"><button class="btn btn-sm btn-dark" onclick="toggleCountries()" id="btn-toggle-countries">👁 Voir les pays sélectionnés</button><div id="selected-countries-display" style="margin-top:12px;color:var(--cyan);font-size:.9rem;display:none"></div></div><div class="lobby-count"><span id="lobby-count">0</span> joueur(s)</div><div class="lobby-players" id="lobby-players"></div><div class="lobby-waiting" id="lobby-waiting">En attente de joueurs...</div><div style="margin-top:32px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap"><button class="btn btn-gold" onclick="startQuiz()" id="btn-start-quiz" disabled>🚀 Démarrer le Quiz</button><button class="btn btn-sm btn-coral" onclick="resetGame()">🔄 Réinitialiser</button></div></div></div>
+<div id="screen-prof-map" class="screen" style="padding:0"><div class="prof-map-page"><div class="prof-topbar"><span class="q-num" id="pq-num">Q1</span><span class="country-badge mystery" id="pq-country">❓ Pays mystère</span></div><div class="prof-progress"><div class="bar" id="pq-bar" style="width:0%"></div></div><div id="map-container"><div id="prof-map"></div><div class="map-choices-overlay" id="pq-choices"></div><div class="map-question-overlay"><div class="map-question-box"><h3 id="pq-question-text"></h3></div></div></div><div class="prof-bottombar"><div class="response-counter" id="pq-counter"><span>📝</span><span class="count-num" id="pq-count-num">0</span><span style="color:rgba(255,255,255,.4)">/ <span id="pq-count-total">0</span></span></div><div class="spacer"></div><button class="btn btn-sm btn-purple" onclick="showProfResponses()">📝 Réponses</button><button class="btn btn-sm btn-cyan" onclick="showProfLeaderboard()">🏆 Classement</button><button class="btn btn-sm btn-gold" onclick="nextQuestion()" id="btn-next">Suivant ➜</button></div></div></div>
 <div id="screen-prof-responses" class="screen"><div class="prof-page"><div class="prof-page-header"><h2>📝 Réponses</h2><p id="pr-subtitle"></p></div><div class="responses-grid" id="pr-grid"></div><div class="info-banner" id="pr-info"><h3 id="pr-info-title"></h3><p id="pr-info-text"></p></div><div class="page-actions"><button class="btn btn-cyan" onclick="revealAnswer()" id="btn-reveal">👁 Révéler la bonne réponse</button><button class="btn btn-dark" onclick="showScreen('screen-prof-map')">← Retour à la carte</button></div></div></div>
-
 <div id="screen-prof-leaderboard" class="screen"><div class="prof-page"><div class="prof-page-header"><h2>🏆 Classement</h2><p>Score après <span id="pl-qcount">0</span> question(s)</p></div><div class="lb-container" id="pl-list"></div><div class="page-actions" style="margin-top:24px"><button class="btn btn-dark" onclick="showScreen('screen-prof-map')">← Retour à la carte</button></div></div></div>
-
 <div id="screen-results" class="screen"><canvas id="confetti"></canvas><div style="text-align:center;padding:40px 20px;width:100%;max-width:700px"><div class="emoji-big" style="margin-bottom:16px">🏆</div><h1 class="title-xl">Résultats</h1><table class="results-table" id="results-table" style="margin-top:32px"></table><div style="margin-top:32px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap"><button class="btn btn-gold" onclick="resetGame()">🔄 Nouvelle partie</button><button class="btn btn-sm btn-purple" onclick="showScreen('screen-home')">🏠 Accueil</button></div></div></div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <script>
-const SCRIPT_URL='https://script.google.com/macros/s/AKfycbw6Z3doouzcNw1U7jocBLnwYrMoLZ-NwlEayVYkn2C1gEWmxV5Wv16UcZc1Sd3kxuzu/exec';
-const SHEETS_ENABLED=SCRIPT_URL&&!SCRIPT_URL.includes('%%');
-const POLL_INTERVAL=3000,PROF_CODE='';
-const FN={'flag-fr':'France','flag-be':'Belgique','flag-de':'Allemagne','flag-it':'Italie','flag-gb':'Royaume-Uni','flag-nl':'Pays-Bas','flag-lu':'Luxembourg','flag-at':'Autriche','flag-ie':'Irlande','flag-ro':'Roumanie','flag-hu':'Hongrie','flag-no':'Norvège'};
-
-const COUNTRIES=[
+// COUNTRIES DATA — 16 pays × 8 questions avec anecdotes
+const COUNTRIES_DATA=[
 {name:'France',flag:'🇫🇷',flagClass:'flag-fr',capital:{name:'Paris',lat:48.8566,lng:2.3522},center:{lat:46.6,lng:2.5},zoom:6,
-  info:'La France est le pays le plus visité au monde (~90 M touristes/an). 2e économie de l\'UE, membre fondateur de la CEE (1957). On l\'appelle « l\'Hexagone » à cause de sa forme géométrique.',
-  questions:[
-    {type:'identify',question:'Quel est ce pays ?',choices:['Espagne','France','Portugal','Italie'],correct:1,
-      hint:'🗺️ La France est surnommée « l\'Hexagone » à cause de sa forme. Avec 551 500 km², c\'est le plus grand pays de l\'UE. Elle possède aussi des territoires outre-mer (Guadeloupe, Réunion, Guyane…).'},
-    {type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-nl','flag-fr','flag-be','flag-lu'],correct:1,
-      hint:'🇫🇷 Le tricolore naît de la Révolution (1789) : le bleu et le rouge sont les couleurs de Paris, le blanc celle du roi. Attention : les Pays-Bas ont les mêmes couleurs mais à l\'horizontale !'},
-    {type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Lyon','Marseille','Paris','Strasbourg'],correct:2,
-      hint:'🏙️ Paris est la « Ville Lumière » — l\'une des premières éclairées au gaz (1820). La Tour Eiffel (1889) devait être démontée après 20 ans ! Elle a été sauvée grâce aux antennes radio installées à son sommet.'},
-    {type:'info',question:'Quelle est la monnaie de la France ?',choices:['Franc français','Euro','Livre sterling','Dollar'],correct:1,
-      hint:'💶 L\'euro circule en France depuis 2002. Avant, c\'était le franc français, créé en 1360 pour payer la rançon du roi Jean II le Bon, prisonnier des Anglais ! Un euro = 6,55957 francs.'},
-    {type:'info',question:'La France est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1986','Non, candidate','Non'],correct:0,
-      hint:'🇪🇺 La France est l\'un des 6 membres fondateurs de la CEE (1957, Traité de Rome). Robert Schuman, considéré comme le « père de l\'Europe », était un homme politique français né au Luxembourg.'},
-    {type:'info',question:'Quelle est la population de la France ?',choices:['47 millions','58 millions','68 millions','82 millions'],correct:2,
-      hint:'👥 Avec 68,6 millions d\'habitants, la France est le 2e pays le plus peuplé de l\'UE. C\'est aussi le seul grand pays européen où il naît encore plus de bébés qu\'il n\'y a de décès.'},
-    {type:'info',question:'Quel est le PIB de la France ?',choices:['900 Mds €','1 600 Mds €','2 900 Mds €','4 300 Mds €'],correct:2,
-      hint:'📊 Le PIB (Produit Intérieur Brut) mesure toute la richesse produite par un pays en un an. La France (2 900 Mds €) est la 7e économie mondiale et la 2e de l\'UE derrière l\'Allemagne.'},
-    {type:'info',question:'Quelle entreprise française est leader mondial du luxe ?',choices:['Renault','Danone','TotalEnergies','LVMH'],correct:3,
-      hint:'👜 LVMH (Louis Vuitton Moët Hennessy) possède 75 marques dont Dior, Givenchy, Bulgari et Tiffany. Son fondateur Bernard Arnault a été brièvement l\'homme le plus riche du monde en 2023 !'}
-  ]},
+info:'La France est le pays le plus visité au monde (~90 M touristes/an). 2e économie de l\'UE, membre fondateur de la CEE (1957).',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Espagne','France','Portugal','Italie'],correct:1,hint:'🗺️ Surnommée « l\'Hexagone » à cause de sa forme. Plus grand pays de l\'UE (551 500 km²). Elle possède aussi des territoires outre-mer : Guadeloupe, Martinique, Réunion, Guyane…'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-nl','flag-fr','flag-be','flag-lu'],correct:1,hint:'🇫🇷 Le tricolore naît de la Révolution (1789) : bleu et rouge = couleurs de Paris, blanc = couleur du roi. Les Pays-Bas ont les mêmes couleurs mais à l\'horizontale !'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Lyon','Marseille','Paris','Strasbourg'],correct:2,hint:'🏙️ Paris, la « Ville Lumière », parmi les premières éclairées au gaz (1820). La Tour Eiffel (1889) devait être démontée après 20 ans — sauvée grâce aux antennes radio à son sommet !'},
+{type:'info',question:'Quelle est la monnaie de la France ?',choices:['Franc français','Euro','Livre sterling','Dollar'],correct:1,hint:'💶 L\'euro circule depuis 2002. Avant, le franc français, créé en 1360 pour payer la rançon du roi Jean II le Bon, prisonnier des Anglais. 1 € = 6,55957 francs.'},
+{type:'info',question:'La France est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1986','Non, candidate','Non'],correct:0,hint:'🇪🇺 Membre fondateur (1957, Traité de Rome). Robert Schuman, « père de l\'Europe », était un homme politique français né au Luxembourg. Le couple franco-allemand est le moteur de la construction européenne.'},
+{type:'info',question:'Quelle est la population de la France ?',choices:['47 millions','58 millions','68 millions','82 millions'],correct:2,hint:'👥 68,6 millions d\'habitants, 2e pays le plus peuplé de l\'UE. Seul grand pays européen où la natalité reste supérieure à la mortalité — un cas quasi unique en Europe.'},
+{type:'info',question:'Quel est le PIB de la France ?',choices:['900 Mds €','1 600 Mds €','2 900 Mds €','4 300 Mds €'],correct:2,hint:'📊 Le PIB (Produit Intérieur Brut) mesure toute la richesse produite en un an. La France (2 900 Mds €) est la 7e économie mondiale, forte en aéronautique (Airbus), luxe et tourisme.'},
+{type:'info',question:'Quelle entreprise française est leader mondial du luxe ?',choices:['Renault','Danone','TotalEnergies','LVMH'],correct:3,hint:'👜 LVMH possède 75 marques (Dior, Givenchy, Tiffany…). Bernard Arnault a été brièvement l\'homme le plus riche du monde en 2023. Le luxe français représente ~25% du marché mondial !'}
+]},
 {name:'Belgique',flag:'🇧🇪',flagClass:'flag-be',capital:{name:'Bruxelles',lat:50.8503,lng:4.3517},center:{lat:50.5,lng:4.5},zoom:8,
-  info:'La Belgique abrite les institutions européennes. Bruxelles est la « capitale de l\'Europe ». Fondée en 1830, elle a 3 langues officielles : français, néerlandais et allemand.',
-  questions:[
-    {type:'identify',question:'Quel est ce pays ?',choices:['Pays-Bas','Luxembourg','Belgique','Suisse'],correct:2,
-      hint:'🇧🇪 La Belgique est née en 1830 d\'une révolution contre les Pays-Bas. C\'est un tout petit pays (30 528 km²) mais stratégiquement placé au cœur de l\'Europe, entre la France, l\'Allemagne et les Pays-Bas.'},
-    {type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-de','flag-be','flag-fr','flag-ro'],correct:1,
-      hint:'🏴 Le noir-jaune-rouge s\'inspire du blason du Duché de Brabant (lion d\'or sur fond noir, griffes rouges). La confusion avec l\'Allemagne (noir-rouge-or) est fréquente — mais la Belgique est verticale et l\'Allemagne horizontale !'},
-    {type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Anvers','Liège','Namur','Bruxelles'],correct:3,
-      hint:'🏛️ Bruxelles est la « capitale de l\'Europe » : siège de la Commission européenne, du Conseil de l\'UE et de l\'OTAN. La Grand-Place de Bruxelles, classée UNESCO, est considérée comme l\'une des plus belles places du monde.'},
-    {type:'info',question:'Quelle est la monnaie de la Belgique ?',choices:['Franc belge','Euro','Couronne','Florin'],correct:1,
-      hint:'💶 Avant l\'euro (2002), la Belgique utilisait le franc belge. Fait amusant : le franc belge et le franc luxembourgeois avaient exactement la même valeur grâce à une union monétaire entre les deux pays !'},
-    {type:'info',question:'La Belgique est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1973','Non, OTAN seulement','Non'],correct:0,
-      hint:'🇪🇺 La Belgique est membre fondateur de la CECA (1951) puis de la CEE (1957). Le Belge Paul-Henri Spaak a rédigé le rapport qui a mené au Traité de Rome — un texte fondateur de la construction européenne.'},
-    {type:'info',question:'Quelle est la population de la Belgique ?',choices:['5 millions','8 millions','12 millions','17 millions'],correct:2,
-      hint:'👥 Avec 12 millions d\'habitants sur 30 528 km², la Belgique a une densité de 383 hab/km² — l\'une des plus élevées d\'Europe. À titre de comparaison, la France n\'a que 119 hab/km² !'},
-    {type:'info',question:'Quel est le PIB de la Belgique ?',choices:['200 Mds €','600 Mds €','1 200 Mds €','2 000 Mds €'],correct:1,
-      hint:'📊 Le port d\'Anvers est le 2e plus grand d\'Europe. L\'industrie chimique et pharmaceutique belge (UCB, Solvay, Janssen) est un pilier de l\'économie. Le chocolat belge est aussi un empire : Godiva, Neuhaus, Leonidas…'},
-    {type:'info',question:'Quelle entreprise belge est le plus grand brasseur mondial ?',choices:['Solvay','UCB','AB InBev','Delhaize'],correct:2,
-      hint:'🍺 AB InBev, basée à Louvain, produit la Jupiler, la Leffe, la Stella Artois et la Budweiser. Elle est née de la fusion de la belge Interbrew avec la brésilienne AmBev (2004), puis l\'américaine Anheuser-Busch (2008).'}
-  ]},
+info:'Siège des institutions européennes. Bruxelles = « capitale de l\'Europe ». Fondée en 1830, 3 langues officielles.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Pays-Bas','Luxembourg','Belgique','Suisse'],correct:2,hint:'🇧🇪 Née en 1830 d\'une révolution contre les Pays-Bas. Petit pays (30 528 km²) mais au cœur stratégique de l\'Europe, entre France, Allemagne et Pays-Bas. Trois communautés linguistiques coexistent.'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-de','flag-be','flag-fr','flag-ro'],correct:1,hint:'🏴 Le noir-jaune-rouge vient du blason du Duché de Brabant (lion d\'or sur fond noir). Confusion fréquente avec l\'Allemagne : la Belgique est verticale, l\'Allemagne horizontale !'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Anvers','Liège','Namur','Bruxelles'],correct:3,hint:'🏛️ Bruxelles accueille la Commission européenne, le Conseil de l\'UE et l\'OTAN. La Grand-Place, classée UNESCO, est considérée comme l\'une des plus belles places du monde.'},
+{type:'info',question:'Quelle est la monnaie de la Belgique ?',choices:['Franc belge','Euro','Couronne','Florin'],correct:1,hint:'💶 Avant l\'euro (2002), le franc belge. Fait amusant : le franc belge et le franc luxembourgeois avaient exactement la même valeur grâce à une union monétaire entre les deux pays !'},
+{type:'info',question:'La Belgique est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1973','Non, OTAN seulement','Non'],correct:0,hint:'🇪🇺 Membre fondateur de la CECA (1951) puis de la CEE (1957). Paul-Henri Spaak, un Belge, a rédigé le rapport menant au Traité de Rome — acte de naissance de la construction européenne.'},
+{type:'info',question:'Quelle est la population de la Belgique ?',choices:['5 millions','8 millions','12 millions','17 millions'],correct:2,hint:'👥 12 millions d\'habitants sur 30 528 km² = densité de 383 hab/km², l\'une des plus élevées d\'Europe. La France n\'a que 119 hab/km² — trois fois moins dense !'},
+{type:'info',question:'Quel est le PIB de la Belgique ?',choices:['200 Mds €','600 Mds €','1 200 Mds €','2 000 Mds €'],correct:1,hint:'📊 Le port d\'Anvers est le 2e plus grand d\'Europe. L\'industrie pharma belge (UCB, Janssen) est un pilier de l\'économie. Le chocolat belge est aussi un empire mondial : Godiva, Neuhaus, Leonidas…'},
+{type:'info',question:'Quelle entreprise belge est le plus grand brasseur mondial ?',choices:['Solvay','UCB','AB InBev','Delhaize'],correct:2,hint:'🍺 AB InBev (Louvain) produit Jupiler, Leffe, Stella Artois et Budweiser. Née de la fusion Interbrew (BE) + AmBev (BR) en 2004, puis + Anheuser-Busch (US) en 2008. Plus de 500 marques de bière !'}
+]},
 {name:'Allemagne',flag:'🇩🇪',flagClass:'flag-de',capital:{name:'Berlin',lat:52.52,lng:13.405},center:{lat:51.2,lng:10.4},zoom:6,
-  info:'1re économie de l\'UE, 3e mondiale. Pays le plus peuplé de l\'UE. Réunifiée en 1990 après la chute du mur de Berlin.',
-  questions:[
-    {type:'identify',question:'Quel est ce pays ?',choices:['Pologne','Autriche','Allemagne','France'],correct:2,
-      hint:'🏗️ L\'Allemagne n\'est unifiée que depuis 1871 (par Bismarck). Divisée en deux (RFA/RDA) de 1949 à 1990, la chute du mur de Berlin le 9 novembre 1989 reste un moment clé de l\'histoire mondiale.'},
-    {type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-be','flag-de','flag-at','flag-nl'],correct:1,
-      hint:'🏴 Le noir-rouge-or date des guerres napoléoniennes (1813) : les soldats allemands portaient des uniformes noirs à boutons dorés avec des parements rouges. Les bandes sont horizontales (≠ Belgique : verticales).'},
-    {type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Munich','Francfort','Hambourg','Berlin'],correct:3,
-      hint:'🧱 Berlin a été coupée en deux par un mur de 1961 à 1989. La Porte de Brandebourg, autrefois en zone interdite, est aujourd\'hui le symbole de la réunification. Francfort est la capitale financière (siège de la BCE).'},
-    {type:'info',question:'Quelle est la monnaie de l\'Allemagne ?',choices:['Mark allemand','Euro','Franc suisse','Couronne'],correct:1,
-      hint:'💶 Avant l\'euro, l\'Allemagne utilisait le Deutschmark, monnaie très stable. Mais dans les années 1920, l\'hyperinflation était telle qu\'un pain coûtait des milliards de marks — les gens transportaient l\'argent en brouettes !'},
-    {type:'info',question:'L\'Allemagne est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1990','Non, OTAN','Non'],correct:0,
-      hint:'🇪🇺 L\'Allemagne (de l\'Ouest) est membre fondateur de la CEE (1957). Le couple franco-allemand est le « moteur » de l\'Europe. La réconciliation entre ces deux pays, ennemis lors de 3 guerres, est le socle du projet européen.'},
-    {type:'info',question:'Quelle est la population de l\'Allemagne ?',choices:['60 millions','68 millions','84 millions','95 millions'],correct:2,
-      hint:'👥 L\'Allemagne est le pays le plus peuplé de l\'UE (84 M). Mais son taux de natalité est très bas (1,3 enfant/femme) et sa population vieillit vite — un défi majeur pour financer les retraites et trouver de la main-d\'œuvre.'},
-    {type:'info',question:'Quel est le PIB de l\'Allemagne ?',choices:['2 200 Mds €','2 900 Mds €','4 300 Mds €','5 500 Mds €'],correct:2,
-      hint:'📊 Avec 4 300 Mds €, l\'Allemagne est la 1re économie de l\'UE. Son modèle repose sur l\'exportation industrielle. Le « Made in Germany » est un label de qualité reconnu mondialement, surtout pour les machines et l\'automobile.'},
-    {type:'info',question:'Quel constructeur auto allemand est le plus grand d\'Europe ?',choices:['BMW','Mercedes','Volkswagen','Audi'],correct:2,
-      hint:'🚗 Volkswagen signifie « voiture du peuple ». Créée en 1937, la marque possède aussi Audi, Porsche, Lamborghini, Bentley, SEAT et Škoda. La Golf est la voiture la plus vendue d\'Europe avec plus de 37 millions d\'exemplaires !'}
-  ]},
+info:'1re économie de l\'UE, 3e mondiale. Réunifiée en 1990 après la chute du mur de Berlin.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Pologne','Autriche','Allemagne','France'],correct:2,hint:'🏗️ Unifiée seulement en 1871 (Bismarck). Divisée en RFA/RDA de 1949 à 1990. La chute du mur de Berlin (9 novembre 1989) est un tournant de l\'histoire mondiale.'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-be','flag-de','flag-at','flag-nl'],correct:1,hint:'🏴 Le noir-rouge-or date des guerres napoléoniennes (1813) : uniformes noirs, boutons dorés, parements rouges. Bandes horizontales (≠ Belgique : verticales). L\'Autriche, c\'est rouge-blanc-rouge.'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Munich','Francfort','Hambourg','Berlin'],correct:3,hint:'🧱 Berlin a été coupée en deux par un mur (1961-1989). La Porte de Brandebourg est le symbole de la réunification. Francfort est la capitale financière (siège de la BCE, Banque Centrale Européenne).'},
+{type:'info',question:'Quelle est la monnaie de l\'Allemagne ?',choices:['Mark allemand','Euro','Franc suisse','Couronne'],correct:1,hint:'💶 Avant l\'euro, le Deutschmark. Dans les années 1920, l\'hyperinflation était telle qu\'un pain coûtait des milliards de marks — les gens transportaient l\'argent en brouettes ! Un traumatisme qui explique la rigueur financière allemande.'},
+{type:'info',question:'L\'Allemagne est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1990','Non, OTAN','Non'],correct:0,hint:'🇪🇺 L\'Allemagne de l\'Ouest est membre fondateur (1957). La réconciliation franco-allemande, après 3 guerres en 70 ans, est le socle du projet européen. Le couple Adenauer-De Gaulle en est le symbole.'},
+{type:'info',question:'Quelle est la population de l\'Allemagne ?',choices:['60 millions','68 millions','84 millions','95 millions'],correct:2,hint:'👥 84 millions, pays le plus peuplé de l\'UE. Taux de natalité très bas (1,3 enfant/femme). L\'Allemagne a accueilli plus d\'un million de réfugiés en 2015-2016, un record en Europe.'},
+{type:'info',question:'Quel est le PIB de l\'Allemagne ?',choices:['2 200 Mds €','2 900 Mds €','4 300 Mds €','5 500 Mds €'],correct:2,hint:'📊 4 300 Mds €, 1re économie de l\'UE. Son modèle repose sur l\'export industriel. Le « Made in Germany » est un label mondial de qualité. Le Mittelstand (PME familiales) est le secret de sa puissance industrielle.'},
+{type:'info',question:'Quel constructeur auto allemand est le plus grand d\'Europe ?',choices:['BMW','Mercedes','Volkswagen','Audi'],correct:2,hint:'🚗 Volkswagen = « voiture du peuple ». Possède aussi Audi, Porsche, Lamborghini, Bentley, SEAT et Škoda. La Golf est la voiture la plus vendue d\'Europe : plus de 37 millions d\'exemplaires !'}
+]},
 {name:'Italie',flag:'🇮🇹',flagClass:'flag-it',capital:{name:'Rome',lat:41.9028,lng:12.4964},center:{lat:42.5,lng:12.5},zoom:6,
-  info:'3e économie de l\'UE. En forme de botte. Célèbre pour Ferrari, la gastronomie et le patrimoine culturel. Rome abrite le Vatican.',
-  questions:[
-    {type:'identify',question:'Quel est ce pays ?',choices:['Espagne','Grèce','Italie','Croatie'],correct:2,
-      hint:'👢 L\'Italie a la forme d\'une botte — impossible à confondre ! L\'unification italienne (le Risorgimento) s\'achève en 1871. Avant, la péninsule était divisée en royaumes, duchés et États pontificaux.'},
-    {type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-ie','flag-hu','flag-it','flag-ro'],correct:2,
-      hint:'🏴 Le vert-blanc-rouge vient de Napoléon qui l\'a introduit en 1797, inspiré du drapeau français. Le vert = l\'espoir, le blanc = la foi, le rouge = l\'amour. Ne pas confondre avec l\'Irlande (vert-blanc-orange) !'},
-    {type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Milan','Rome','Florence','Naples'],correct:1,
-      hint:'🏛️ Rome, « la Ville Éternelle », fondée en 753 av. J.-C. (selon la légende de Romulus et Rémus). Le Colisée pouvait accueillir 50 000 spectateurs. Rome contient aussi le Vatican, le plus petit État du monde (0,44 km²) !'},
-    {type:'info',question:'Quelle est la monnaie de l\'Italie ?',choices:['Lire italienne','Euro','Franc','Florin'],correct:1,
-      hint:'💶 Avant l\'euro (2002), l\'Italie utilisait la lire. Les prix donnaient le vertige : une pizza coûtait ~10 000 lires, un café 1 500 lires ! Le passage à l\'euro a beaucoup simplifié les choses.'},
-    {type:'info',question:'L\'Italie est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1973','Non, a quitté','Non'],correct:0,
-      hint:'🇪🇺 L\'Italie est membre fondateur : le Traité de Rome a été signé… à Rome ! Le 25 mars 1957, dans la Salle des Horaces et des Curiaces du Capitole. C\'est l\'acte de naissance de la construction européenne.'},
-    {type:'info',question:'Quelle est la population de l\'Italie ?',choices:['42 millions','59 millions','68 millions','75 millions'],correct:1,
-      hint:'👥 L\'Italie a un des taux de natalité les plus bas au monde (1,2 enfant/femme). Plus de 24% des Italiens ont plus de 65 ans. Le pays perd des habitants chaque année — un vrai défi pour l\'avenir.'},
-    {type:'info',question:'Quel est le PIB de l\'Italie ?',choices:['900 Mds €','1 500 Mds €','2 200 Mds €','3 500 Mds €'],correct:2,
-      hint:'📊 3e économie de l\'UE, l\'Italie est marquée par une fracture Nord/Sud : le Nord (Milan, Turin) est très industrialisé tandis que le Sud (Mezzogiorno) reste plus agricole — un écart économique qui dure depuis des siècles.'},
-    {type:'info',question:'Quelle marque italienne est célèbre pour ses voitures de sport ?',choices:['Fiat','Lamborghini','Ferrari','Vespa'],correct:2,
-      hint:'🏎️ Ferrari, fondée en 1939 par Enzo Ferrari à Maranello, limite sa production à ~14 000 voitures/an pour rester exclusive. Le cheval cabré (Cavallino Rampante) vient du blason d\'un pilote de la 1re Guerre mondiale.'}
-  ]},
+info:'3e économie de l\'UE. En forme de botte. Célèbre pour Ferrari, la gastronomie et le patrimoine.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Espagne','Grèce','Italie','Croatie'],correct:2,hint:'👢 En forme de botte — impossible à confondre ! L\'unification (Risorgimento) s\'achève en 1871. Avant, la péninsule était morcelée en royaumes, duchés et États pontificaux depuis des siècles.'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-ie','flag-hu','flag-it','flag-ro'],correct:2,hint:'🏴 Le vert-blanc-rouge vient de Napoléon (1797). Vert = espoir, blanc = foi, rouge = amour. Ne pas confondre avec l\'Irlande (vert-blanc-orange) ni la Hongrie (rouge-blanc-vert horizontal) !'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Milan','Rome','Florence','Naples'],correct:1,hint:'🏛️ Rome, « la Ville Éternelle », fondée en 753 av. J.-C. Le Colisée accueillait 50 000 spectateurs. Rome contient aussi le Vatican (0,44 km²), plus petit État du monde, dirigé par le Pape.'},
+{type:'info',question:'Quelle est la monnaie de l\'Italie ?',choices:['Lire italienne','Euro','Franc','Florin'],correct:1,hint:'💶 Avant l\'euro (2002), la lire donnait le vertige : une pizza ≈ 10 000 lires, un café ≈ 1 500 lires ! Le passage à l\'euro a simplifié les prix mais beaucoup d\'Italiens estiment qu\'il a fait augmenter le coût de la vie.'},
+{type:'info',question:'L\'Italie est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1973','Non, a quitté','Non'],correct:0,hint:'🇪🇺 Le Traité de Rome a été signé… à Rome, le 25 mars 1957, dans la Salle des Horaces et des Curiaces du Capitole. C\'est l\'acte de naissance de la Communauté Économique Européenne.'},
+{type:'info',question:'Quelle est la population de l\'Italie ?',choices:['42 millions','59 millions','68 millions','75 millions'],correct:1,hint:'👥 59 millions. L\'un des taux de natalité les plus bas au monde (1,2 enfant/femme). Plus de 24% des Italiens ont plus de 65 ans. Le pays perd des habitants chaque année — un défi majeur.'},
+{type:'info',question:'Quel est le PIB de l\'Italie ?',choices:['900 Mds €','1 500 Mds €','2 200 Mds €','3 500 Mds €'],correct:2,hint:'📊 3e économie de l\'UE. Forte fracture Nord/Sud : le Nord (Milan, Turin) est industriel, le Sud (Mezzogiorno) plus agricole. Cet écart économique dure depuis l\'unification en 1871.'},
+{type:'info',question:'Quelle marque italienne est célèbre pour ses voitures de sport ?',choices:['Fiat','Lamborghini','Ferrari','Vespa'],correct:2,hint:'🏎️ Ferrari (1939, Enzo Ferrari, Maranello) limite sa production à ~14 000 voitures/an pour rester exclusive. Le Cavallino Rampante (cheval cabré) vient du blason d\'un pilote de la 1re Guerre mondiale.'}
+]},
 {name:'Royaume-Uni',flag:'🇬🇧',flagClass:'flag-gb',capital:{name:'Londres',lat:51.5074,lng:-0.1278},center:{lat:54.5,lng:-2.5},zoom:6,
-  info:'A quitté l\'UE en 2020 (Brexit). 4 nations : Angleterre, Écosse, Galles, Irlande du Nord. Londres est un des plus grands centres financiers mondiaux.',
-  questions:[
-    {type:'identify',question:'Quel est ce pays ?',choices:['Irlande','Royaume-Uni','Islande','Norvège'],correct:1,
-      hint:'🏝️ Le Royaume-Uni est composé de 4 nations : Angleterre, Écosse, Pays de Galles et Irlande du Nord. C\'est la plus grande île d\'Europe, séparée du continent par la Manche (34 km au point le plus étroit, relié par l\'Eurotunnel).'},
-    {type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-no','flag-fr','flag-nl','flag-gb'],correct:3,
-      hint:'🇬🇧 L\'Union Jack superpose 3 croix : St George (Angleterre), St Andrew (Écosse) et St Patrick (Irlande). Fait marquant : le Pays de Galles n\'est PAS représenté sur le drapeau car il était déjà rattaché à l\'Angleterre lors de sa création !'},
-    {type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Édimbourg','Manchester','Londres','Dublin'],correct:2,
-      hint:'🏙️ Londres (~9 millions d\'habitants) est la plus grande ville d\'Europe occidentale. « Big Ben » n\'est pas la tour mais la cloche de 13,7 tonnes à l\'intérieur ! La tour s\'appelle en réalité Elizabeth Tower depuis 2012.'},
-    {type:'info',question:'Quelle est la monnaie du Royaume-Uni ?',choices:['Euro','Dollar US','Livre sterling','Franc'],correct:2,
-      hint:'💷 La livre sterling est la plus ancienne monnaie encore en circulation (depuis ~775 !). Le symbole £ vient du latin « Libra » (balance). Le Royaume-Uni n\'a jamais adopté l\'euro, même quand il était dans l\'UE.'},
-    {type:'info',question:'Le Royaume-Uni est-il membre de l\'UE ?',choices:['Oui, depuis 1973','Oui, fondateur','Non, Brexit 2020','Non, jamais'],correct:2,
-      hint:'🚪 Entré en 1973, sorti en 2020 : le Brexit est le résultat du référendum de 2016 (51,9% pour la sortie). C\'est le seul pays à avoir quitté l\'UE. Attention : Dublin est la capitale de l\'Irlande (République), qui reste dans l\'UE !'},
-    {type:'info',question:'Quelle est la population du Royaume-Uni ?',choices:['48 millions','56 millions','68 millions','80 millions'],correct:2,
-      hint:'👥 68 millions d\'habitants, presque autant que la France. L\'Angleterre seule en compte 56 millions — l\'un des territoires les plus densément peuplés d\'Europe. L\'Écosse n\'a que 5,4 millions d\'habitants.'},
-    {type:'info',question:'Quel est le PIB du Royaume-Uni ?',choices:['1 500 Mds €','2 200 Mds €','3 200 Mds €','4 500 Mds €'],correct:2,
-      hint:'📊 6e économie mondiale. Les services financiers (la City de Londres) représentent ~7% du PIB. La City traite plus de transactions en devises étrangères que New York — c\'est le 1er centre financier mondial !'},
-    {type:'info',question:'Pour quel secteur Londres est-elle connue ?',choices:['Industrie auto','Agriculture','Services financiers','Tourisme balnéaire'],correct:2,
-      hint:'🏦 La City de Londres ne fait que 2,9 km² mais c\'est une entité quasi-indépendante avec son propre maire ! Plus de 500 banques internationales y ont leur siège. La Bourse de Londres existe depuis 1801.'}
-  ]}
+info:'A quitté l\'UE en 2020 (Brexit). 4 nations : Angleterre, Écosse, Galles, Irlande du Nord.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Irlande','Royaume-Uni','Islande','Norvège'],correct:1,hint:'🏝️ 4 nations : Angleterre, Écosse, Pays de Galles, Irlande du Nord. Plus grande île d\'Europe, séparée du continent par la Manche (34 km au plus étroit). L\'Eurotunnel relie Calais à Folkestone.'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-no','flag-fr','flag-nl','flag-gb'],correct:3,hint:'🇬🇧 L\'Union Jack superpose 3 croix : St George (Angleterre), St Andrew (Écosse), St Patrick (Irlande). Le Pays de Galles n\'y figure PAS car il était déjà rattaché à l\'Angleterre lors de sa création !'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Édimbourg','Manchester','Londres','Dublin'],correct:2,hint:'🏙️ Londres (~9 M habitants), plus grande ville d\'Europe occidentale. « Big Ben » n\'est pas la tour mais la cloche de 13,7 tonnes ! La tour s\'appelle Elizabeth Tower depuis 2012. Attention : Dublin est en Irlande (république).'},
+{type:'info',question:'Quelle est la monnaie du Royaume-Uni ?',choices:['Euro','Dollar US','Livre sterling','Franc'],correct:2,hint:'💷 La livre sterling (£) est la plus ancienne monnaie encore en circulation (depuis ~775). Le symbole £ vient du latin « Libra ». Le Royaume-Uni n\'a jamais adopté l\'euro, même dans l\'UE.'},
+{type:'info',question:'Le Royaume-Uni est-il membre de l\'UE ?',choices:['Oui, depuis 1973','Oui, fondateur','Non, Brexit 2020','Non, jamais'],correct:2,hint:'🚪 Entré en 1973, sorti en 2020 : le Brexit (référendum 2016, 51,9% pour). Seul pays à avoir quitté l\'UE. Attention : l\'Irlande (République) reste dans l\'UE, seule l\'Irlande du Nord (UK) est sortie.'},
+{type:'info',question:'Quelle est la population du Royaume-Uni ?',choices:['48 millions','56 millions','68 millions','80 millions'],correct:2,hint:'👥 68 millions. L\'Angleterre seule en compte 56 M — l\'un des territoires les plus denses d\'Europe. L\'Écosse n\'a que 5,4 M d\'habitants sur un tiers de la superficie.'},
+{type:'info',question:'Quel est le PIB du Royaume-Uni ?',choices:['1 500 Mds €','2 200 Mds €','3 200 Mds €','4 500 Mds €'],correct:2,hint:'📊 6e économie mondiale. La City de Londres traite plus de transactions en devises que New York — c\'est le 1er centre financier mondial malgré le Brexit.'},
+{type:'info',question:'Pour quel secteur Londres est-elle connue ?',choices:['Industrie auto','Agriculture','Services financiers','Tourisme balnéaire'],correct:2,hint:'🏦 La City de Londres (2,9 km²) est une entité quasi-indépendante avec son propre maire ! Plus de 500 banques internationales y ont leur siège. La Bourse de Londres existe depuis 1801.'}
+]},
+{name:'Portugal',flag:'🇵🇹',flagClass:'flag-pt',capital:{name:'Lisbonne',lat:38.7223,lng:-9.1393},center:{lat:39.4,lng:-8.2},zoom:7,
+info:'Puissance maritime du XVe siècle. Membre UE depuis 1986. Leader européen des énergies renouvelables.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Espagne','Maroc','Portugal','Italie'],correct:2,hint:'🌊 Le Portugal est le pays le plus occidental d\'Europe continentale. Au XVe siècle, les navigateurs portugais (Vasco de Gama, Magellan) ont ouvert les routes maritimes vers l\'Inde et le Brésil.'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-it','flag-pt','flag-ie','flag-hu'],correct:1,hint:'🇵🇹 Le vert-rouge est unique en Europe. La sphère armillaire au centre représente l\'empire maritime portugais. Le blason contient 5 écussons bleus rappelant la victoire fondatrice d\'Afonso Henriques en 1139.'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Porto','Faro','Lisbonne','Coimbra'],correct:2,hint:'🏛️ Lisbonne a été presque entièrement détruite par un séisme dévastateur en 1755 (magnitude ~8.5). La reconstruction, dirigée par le marquis de Pombal, en a fait une ville moderne pour l\'époque.'},
+{type:'info',question:'Quelle est la monnaie du Portugal ?',choices:['Escudo','Euro','Réal','Peseta'],correct:1,hint:'💶 L\'escudo portugais a circulé jusqu\'en 2002. Le mot « escudo » signifie « écu » (bouclier). Le passage à l\'euro a coïncidé avec une période de modernisation économique du pays.'},
+{type:'info',question:'Le Portugal est-il membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1986','Non, candidat','Non'],correct:1,hint:'🇪🇺 Entré en 1986 avec l\'Espagne, après la fin de la dictature de Salazar (1974, Révolution des Œillets). Les soldats avaient mis des œillets dans leurs fusils — une révolution pacifique et poétique !'},
+{type:'info',question:'Quelle est la population du Portugal ?',choices:['5 millions','10 millions','20 millions','35 millions'],correct:1,hint:'👥 10,4 millions. Mais la diaspora portugaise dans le monde est immense : ~5 millions de Portugais vivent à l\'étranger, dont ~600 000 en France et ~260 000 au Luxembourg.'},
+{type:'info',question:'Quel est le PIB du Portugal ?',choices:['100 Mds €','280 Mds €','600 Mds €','1 000 Mds €'],correct:1,hint:'📊 280 Mds €. Le Portugal est devenu un hub tech européen (Lisbonne accueille le Web Summit, plus grand salon tech au monde). Le tourisme représente ~15% du PIB — les plages de l\'Algarve attirent des millions de visiteurs.'},
+{type:'info',question:'Dans quel domaine le Portugal est-il leader européen ?',choices:['Industrie auto','Énergies renouvelables','Production de pétrole','Industrie spatiale'],correct:1,hint:'🌱 En 2023, le Portugal a produit plus de 60% de son électricité à partir de sources renouvelables (éolien, solaire, hydraulique). Il a même battu le record de 6 jours consécutifs à 100% d\'énergie verte !'}
+]},
+{name:'Grèce',flag:'🇬🇷',flagClass:'flag-gr',capital:{name:'Athènes',lat:37.9838,lng:23.7275},center:{lat:39.0,lng:22.0},zoom:7,
+info:'Berceau de la démocratie et de la philosophie. Membre UE depuis 1981. Tourisme et marine marchande.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Turquie','Croatie','Grèce','Chypre'],correct:2,hint:'🏛️ La Grèce est le berceau de la démocratie (Athènes, Ve siècle av. J.-C.), de la philosophie (Socrate, Platon, Aristote) et des Jeux Olympiques (776 av. J.-C.). Elle compte plus de 6 000 îles !'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-gr','flag-nl','flag-at','flag-lu'],correct:0,hint:'🇬🇷 Les 9 bandes bleues et blanches représenteraient les 9 syllabes de la devise « Liberté ou la Mort » en grec. La croix symbolise l\'Église orthodoxe grecque, religion d\'État.'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Thessalonique','Athènes','Le Pirée','Héraklion'],correct:1,hint:'🏛️ Athènes est habitée depuis 5 000 ans — l\'une des plus anciennes villes d\'Europe. L\'Acropole et le Parthénon (447 av. J.-C.) dominent la ville. Le mot « démocratie » vient du grec : demos (peuple) + kratos (pouvoir).'},
+{type:'info',question:'Quelle est la monnaie de la Grèce ?',choices:['Drachme','Euro','Lire','Dinar'],correct:1,hint:'💶 Avant l\'euro (2001), la drachme — l\'une des plus anciennes monnaies du monde (utilisée depuis l\'Antiquité). Pendant la crise de 2010-2015, un « Grexit » (sortie de l\'euro) a été sérieusement envisagé.'},
+{type:'info',question:'La Grèce est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1981','Non, sortie en 2015','Non'],correct:1,hint:'🇪🇺 Entrée en 1981, la Grèce est le 10e membre. La crise de la dette (2010-2015) a failli la faire sortir de la zone euro. Des plans d\'austérité sévères ont été imposés en échange d\'aide européenne.'},
+{type:'info',question:'Quelle est la population de la Grèce ?',choices:['5 millions','10 millions','18 millions','25 millions'],correct:1,hint:'👥 10,4 millions. La Grèce a la population la plus âgée d\'Europe après l\'Italie. Beaucoup de jeunes Grecs diplômés émigrent (fuite des cerveaux), surtout depuis la crise économique de 2010.'},
+{type:'info',question:'Quel est le PIB de la Grèce ?',choices:['100 Mds €','230 Mds €','500 Mds €','900 Mds €'],correct:1,hint:'📊 230 Mds €. L\'économie grecque dépend fortement du tourisme (~20% du PIB) et de la marine marchande (les armateurs grecs contrôlent ~20% de la flotte mondiale). L\'agriculture (olives, huile d\'olive) reste importante.'},
+{type:'info',question:'Quel secteur domine l\'économie grecque ?',choices:['Industrie auto','Tourisme et marine marchande','Industrie pharma','Tech et start-ups'],correct:1,hint:'🚢 Les armateurs grecs possèdent la plus grande flotte marchande du monde ! Le tourisme attire ~30 millions de visiteurs/an (3× la population). Santorin et Mykonos sont parmi les îles les plus photographiées au monde.'}
+]},
+{name:'Suisse',flag:'🇨🇭',flagClass:'flag-ch',capital:{name:'Berne',lat:46.9480,lng:7.4474},center:{lat:46.8,lng:8.2},zoom:8,
+info:'Neutre depuis 1515. Non-membre de l\'UE. Connue pour ses banques, horlogerie et chocolat.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Autriche','Belgique','Suisse','Liechtenstein'],correct:2,hint:'🏔️ La Suisse est neutre depuis 1515 — elle n\'a participé à aucune guerre depuis plus de 500 ans ! Pays alpin par excellence avec le Cervin, le Jungfrau et 48 sommets de plus de 4 000 m.'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-at','flag-ch','flag-de','flag-lu'],correct:1,hint:'🇨🇭 Le seul drapeau carré au monde (avec le Vatican). La croix blanche sur fond rouge date de 1339. C\'est aussi l\'origine du logo de la Croix-Rouge (fondée à Genève en 1863) — les couleurs sont inversées !'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Zurich','Genève','Berne','Lausanne'],correct:2,hint:'🏛️ Piège classique : ce n\'est pas Zurich (la plus grande ville) ni Genève (siège de l\'ONU), mais Berne ! Officiellement, la Suisse n\'a pas de « capitale » mais une « ville fédérale ».'},
+{type:'info',question:'Quelle est la monnaie de la Suisse ?',choices:['Euro','Franc suisse','Mark suisse','Couronne'],correct:1,hint:'💰 Le franc suisse (CHF) est l\'une des monnaies les plus stables et fortes au monde. Les billets suisses sont réputés pour leur design artistique et leurs dispositifs anti-contrefaçon ultra-sophistiqués.'},
+{type:'info',question:'La Suisse est-elle membre de l\'UE ?',choices:['Oui, depuis 2002','Oui, fondateur','Non, accords bilatéraux','Non, totalement isolée'],correct:2,hint:'🇪🇺 La Suisse a refusé par référendum d\'adhérer à l\'Espace économique européen (1992) et à l\'UE. Elle fonctionne avec des accords bilatéraux. Sa démocratie directe (référendums fréquents) rend une adhésion très improbable.'},
+{type:'info',question:'Quelle est la population de la Suisse ?',choices:['5 millions','9 millions','14 millions','20 millions'],correct:1,hint:'👥 9 millions d\'habitants parlant 4 langues officielles : allemand (63%), français (23%), italien (8%) et romanche (0,5%). La Suisse accueille le siège de nombreuses organisations internationales (ONU, OMS, CICR).'},
+{type:'info',question:'Quel est le PIB de la Suisse ?',choices:['350 Mds €','600 Mds €','860 Mds €','1 500 Mds €'],correct:2,hint:'📊 860 Mds € pour seulement 9 M d\'habitants = l\'un des PIB/habitant les plus élevés au monde. Le secteur bancaire suisse gère ~27% des actifs offshore mondiaux. Le secret bancaire a été assoupli depuis 2018.'},
+{type:'info',question:'Quelle entreprise suisse est la plus grande entreprise alimentaire mondiale ?',choices:['Lindt','Rolex','Novartis','Nestlé'],correct:3,hint:'🍫 Nestlé (Vevey) : KitKat, Nescafé, Maggi, Perrier, Purina… C\'est la plus grande entreprise agroalimentaire au monde. À noter : Rolex est aussi suisse mais c\'est de l\'horlogerie, et Novartis est dans la pharma.'}
+]},
+{name:'Pologne',flag:'🇵🇱',flagClass:'flag-pl',capital:{name:'Varsovie',lat:52.2297,lng:21.0122},center:{lat:52.0,lng:19.5},zoom:6,
+info:'Plus grand pays d\'Europe centrale. Membre UE depuis 2004. Économie en forte croissance.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Tchéquie','Pologne','Ukraine','Roumanie'],correct:1,hint:'🏰 La Pologne a une histoire tumultueuse : partagée 3 fois entre voisins (1772-1795), elle a disparu de la carte pendant 123 ans ! Renaissant en 1918, elle a été envahie en 1939 et occupée pendant toute la 2e Guerre mondiale.'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-at','flag-pl','flag-hu','flag-nl'],correct:1,hint:'🇵🇱 Blanc en haut, rouge en bas — à ne PAS confondre avec l\'Indonésie et Monaco (rouge en haut, blanc en bas) ! Les couleurs viennent des armoiries polonaises : un aigle blanc sur fond rouge.'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Cracovie','Gdańsk','Varsovie','Wrocław'],correct:2,hint:'🏙️ Varsovie a été détruite à 85% pendant la 2e Guerre mondiale (insurrection de 1944). Sa vieille ville a été entièrement reconstruite à l\'identique — un exploit reconnu par l\'UNESCO. Cracovie était l\'ancienne capitale royale.'},
+{type:'info',question:'Quelle est la monnaie de la Pologne ?',choices:['Euro','Złoty','Couronne','Rouble'],correct:1,hint:'💰 Le złoty signifie « doré » en polonais. La Pologne, bien que membre de l\'UE, n\'a pas encore adopté l\'euro et ne semble pas pressée de le faire — le złoty lui donne plus de flexibilité économique.'},
+{type:'info',question:'La Pologne est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 2004','Non, candidate','Non'],correct:1,hint:'🇪🇺 Entrée en 2004 lors du grand élargissement (10 pays d\'un coup !). La Pologne est le plus grand bénéficiaire des fonds européens : ~150 milliards € reçus depuis son adhésion pour moderniser ses infrastructures.'},
+{type:'info',question:'Quelle est la population de la Pologne ?',choices:['20 millions','37 millions','50 millions','65 millions'],correct:1,hint:'👥 37 millions, 5e pays le plus peuplé de l\'UE. Mais la population diminue : émigration massive (2 M de Polonais au Royaume-Uni et en Allemagne) et faible natalité. Varsovie est une métropole dynamique de 1,8 M d\'habitants.'},
+{type:'info',question:'Quel est le PIB de la Pologne ?',choices:['300 Mds €','500 Mds €','750 Mds €','1 200 Mds €'],correct:2,hint:'📊 ~750 Mds €. La Pologne est le « tigre » de l\'Europe : elle n\'a PAS connu de récession pendant la crise de 2008-2009, un exploit unique en Europe ! Sa croissance est tirée par la consommation intérieure et l\'industrie.'},
+{type:'info',question:'Quel studio de jeux vidéo polonais a créé « The Witcher » ?',choices:['Ubisoft','CD Projekt','Electronic Arts','Rockstar Games'],correct:1,hint:'🎮 CD Projekt (Varsovie) a créé The Witcher et Cyberpunk 2077. The Witcher est basé sur des romans de l\'auteur polonais Andrzej Sapkowski. La Pologne est devenue un pôle majeur du jeu vidéo en Europe.'}
+]},
+{name:'Suède',flag:'🇸🇪',flagClass:'flag-se',capital:{name:'Stockholm',lat:59.3293,lng:18.0686},center:{lat:62.0,lng:15.0},zoom:5,
+info:'Plus grand pays nordique. Membre UE depuis 1995. Patrie d\'IKEA, Spotify et du prix Nobel.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Norvège','Suède','Finlande','Danemark'],correct:1,hint:'🌲 3e plus grand pays de l\'UE (450 000 km²) mais seulement 10,5 M d\'habitants ! La Suède est couverte à 70% de forêts. Les Vikings suédois ont fondé la Russie (le mot « Rus » vient du suédois « ceux qui rament »).'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-se','flag-no','flag-de','flag-at'],correct:0,hint:'🇸🇪 Croix jaune (or) sur fond bleu. Le design en croix scandinave est partagé par tous les pays nordiques (Danemark, Norvège, Finlande, Islande). Le jaune et bleu viennent des armoiries royales (XIVe siècle).'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Göteborg','Malmö','Stockholm','Uppsala'],correct:2,hint:'🏙️ Stockholm est construite sur 14 îles reliées par 57 ponts ! C\'est là que sont remis chaque année les prix Nobel (sauf celui de la Paix, remis à Oslo). Le musée Vasa abrite un navire de guerre de 1628 parfaitement conservé.'},
+{type:'info',question:'Quelle est la monnaie de la Suède ?',choices:['Euro','Couronne norvégienne','Couronne suédoise','Mark'],correct:2,hint:'💰 La couronne suédoise (SEK). La Suède est le pays le plus avancé vers une société sans cash : moins de 10% des transactions se font en espèces. Certains magasins refusent les billets !'},
+{type:'info',question:'La Suède est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1995','Non, comme la Norvège','Non'],correct:1,hint:'🇪🇺 Entrée en 1995 mais a refusé l\'euro par référendum en 2003. La Suède est membre de l\'OTAN depuis 2024 seulement, après 200 ans de neutralité — un changement historique provoqué par l\'invasion russe de l\'Ukraine.'},
+{type:'info',question:'Quelle est la population de la Suède ?',choices:['5 millions','10,5 millions','18 millions','25 millions'],correct:1,hint:'👥 10,5 millions sur 450 000 km² = seulement 23 hab/km² ! Le nord (la Laponie) est quasi-désert. La Suède a accueilli proportionnellement le plus de réfugiés en Europe en 2015, ce qui a fait bondir sa population.'},
+{type:'info',question:'Quel est le PIB de la Suède ?',choices:['250 Mds €','600 Mds €','1 000 Mds €','2 000 Mds €'],correct:1,hint:'📊 ~600 Mds €. Malgré sa petite population, la Suède a un PIB/habitant très élevé. Son modèle combine une économie de marché avec un État-providence généreux (santé, éducation gratuits, congé parental long).'},
+{type:'info',question:'Quelle entreprise suédoise est connue pour ses meubles en kit ?',choices:['H&M','Volvo','IKEA','Spotify'],correct:2,hint:'🏠 IKEA (1943, Ingvar Kamprad, Småland) est le plus grand vendeur de meubles au monde. Le nom vient des initiales du fondateur + sa ferme (Elmtaryd) + son village (Agunnaryd). Billy est l\'étagère la plus vendue au monde !'}
+]},
+{name:'Danemark',flag:'🇩🇰',flagClass:'flag-dk',capital:{name:'Copenhague',lat:55.6761,lng:12.5683},center:{lat:56.0,lng:10.0},zoom:7,
+info:'Plus ancien royaume d\'Europe. LEGO et Novo Nordisk. Membre UE mais pas de la zone euro.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Suède','Pays-Bas','Danemark','Finlande'],correct:2,hint:'👑 Le Danemark possède la plus ancienne monarchie d\'Europe (plus de 1 000 ans !). Le pays comprend aussi le Groenland (la plus grande île du monde) et les Îles Féroé, deux territoires autonomes.'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-dk','flag-no','flag-at','flag-ch'],correct:0,hint:'🇩🇰 Le Dannebrog (croix blanche sur fond rouge) est le plus ancien drapeau national encore en usage (1219 selon la légende). Il aurait chuté du ciel pendant une bataille en Estonie ! Tous les drapeaux nordiques s\'en inspirent.'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Stockholm','Oslo','Copenhague','Helsinki'],correct:2,hint:'🧜‍♀️ Copenhague abrite la célèbre statue de la Petite Sirène (1913), inspirée du conte d\'Andersen. La ville est la capitale mondiale du vélo : 62% des habitants vont au travail à vélo. Tivoli (1843) est l\'un des plus anciens parcs d\'attractions du monde.'},
+{type:'info',question:'Quelle est la monnaie du Danemark ?',choices:['Euro','Couronne danoise','Couronne suédoise','Franc'],correct:1,hint:'💰 La couronne danoise (DKK). Le Danemark a refusé l\'euro par référendum en 2000 (53% contre). Cependant, la couronne est arrimée à l\'euro dans une bande étroite — en pratique, elle le suit de très près.'},
+{type:'info',question:'Le Danemark est-il membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 1973','Non, comme la Norvège','Non'],correct:1,hint:'🇪🇺 Membre depuis 1973 (avec le Royaume-Uni et l\'Irlande). Le Danemark a des opt-outs : pas d\'euro, pas de politique de défense commune. Le Groenland a quitté la CEE en 1985 après un référendum — le premier « exit » européen !'},
+{type:'info',question:'Quelle est la population du Danemark ?',choices:['3 millions','6 millions','10 millions','15 millions'],correct:1,hint:'👥 5,9 millions. Le Danemark est régulièrement classé comme le pays le plus heureux au monde (concept de « hygge »). Le système social est très généreux : études gratuites avec bourse mensuelle pour les étudiants !'},
+{type:'info',question:'Quel est le PIB du Danemark ?',choices:['150 Mds €','400 Mds €','800 Mds €','1 200 Mds €'],correct:1,hint:'📊 ~400 Mds €. Novo Nordisk (pharma, Ozempic/Wegovy) est devenue l\'entreprise la plus valorisée d\'Europe en 2023. Le secteur éolien danois est pionnier : Vestas et Ørsted sont des leaders mondiaux de l\'énergie verte.'},
+{type:'info',question:'Quelle entreprise danoise fabrique les célèbres briques de construction ?',choices:['Playmobil','Hasbro','LEGO','Mattel'],correct:2,hint:'🧱 LEGO (1932, Billund) vient du danois « leg godt » = « joue bien ». Plus de 400 milliards de briques produites ! LEGO est le plus grand fabricant de pneus au monde (en miniature). Legoland à Billund attire 2 M de visiteurs/an.'}
+]},
+{name:'Norvège',flag:'🇳🇴',flagClass:'flag-no',capital:{name:'Oslo',lat:59.9139,lng:10.7522},center:{lat:64.0,lng:11.0},zoom:5,
+info:'Riche en pétrole et gaz. Non-membre de l\'UE. Plus grand fonds souverain au monde.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Suède','Finlande','Norvège','Islande'],correct:2,hint:'🛢️ La Norvège est l\'un des pays les plus riches du monde grâce au pétrole de la mer du Nord (découvert en 1969). Ses fjords spectaculaires attirent des millions de touristes. Les Vikings norvégiens ont découvert l\'Amérique 500 ans avant Colomb !'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-dk','flag-no','flag-se','flag-ch'],correct:1,hint:'🇳🇴 La croix bleue bordée de blanc sur fond rouge combine les couleurs du Danemark (rouge-blanc) et de la Suède (bleu-jaune), car la Norvège a été dominée par ces deux pays. Elle n\'est indépendante que depuis 1905 !'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Bergen','Oslo','Stavanger','Tromsø'],correct:1,hint:'🏙️ Oslo accueille la cérémonie du prix Nobel de la Paix (les autres Nobel sont remis à Stockholm). La ville est entourée de forêts et de fjords. Bergen, l\'ancienne capitale, est connue comme la ville la plus pluvieuse d\'Europe (~250 jours de pluie/an).'},
+{type:'info',question:'Quelle est la monnaie de la Norvège ?',choices:['Euro','Couronne suédoise','Couronne norvégienne','Franc'],correct:2,hint:'💰 La couronne norvégienne (NOK). La Norvège est si riche qu\'elle n\'a aucune dette nette — au contraire, son fonds souverain (~1 500 milliards €) possède ~1,5% de toutes les actions mondiales !'},
+{type:'info',question:'La Norvège est-elle membre de l\'UE ?',choices:['Oui, depuis 1994','Oui, fondateur','Non, refus par référendum','Non, car trop riche'],correct:2,hint:'🗳️ Deux référendums négatifs (1972 et 1994). Les Norvégiens craignent de perdre le contrôle de leur pêche et leur pétrole. Pourtant, via l\'EEE, la Norvège applique une grande partie des règles européennes !'},
+{type:'info',question:'Quelle est la population de la Norvège ?',choices:['3 millions','5,5 millions','10 millions','15 millions'],correct:1,hint:'👥 5,5 millions sur 385 000 km² = 14 hab/km², l\'un des pays les moins densément peuplés d\'Europe. Le nord (au-delà du cercle polaire) connaît le soleil de minuit en été et la nuit polaire en hiver.'},
+{type:'info',question:'Quel est le PIB de la Norvège ?',choices:['200 Mds €','450 Mds €','800 Mds €','1 200 Mds €'],correct:1,hint:'📊 ~450 Mds € pour 5,5 M d\'habitants = PIB/habitant parmi les plus élevés au monde (~80 000 €/hab). À comparer : la Belgique est à ~52 000 €/hab. La richesse pétrolière est investie pour les générations futures.'},
+{type:'info',question:'Quelle est la principale richesse naturelle de la Norvège ?',choices:['Le bois','Les mines d\'or','Le pétrole et le gaz','L\'énergie nucléaire'],correct:2,hint:'🛢️ Le pétrole et le gaz = 65% des exportations. Depuis l\'invasion de l\'Ukraine, la Norvège est devenue le 1er fournisseur de gaz de l\'UE (devant la Russie). Le fonds souverain norvégien est le plus grand au monde (~1 500 Mds €).'}
+]},
+{name:'Ukraine',flag:'🇺🇦',flagClass:'flag-ua',capital:{name:'Kyiv',lat:50.4501,lng:30.5234},center:{lat:49.0,lng:31.0},zoom:6,
+info:'Plus grand pays entièrement en Europe. Candidat UE depuis 2022. Grenier de l\'Europe.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Biélorussie','Roumanie','Ukraine','Moldavie'],correct:2,hint:'🌾 L\'Ukraine est le plus grand pays entièrement européen (603 000 km², plus que la France). Ses sols noirs (tchernozem) sont parmi les plus fertiles au monde. Elle était appelée le « grenier de l\'URSS ».'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-ua','flag-se','flag-de','flag-nl'],correct:0,hint:'🇺🇦 Le bleu représente le ciel, le jaune les champs de blé — un paysage typiquement ukrainien. Ces couleurs datent du XIXe siècle et du mouvement national ukrainien. Ne pas confondre avec la Suède (croix jaune sur bleu).'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Odessa','Lviv','Kharkiv','Kyiv'],correct:3,hint:'🏛️ Kyiv a 1 500 ans d\'histoire. La cathédrale Sainte-Sophie (1037) est classée UNESCO. Le mot « Ukraine » viendrait du slave « oukraina » = « terre frontalière ». La ville a été fondée bien avant Moscou.'},
+{type:'info',question:'Quelle est la monnaie de l\'Ukraine ?',choices:['Rouble','Złoty','Hryvnia','Euro'],correct:2,hint:'💰 La hryvnia (UAH) tire son nom d\'un collier en or porté par les princes de la Rus\' de Kyiv au Moyen Âge. Depuis l\'invasion russe de 2022, la monnaie a été fortement dévaluée malgré les aides internationales.'},
+{type:'info',question:'L\'Ukraine est-elle membre de l\'UE ?',choices:['Oui, depuis 2004','Oui, depuis 2022','Non, pays candidat depuis 2022','Non, pas intéressée'],correct:2,hint:'🇪🇺 Statut de candidat obtenu en juin 2022, 4 mois après l\'invasion russe. C\'est la procédure la plus rapide de l\'histoire de l\'UE. L\'adhésion réelle prendra encore des années de réformes et de négociations.'},
+{type:'info',question:'Quelle est la population de l\'Ukraine ?',choices:['15 millions','25 millions','37 millions','52 millions'],correct:2,hint:'👥 ~37 millions (estimation, la guerre rend le comptage difficile). Avant 2022, c\'était 44 millions. Environ 6 millions d\'Ukrainiens ont fui le pays, principalement vers la Pologne, l\'Allemagne et la Tchéquie.'},
+{type:'info',question:'Quel est le PIB de l\'Ukraine ?',choices:['50 Mds €','165 Mds €','500 Mds €','900 Mds €'],correct:1,hint:'📊 ~165 Mds €, fortement impacté par la guerre (le PIB a chuté de 30% en 2022). Avant la guerre, l\'Ukraine était le 4e exportateur mondial de blé et le 3e de maïs — d\'où son surnom de « grenier de l\'Europe ».'},
+{type:'info',question:'Pourquoi l\'Ukraine est-elle surnommée « le grenier de l\'Europe » ?',choices:['Beaucoup de voitures','Grand exportateur de céréales','Plus grandes forêts','Mines de diamants'],correct:1,hint:'🌾 L\'Ukraine possède 25% des terres noires (tchernozem) mondiales, les sols les plus fertiles. Le blocage des exportations de céréales ukrainiennes en 2022 a provoqué une crise alimentaire mondiale, surtout en Afrique.'}
+]},
+{name:'Estonie',flag:'🇪🇪',flagClass:'flag-ee',capital:{name:'Tallinn',lat:59.4370,lng:24.7536},center:{lat:58.8,lng:25.5},zoom:7,
+info:'Pays le plus numérisé au monde. Membre UE et zone euro. E-gouvernement pionnier.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Lettonie','Lituanie','Estonie','Finlande'],correct:2,hint:'💻 L\'Estonie est le pays le plus numérisé au monde : vote en ligne, e-résidence, 99% des services publics accessibles sur internet. Ce petit pays balte (1,3 M habitants) est un géant de la tech.'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-ee','flag-nl','flag-de','flag-at'],correct:0,hint:'🇪🇪 Bleu-noir-blanc : le bleu = le ciel et les lacs, le noir = la terre et le passé sombre d\'occupation, le blanc = la neige et l\'espoir. L\'Estonie a été occupée par l\'Allemagne, la Suède, la Russie et l\'URSS tour à tour.'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Riga','Vilnius','Tallinn','Helsinki'],correct:2,hint:'🏰 Tallinn a une vieille ville médiévale parmi les mieux conservées d\'Europe (classée UNESCO). Piège fréquent : Riga = Lettonie, Vilnius = Lituanie, Helsinki = Finlande. Tallinn est à seulement 80 km d\'Helsinki par ferry.'},
+{type:'info',question:'Quelle est la monnaie de l\'Estonie ?',choices:['Couronne estonienne','Euro','Rouble','Złoty'],correct:1,hint:'💶 L\'euro depuis 2011. Avant, la couronne estonienne. L\'Estonie est le seul pays balte qui n\'a quasiment aucune dette publique (<10% du PIB) — un record en Europe. Ils sont très rigoureux avec les finances.'},
+{type:'info',question:'L\'Estonie est-elle membre de l\'UE ?',choices:['Oui, fondateur','Oui, depuis 2004','Non, dans la Russie','Non'],correct:1,hint:'🇪🇺 Entrée en 2004. Ancienne république soviétique, l\'Estonie a fait un virage spectaculaire vers l\'Ouest après l\'indépendance (1991). Passer du communisme à l\'UE en 13 ans : un exploit remarquable.'},
+{type:'info',question:'Quelle est la population de l\'Estonie ?',choices:['500 000','1,4 million','5 millions','10 millions'],correct:1,hint:'👥 1,4 million — moins que la ville de Bruxelles ! Malgré sa petite taille, l\'Estonie a un écosystème tech impressionnant : Skype y a été créé en 2003, et le pays produit plus de licornes (start-ups à 1 Md$) par habitant que n\'importe quel autre pays.'},
+{type:'info',question:'Quel est le PIB de l\'Estonie ?',choices:['10 Mds €','40 Mds €','100 Mds €','250 Mds €'],correct:1,hint:'📊 ~40 Mds €. Le programme e-Residency permet à n\'importe qui dans le monde de créer une entreprise estonienne en ligne. Plus de 100 000 e-résidents de 170 pays ont déjà utilisé ce système unique au monde.'},
+{type:'info',question:'L\'Estonie est leader mondial dans quel domaine ?',choices:['Agriculture bio','Industrie spatiale','Numérique et e-gouvernement','Énergie nucléaire'],correct:2,hint:'🖥️ 99% des services publics sont en ligne (sauf mariages, divorces et immobilier). Les Estoniens votent par internet depuis 2005. La carte d\'identité sert de signature électronique, de carte vitale et de titre de transport.'}
+]},
+{name:'Géorgie',flag:'🇬🇪',flagClass:'flag-ge',capital:{name:'Tbilissi',lat:41.7151,lng:44.8271},center:{lat:42.3,lng:43.5},zoom:7,
+info:'Au carrefour de l\'Europe et de l\'Asie. Berceau du vin. Candidat UE depuis 2023.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Arménie','Géorgie','Azerbaïdjan','Turquie'],correct:1,hint:'🏔️ La Géorgie est au carrefour de l\'Europe et de l\'Asie, entre la mer Noire et le Caucase. Son nom vient de Saint-Georges, patron du pays. Ne pas confondre avec la Géorgie américaine (État des USA) !'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-ge','flag-ch','flag-dk','flag-at'],correct:0,hint:'🇬🇪 Le « drapeau aux cinq croix » : une grande croix rouge de Saint-Georges + 4 petites croix dans les quadrants, sur fond blanc. Ce design date des Croisades (XIVe siècle). Adopté officiellement en 2004.'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Batoumi','Koutaïssi','Tbilissi','Soukhoumi'],correct:2,hint:'🏙️ Tbilissi (« source chaude » en géorgien) est fondée au Ve siècle. La ville est célèbre pour ses bains sulfureux naturels, son architecture médiévale et sa forteresse de Narikala. Le vieux Tbilissi est un labyrinthe de ruelles colorées.'},
+{type:'info',question:'Quelle est la monnaie de la Géorgie ?',choices:['Euro','Lari','Rouble','Dram'],correct:1,hint:'💰 Le lari géorgien (GEL). « Lari » signifie « trésor » en géorgien. La Géorgie possède son propre alphabet unique, le mkhedruli, qui ne ressemble à aucun autre au monde — il compte 33 lettres.'},
+{type:'info',question:'La Géorgie est-elle membre de l\'UE ?',choices:['Oui, depuis 2004','Oui, fondateur','Non, pays candidat depuis 2023','Non, pas intéressée'],correct:2,hint:'🇪🇺 Statut de candidat obtenu en décembre 2023. Mais le chemin est semé d\'embûches : la Russie occupe 20% du territoire géorgien (Ossétie du Sud et Abkhazie) depuis la guerre de 2008.'},
+{type:'info',question:'Quelle est la population de la Géorgie ?',choices:['2 millions','3,7 millions','8 millions','15 millions'],correct:1,hint:'👥 3,7 millions — la population a chuté depuis l\'indépendance en 1991 (5,5 millions). Beaucoup de Géorgiens ont émigré vers la Russie et l\'Europe. Staline était géorgien (né à Gori en 1878), un fait historique controversé dans le pays.'},
+{type:'info',question:'Quel est le PIB de la Géorgie ?',choices:['10 Mds €','25 Mds €','80 Mds €','200 Mds €'],correct:1,hint:'📊 ~25 Mds €. L\'économie repose sur le tourisme (en forte croissance), l\'agriculture (vin, fruits) et les transferts de la diaspora. La Géorgie a fait d\'énormes progrès contre la corruption — autrefois endémique, elle est maintenant rare.'},
+{type:'info',question:'Pour quoi la Géorgie est-elle considérée comme le berceau ?',choices:['Le café','Le vin','Le thé','La bière'],correct:1,hint:'🍷 La Géorgie est le berceau du vin : les plus anciennes traces de vinification remontent à 8 000 ans ! Les Géorgiens utilisent des jarres en terre cuite (kvevri) enterrées dans le sol, une méthode classée au patrimoine de l\'UNESCO.'}
+]},
+{name:'Syrie',flag:'🇸🇾',flagClass:'flag-sy',capital:{name:'Damas',lat:33.5138,lng:36.2765},center:{lat:35.0,lng:38.5},zoom:7,
+info:'L\'une des plus anciennes civilisations. Damas, plus ancienne capitale habitée. Guerre civile depuis 2011.',
+questions:[
+{type:'identify',question:'Quel est ce pays ?',choices:['Irak','Jordanie','Syrie','Liban'],correct:2,hint:'🏛️ La Syrie abrite certaines des plus anciennes villes du monde. Alep et Damas sont habitées depuis plus de 5 000 ans. Le pays se situe au cœur du « Croissant Fertile », berceau de l\'agriculture et de l\'écriture.'},
+{type:'flag',question:'Quel est le drapeau de ce pays ?',choices:['A','B','C','D'],flagClasses:['flag-sy','flag-hu','flag-de','flag-nl'],correct:0,hint:'🇸🇾 Rouge-blanc-noir avec deux étoiles vertes. Le rouge = le sang des martyrs, le blanc = la paix, le noir = le passé d\'oppression, les étoiles vertes représentaient l\'union Égypte-Syrie (1958-1961). Les couleurs panarabes symbolisent l\'unité arabe.'},
+{type:'capital',question:'Quelle est la capitale de ce pays ?',choices:['Alep','Damas','Homs','Lattaquié'],correct:1,hint:'🏛️ Damas est considérée comme la plus ancienne capitale continuellement habitée au monde (depuis ~10 000 av. J.-C.). La mosquée des Omeyyades (715) est l\'une des plus anciennes et plus grandes mosquées du monde.'},
+{type:'info',question:'Quelle est la monnaie de la Syrie ?',choices:['Dinar','Livre syrienne','Riyal','Euro'],correct:1,hint:'💰 La livre syrienne (SYP) s\'est effondrée depuis 2011. Avant la guerre, 1$ ≈ 50 livres ; aujourd\'hui, 1$ ≈ 13 000 livres sur le marché noir. L\'hyperinflation a plongé 90% de la population sous le seuil de pauvreté.'},
+{type:'info',question:'La Syrie est-elle membre de l\'UE ?',choices:['Oui','Non, mais elle est en Europe','Non, c\'est un pays du Moyen-Orient','Non, candidate'],correct:2,hint:'🌍 La Syrie est un pays du Moyen-Orient (Asie occidentale), pas d\'Europe. Elle est membre de la Ligue arabe (suspendue depuis 2011, réintégrée en 2023). La guerre civile depuis 2011 a déplacé plus de 12 millions de personnes.'},
+{type:'info',question:'Quelle est la population de la Syrie ?',choices:['5 millions','10 millions','22 millions','40 millions'],correct:2,hint:'👥 ~22 millions avant la guerre (2010). Plus de 6 millions ont fui le pays (surtout vers la Turquie, le Liban et l\'Allemagne) et 6 millions sont déplacés à l\'intérieur. C\'est la plus grande crise de réfugiés depuis la 2e Guerre mondiale.'},
+{type:'info',question:'Quel est le PIB de la Syrie ?',choices:['9 Mds €','60 Mds €','200 Mds €','500 Mds €'],correct:0,hint:'📊 ~9 Mds € (estimation) — le PIB a chuté de plus de 80% depuis 2010. Avant la guerre, Alep était la capitale économique et l\'une des villes les plus riches du Moyen-Orient, connue pour son industrie textile et son souk historique classé UNESCO.'},
+{type:'info',question:'Qu\'est-ce qui fait de Damas un lieu unique ?',choices:['Plus grande ville d\'Asie','Plus ancienne capitale habitée','Ville la plus haute du monde','Capitale la plus froide'],correct:1,hint:'🏛️ Damas est habitée depuis au moins 10 000 ans — c\'est la plus ancienne capitale continuellement habitée au monde. L\'écriture cunéiforme, l\'alphabet et l\'agriculture sont nés dans cette région appelée le « Croissant Fertile ».'}
+]}
 ];
 
-const ALL_QUESTIONS=[];
-COUNTRIES.forEach((c,ci)=>c.questions.forEach((q,qi)=>ALL_QUESTIONS.push({...q,countryIndex:ci,questionInCountry:qi})));
-const TOTAL_QUESTIONS=ALL_QUESTIONS.length;
 
-let state={mode:null,playerName:'',currentQuestion:0,studentScore:0,studentAnswered:{},revealed:false,gameStatus:'lobby',players:[],responses:[],scores:{}};
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwN9mKpjuKCLnaPK0ut-YwVEjYvu6EzR7vEUVwlvxZZ0sgsS-vPkGeoJB9IxxMC4Y_j/exec';
+const SHEETS_ENABLED=SCRIPT_URL&&!SCRIPT_URL.includes('%%');
+const POLL_INTERVAL=3000,PROF_CODE='';
+const FN={'flag-fr':'France','flag-be':'Belgique','flag-de':'Allemagne','flag-it':'Italie','flag-gb':'Royaume-Uni','flag-nl':'Pays-Bas','flag-lu':'Luxembourg','flag-at':'Autriche','flag-ie':'Irlande','flag-ro':'Roumanie','flag-hu':'Hongrie','flag-no':'Norvège','flag-pt':'Portugal','flag-gr':'Grèce','flag-ch':'Suisse','flag-pl':'Pologne','flag-se':'Suède','flag-dk':'Danemark','flag-ua':'Ukraine','flag-ee':'Estonie','flag-ge':'Géorgie','flag-sy':'Syrie'};
+
+// Active countries & questions (set after loading selection from Sheets)
+let COUNTRIES=[];
+let ALL_QUESTIONS=[];
+let TOTAL_QUESTIONS=0;
+
+function buildQuestions(selectedNames){
+  COUNTRIES=[];
+  ALL_QUESTIONS=[];
+  selectedNames.forEach(name=>{
+    const c=COUNTRIES_DATA.find(cd=>cd.name===name);
+    if(c)COUNTRIES.push(c);
+  });
+  COUNTRIES.forEach((c,ci)=>c.questions.forEach((q,qi)=>ALL_QUESTIONS.push({...q,countryIndex:ci,questionInCountry:qi})));
+  TOTAL_QUESTIONS=ALL_QUESTIONS.length;
+  console.log('Quiz loaded:',COUNTRIES.map(c=>c.name).join(', '),'→',TOTAL_QUESTIONS,'questions');
+}
+
+let state={mode:null,playerName:'',currentQuestion:0,studentScore:0,studentAnswered:{},revealed:false,gameStatus:'lobby',players:[],responses:[],scores:{},selectedCountries:[]};
 let profMap=null,profMarker=null,profPulse=null,profCapitalMarker=null,bordersLayer=null,pollTimer=null;
 
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id)?.classList.add('active');if(id==='screen-prof-map'&&profMap)setTimeout(()=>profMap.invalidateSize(),100)}
@@ -311,7 +311,7 @@ function escapeHtml(s){const d=document.createElement('div');d.textContent=s;ret
 
 function postToSheets(d){if(!SHEETS_ENABLED){console.log('[DEMO]',d);return}fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)}).catch(e=>console.error(e))}
 function fetchFromSheets(cb){
-  if(!SHEETS_ENABLED){cb({questionActuelle:state.currentQuestion,statut:state.gameStatus,joueurs:state.players,reponses:state.responses,scores:state.scores});return}
+  if(!SHEETS_ENABLED){cb({questionActuelle:state.currentQuestion,statut:state.gameStatus,joueurs:state.players,reponses:state.responses,scores:state.scores,selectedCountries:state.selectedCountries});return}
   const n='_gs_'+Date.now()+'_'+Math.random().toString(36).substr(2,5);window[n]=d=>{cb(d);delete window[n]};
   const s=document.createElement('script');s.src=SCRIPT_URL+'?action=getState&callback='+n+'&t='+Date.now();
   s.onerror=()=>{delete window[n];s.remove();cb(null)};document.head.appendChild(s);
@@ -322,6 +322,15 @@ function stopPolling(){if(pollTimer){clearInterval(pollTimer);pollTimer=null}}
 function pollState(){
   fetchFromSheets(data=>{
     if(!data)return;state.players=data.joueurs||[];state.responses=data.reponses||[];state.scores=data.scores||{};
+    // Update selected countries if changed
+    if(data.selectedCountries&&data.selectedCountries.length>0){
+      const newSel=data.selectedCountries.join(',');
+      if(newSel!==state.selectedCountries.join(',')){
+        state.selectedCountries=data.selectedCountries;
+        buildQuestions(state.selectedCountries);
+        updateSelectedDisplay();
+      }
+    }
     const nq=Number(data.questionActuelle)||0,ns=data.statut||'lobby';
     if(state.mode==='student'){
       if(state.gameStatus==='lobby'&&ns==='playing'){state.gameStatus='playing';state.currentQuestion=nq;showScreen('screen-student-quiz');renderStudentQuestion()}
@@ -332,6 +341,17 @@ function pollState(){
   });
 }
 
+function updateSelectedDisplay(){
+  const el=document.getElementById('selected-countries-display');
+  if(el&&COUNTRIES.length)el.innerHTML='🗺️ Pays sélectionnés : <strong>'+COUNTRIES.map(c=>c.flag+' '+c.name).join(' · ')+'</strong> ('+TOTAL_QUESTIONS+' questions)';
+}
+function toggleCountries(){
+  const el=document.getElementById('selected-countries-display');
+  const btn=document.getElementById('btn-toggle-countries');
+  if(el.style.display==='none'){el.style.display='block';btn.textContent='🙈 Masquer les pays'}
+  else{el.style.display='none';btn.textContent='👁 Voir les pays sélectionnés'}
+}
+
 function getBadgeHtml(qi){const q=ALL_QUESTIONS[qi],c=COUNTRIES[q.countryIndex];if(q.questionInCountry===0)return{cls:'mystery',html:'❓ Pays mystère'};if(q.questionInCountry===1)return{cls:'',html:'🔍 '+c.name};return{cls:'',html:'<div class="css-flag sm '+c.flagClass+'"></div> '+c.name}}
 
 function enterProfessor(){PROF_CODE?showScreen('screen-prof-password'):initProfessor();if(PROF_CODE)document.getElementById('prof-password').focus()}
@@ -339,10 +359,9 @@ function checkPassword(){document.getElementById('prof-password').value===PROF_C
 function initProfessor(){state.mode='prof';state.gameStatus='lobby';showScreen('screen-prof-lobby');startPolling()}
 function updateProfLobby(){
   const c=document.getElementById('lobby-players'),ct=document.getElementById('lobby-count'),w=document.getElementById('lobby-waiting'),b=document.getElementById('btn-start-quiz');
-  ct.textContent=state.players.length;
-  const ex=Array.from(c.querySelectorAll('.player-tag')).map(e=>e.dataset.name);
+  ct.textContent=state.players.length;const ex=Array.from(c.querySelectorAll('.player-tag')).map(e=>e.dataset.name);
   state.players.forEach(name=>{if(!ex.includes(name)){const t=document.createElement('div');t.className='player-tag';t.dataset.name=name;t.innerHTML='<span class="dot"></span>'+escapeHtml(name);c.appendChild(t)}});
-  w.style.display=state.players.length>0?'none':'block';b.disabled=state.players.length===0;
+  w.style.display=state.players.length>0?'none':'block';b.disabled=state.players.length===0||TOTAL_QUESTIONS===0;
 }
 
 function startQuiz(){state.gameStatus='playing';state.currentQuestion=0;state.revealed=false;postToSheets({action:'setStatus',statut:'playing'});postToSheets({action:'setQuestion',question:0});showScreen('screen-prof-map');initProfMap();renderProfQuestion()}
@@ -350,83 +369,46 @@ function startQuiz(){state.gameStatus='playing';state.currentQuestion=0;state.re
 function initProfMap(){
   if(profMap){profMap.remove();profMap=null}
   setTimeout(()=>{
-    profMap=L.map('prof-map',{zoomControl:false,attributionControl:false}).setView([54,10],4);
+    profMap=L.map('prof-map',{zoomControl:false,attributionControl:false}).setView([50,15],4);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png',{maxZoom:12,subdomains:'abcd'}).addTo(profMap);
     L.control.zoom({position:'topright'}).addTo(profMap);
-    // Load country borders
-    loadBorders();
+    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(r=>r.json()).then(w=>{if(typeof topojson!=='undefined'&&w.objects&&w.objects.countries){bordersLayer=L.geoJSON(topojson.feature(w,w.objects.countries),{style:{color:'#222',weight:2.5,fillOpacity:0,opacity:.7,interactive:false}}).addTo(profMap)}}).catch(()=>{});
     updateProfMap();
   },150);
 }
-
-function loadBorders(){
-  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
-    .then(r=>r.json())
-    .then(world=>{
-      if(typeof topojson!=='undefined'&&world.objects&&world.objects.countries){
-        const geo=topojson.feature(world,world.objects.countries);
-        bordersLayer=L.geoJSON(geo,{
-          style:{color:'#222',weight:2.5,fillOpacity:0,opacity:0.7,interactive:false}
-        }).addTo(profMap);
-      }
-    }).catch(e=>console.log('Borders not loaded:',e));
-}
-
-function clearMarkers(){
-  if(profMarker){profMap.removeLayer(profMarker);profMarker=null}
-  if(profPulse){profMap.removeLayer(profPulse);profPulse=null}
-  if(profCapitalMarker){profMap.removeLayer(profCapitalMarker);profCapitalMarker=null}
-}
+function clearMarkers(){if(profMarker){profMap.removeLayer(profMarker);profMarker=null}if(profPulse){profMap.removeLayer(profPulse);profPulse=null}if(profCapitalMarker){profMap.removeLayer(profCapitalMarker);profCapitalMarker=null}}
 function updateProfMap(){
-  if(!profMap)return;const q=ALL_QUESTIONS[state.currentQuestion],c=COUNTRIES[q.countryIndex];clearMarkers();
-  if(q.type==='identify'){
-    profMap.flyTo([54,10],4,{duration:1});
-    setTimeout(()=>{profMarker=L.circleMarker([c.center.lat,c.center.lng],{radius:30,color:'#ffd700',weight:3,fillColor:'#ffd700',fillOpacity:0.12,dashArray:'8 4'}).addTo(profMap);profPulse=L.circleMarker([c.center.lat,c.center.lng],{radius:14,color:'#ff6b6b',weight:2,fillColor:'#ff6b6b',fillOpacity:0.25}).addTo(profMap)},600);
-  }else if(q.type==='capital'){
-    profMap.flyTo([c.center.lat,c.center.lng],c.zoom,{duration:1});
-    setTimeout(()=>{profCapitalMarker=L.marker([c.capital.lat,c.capital.lng],{icon:L.divIcon({className:'',html:'<div style="width:22px;height:22px;background:#ff6b6b;border:3px solid #fff;border-radius:50%;animation:pulseGlow 2s ease infinite"></div>',iconSize:[22,22],iconAnchor:[11,11]})}).addTo(profMap)},800);
-  }else{profMap.flyTo([c.center.lat,c.center.lng],c.zoom,{duration:1})}
+  if(!profMap||!ALL_QUESTIONS.length)return;const q=ALL_QUESTIONS[state.currentQuestion],c=COUNTRIES[q.countryIndex];clearMarkers();
+  if(q.type==='identify'){profMap.flyTo([50,15],4,{duration:1});setTimeout(()=>{profMarker=L.circleMarker([c.center.lat,c.center.lng],{radius:30,color:'#ffd700',weight:3,fillColor:'#ffd700',fillOpacity:.12,dashArray:'8 4'}).addTo(profMap);profPulse=L.circleMarker([c.center.lat,c.center.lng],{radius:14,color:'#ff6b6b',weight:2,fillColor:'#ff6b6b',fillOpacity:.25}).addTo(profMap)},600)}
+  else if(q.type==='capital'){profMap.flyTo([c.center.lat,c.center.lng],c.zoom,{duration:1});setTimeout(()=>{profCapitalMarker=L.marker([c.capital.lat,c.capital.lng],{icon:L.divIcon({className:'',html:'<div style="width:22px;height:22px;background:#ff6b6b;border:3px solid #fff;border-radius:50%;animation:pulseGlow 2s ease infinite"></div>',iconSize:[22,22],iconAnchor:[11,11]})}).addTo(profMap)},800)}
+  else{profMap.flyTo([c.center.lat,c.center.lng],c.zoom,{duration:1})}
 }
 
 function renderProfQuestion(){
-  const q=ALL_QUESTIONS[state.currentQuestion],c=COUNTRIES[q.countryIndex];state.revealed=false;
+  if(!ALL_QUESTIONS.length)return;const q=ALL_QUESTIONS[state.currentQuestion],c=COUNTRIES[q.countryIndex];state.revealed=false;
   document.getElementById('pq-num').textContent='Q'+(state.currentQuestion+1)+'/'+TOTAL_QUESTIONS;
   const badge=document.getElementById('pq-country'),bi=getBadgeHtml(state.currentQuestion);badge.className='country-badge '+bi.cls;badge.innerHTML=bi.html;
   document.getElementById('pq-bar').style.width=((state.currentQuestion/TOTAL_QUESTIONS)*100)+'%';
-  document.getElementById('pq-count-total').textContent=state.players.length;document.getElementById('pq-count-num').textContent='0';
-  document.getElementById('pq-counter').classList.remove('all-in');
+  document.getElementById('pq-count-total').textContent=state.players.length;document.getElementById('pq-count-num').textContent='0';document.getElementById('pq-counter').classList.remove('all-in');
   document.getElementById('pq-question-text').textContent=q.question;
   const ch=document.getElementById('pq-choices');ch.innerHTML='';const L2=['A','B','C','D'];
   q.choices.forEach((choice,i)=>{const d=document.createElement('div');d.className='map-choice c'+i;d.id='mc-'+i;
     if(q.type==='flag'&&q.flagClasses)d.innerHTML='<strong>'+L2[i]+'</strong><div class="css-flag flag-in-choice '+q.flagClasses[i]+'"></div>';
     else d.innerHTML='<strong>'+L2[i]+'</strong> '+escapeHtml(choice);ch.appendChild(d)});
-  document.getElementById('btn-reveal').disabled=false;
-  document.getElementById('btn-next').textContent=state.currentQuestion<TOTAL_QUESTIONS-1?'Suivant ➜':'🏆 Résultats';
+  document.getElementById('btn-reveal').disabled=false;document.getElementById('btn-next').textContent=state.currentQuestion<TOTAL_QUESTIONS-1?'Suivant ➜':'🏆 Résultats';
   if(profMap)updateProfMap();
 }
-
-function updateProfCounter(){
-  if(state.mode!=='prof'||state.gameStatus!=='playing')return;
-  const rc=state.responses.length,total=state.players.length;
-  document.getElementById('pq-count-num').textContent=rc;document.getElementById('pq-count-total').textContent=total;
-  const ct=document.getElementById('pq-counter');rc>=total&&total>0?ct.classList.add('all-in'):ct.classList.remove('all-in');
-}
+function updateProfCounter(){if(state.mode!=='prof'||state.gameStatus!=='playing')return;const rc=state.responses.length,t=state.players.length;document.getElementById('pq-count-num').textContent=rc;document.getElementById('pq-count-total').textContent=t;const ct=document.getElementById('pq-counter');rc>=t&&t>0?ct.classList.add('all-in'):ct.classList.remove('all-in')}
 
 function showProfResponses(){
   const q=ALL_QUESTIONS[state.currentQuestion],c=COUNTRIES[q.countryIndex];
-  document.getElementById('pr-subtitle').textContent='Question '+(state.currentQuestion+1)+' — '+q.question;
-  const grid=document.getElementById('pr-grid');grid.innerHTML='';
-  const am={};state.responses.forEach(r=>{am[r.nom]=r});
-  state.players.forEach((name,i)=>{
-    const card=document.createElement('div');card.className='resp-card';const r=am[name];
-    let ac='waiting',ah='En attente...',acls='';
+  document.getElementById('pr-subtitle').textContent='Q'+(state.currentQuestion+1)+' — '+q.question;
+  const grid=document.getElementById('pr-grid');grid.innerHTML='';const am={};state.responses.forEach(r=>{am[r.nom]=r});
+  state.players.forEach(name=>{const card=document.createElement('div');card.className='resp-card';const r=am[name];let ac='waiting',ah='En attente...',acls='';
     if(r){if(state.revealed){const ok=Number(r.correct)===1;ac=ok?'correct':'wrong';acls=ok?'rok':'rko';ah=escapeHtml(r.reponse)+' '+(ok?'✓':'✗');card.classList.add(ok?'revealed-correct':'revealed-wrong')}else{ac='answered';ah='A répondu ✓'}}
-    card.innerHTML='<div class="resp-avatar '+ac+'">'+name.charAt(0).toUpperCase()+'</div><div class="resp-info"><div class="resp-name">'+escapeHtml(name)+'</div><div class="resp-answer '+acls+'">'+ah+'</div></div>';
-    grid.appendChild(card);
-  });
+    card.innerHTML='<div class="resp-avatar '+ac+'">'+name.charAt(0).toUpperCase()+'</div><div class="resp-info"><div class="resp-name">'+escapeHtml(name)+'</div><div class="resp-answer '+acls+'">'+ah+'</div></div>';grid.appendChild(card)});
   const ib=document.getElementById('pr-info');state.revealed?ib.classList.add('visible'):ib.classList.remove('visible');
-  document.getElementById('btn-reveal').disabled=state.revealed;
-  showScreen('screen-prof-responses');
+  document.getElementById('btn-reveal').disabled=state.revealed;showScreen('screen-prof-responses');
 }
 
 function revealAnswer(){
@@ -436,7 +418,6 @@ function revealAnswer(){
   if(q.questionInCountry===0){badge.className='country-badge';badge.innerHTML='🔍 '+c.name}
   else if(q.questionInCountry===1){badge.className='country-badge';badge.innerHTML='<div class="css-flag sm '+c.flagClass+'"></div> '+c.name}
   if(q.type==='capital'&&profCapitalMarker)profCapitalMarker.bindPopup('<strong style="font-size:1.1rem">'+c.capital.name+'</strong>',{closeButton:false,autoClose:false}).openPopup();
-  // Info with rich hint
   const ib=document.getElementById('pr-info'),ih=document.getElementById('pr-info-title'),it=document.getElementById('pr-info-text');
   ih.textContent=q.questionInCountry===7?'📌 '+c.name+' en bref':'💡 Le saviez-vous ?';
   it.textContent=q.hint||(q.questionInCountry===7?c.info:'Bonne réponse : '+q.choices[q.correct]);
@@ -449,15 +430,13 @@ function showProfLeaderboard(){
   if(!sc||!Object.keys(sc).length){el.innerHTML='<p style="text-align:center;color:rgba(255,255,255,.4);padding:40px">Pas encore de scores</p>';showScreen('screen-prof-leaderboard');return}
   const sorted=Object.entries(sc).sort((a,b)=>b[1]-a[1]);const mx=sorted[0]?sorted[0][1]:1;const medals=['🥇','🥈','🥉'];
   sorted.forEach(([name,score],i)=>{const d=document.createElement('div');d.className='lb-entry';d.style.animationDelay=(i*.08)+'s';
-    d.innerHTML='<div class="lb-pos '+(i===0?'gold':i===1?'silver':i===2?'bronze':'')+'">'+( i<3?medals[i]:(i+1))+'</div><div class="lb-name">'+escapeHtml(name)+'</div><div class="lb-bar-wrap"><div class="lb-bar-fill" style="width:'+(mx>0?Math.round(score/mx*100):0)+'%"></div></div><div class="lb-score">'+score+' pts</div>';
-    el.appendChild(d)});
+    d.innerHTML='<div class="lb-pos '+(i===0?'gold':i===1?'silver':i===2?'bronze':'')+'">'+( i<3?medals[i]:(i+1))+'</div><div class="lb-name">'+escapeHtml(name)+'</div><div class="lb-bar-wrap"><div class="lb-bar-fill" style="width:'+(mx>0?Math.round(score/mx*100):0)+'%"></div></div><div class="lb-score">'+score+' pts</div>';el.appendChild(d)});
   showScreen('screen-prof-leaderboard');
 }
 
 function nextQuestion(){if(state.currentQuestion>=TOTAL_QUESTIONS-1){endGame();return}clearMarkers();state.currentQuestion++;state.revealed=false;postToSheets({action:'setQuestion',question:state.currentQuestion});showScreen('screen-prof-map');renderProfQuestion()}
 function endGame(){state.gameStatus='finished';postToSheets({action:'setStatus',statut:'finished'});showResults()}
 function resetGame(){if(!confirm('Réinitialiser la partie ?'))return;state={...state,currentQuestion:0,gameStatus:'lobby',players:[],responses:[],scores:{},revealed:false,studentScore:0,studentAnswered:{}};postToSheets({action:'reset'});document.getElementById('lobby-players').innerHTML='';showScreen('screen-prof-lobby')}
-
 function showResults(){
   stopPolling();const sm={};if(SHEETS_ENABLED&&Object.keys(state.scores).length)Object.assign(sm,state.scores);else if(state.mode==='student')sm[state.playerName]=state.studentScore;
   const sorted=Object.entries(sm).sort((a,b)=>b[1]-a[1]);const t=document.getElementById('results-table');
@@ -466,20 +445,18 @@ function showResults(){
   t.innerHTML=h+'</tbody>';showScreen('screen-results');launchConfetti();
 }
 
-// STUDENT — ne révèle PAS la bonne réponse
+// Student (no reveal)
 function registerStudent(){
   const n=document.getElementById('student-name').value.trim(),e=document.getElementById('join-error');
   if(!n||n.length<2){e.textContent=n?'Minimum 2 caractères':'Entre ton prénom !';e.style.display='block';return}
   state.mode='student';state.playerName=n;state.studentScore=0;state.studentAnswered={};
-  postToSheets({action:'register',nom:n});if(!SHEETS_ENABLED)state.players.push(n);
-  document.getElementById('wait-name').textContent=n;document.getElementById('sq-total').textContent=TOTAL_QUESTIONS;
+  postToSheets({action:'register',nom:n});document.getElementById('wait-name').textContent=n;
   showScreen('screen-student-wait');startPolling();
 }
 function renderStudentQuestion(){
   const qi=state.currentQuestion;if(qi>=TOTAL_QUESTIONS){showResults();return}const q=ALL_QUESTIONS[qi];
-  document.getElementById('sq-label').textContent='Question '+(qi+1)+'/'+TOTAL_QUESTIONS;
-  document.getElementById('sq-text').textContent=q.question;
-  document.getElementById('sq-score').textContent=Object.keys(state.studentAnswered).length;
+  document.getElementById('sq-label').textContent='Question '+(qi+1)+'/'+TOTAL_QUESTIONS;document.getElementById('sq-text').textContent=q.question;
+  document.getElementById('sq-score').textContent=Object.keys(state.studentAnswered).length;document.getElementById('sq-total').textContent=TOTAL_QUESTIONS;
   document.getElementById('sq-feedback').style.display='none';document.getElementById('sq-wait').style.display='none';
   if(state.studentAnswered[qi]!==undefined){showStudentAnswered(qi);return}
   const g=document.getElementById('sq-choices');g.innerHTML='';g.style.display='';const L2=['A','B','C','D'];
@@ -497,18 +474,31 @@ function submitStudentAnswer(ci){
   showStudentAnswered(qi);
 }
 function showStudentAnswered(qi){
-  // NE PAS révéler la bonne réponse — juste marquer le choix
-  const q=ALL_QUESTIONS[qi],ci=state.studentAnswered[qi];
-  const btns=document.getElementById('sq-choices').querySelectorAll('.choice-btn');
-  btns.forEach((b,i)=>{b.disabled=true;b.onclick=null;if(i===ci)b.classList.add('selected-answer')});
-  const fb=document.getElementById('sq-feedback');fb.style.display='block';
-  fb.className='student-feedback neutral';
+  const ci=state.studentAnswered[qi];document.getElementById('sq-choices').querySelectorAll('.choice-btn').forEach((b,i)=>{b.disabled=true;b.onclick=null;if(i===ci)b.classList.add('selected-answer')});
+  const fb=document.getElementById('sq-feedback');fb.style.display='block';fb.className='student-feedback neutral';
   fb.innerHTML='✅ Ta réponse a été enregistrée !<br><small style="opacity:.7">Le résultat sera dévoilé par le professeur.</small>';
-  document.getElementById('sq-score').textContent=Object.keys(state.studentAnswered).length;
-  document.getElementById('sq-wait').style.display='block';
+  document.getElementById('sq-score').textContent=Object.keys(state.studentAnswered).length;document.getElementById('sq-wait').style.display='block';
 }
 
 function launchConfetti(){const cv=document.getElementById('confetti');if(!cv)return;const ctx=cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;const P=[],C=['#ffd700','#ff6b6b','#4ecdc4','#a855f7','#3498db','#2ecc71','#f39c12'];for(let i=0;i<120;i++)P.push({x:Math.random()*cv.width,y:Math.random()*cv.height-cv.height,w:Math.random()*10+5,h:Math.random()*6+3,c:C[~~(Math.random()*C.length)],vx:(Math.random()-.5)*4,vy:Math.random()*3+2,r:Math.random()*360,vr:(Math.random()-.5)*10});let f=0;(function a(){if(f>200){ctx.clearRect(0,0,cv.width,cv.height);return}ctx.clearRect(0,0,cv.width,cv.height);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.vy+=.05;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r*Math.PI/180);ctx.fillStyle=p.c;ctx.globalAlpha=Math.max(0,1-f/200);ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore()});f++;requestAnimationFrame(a)})()}
+
+// INIT: load selected countries from Google Sheets then show app
+(function init(){
+  // Default selection
+  state.selectedCountries=['France','Belgique','Allemagne','Italie','Royaume-Uni'];
+  buildQuestions(state.selectedCountries);
+  // Try to load from Sheets
+  fetchFromSheets(data=>{
+    if(data&&data.selectedCountries&&data.selectedCountries.length>0){
+      state.selectedCountries=data.selectedCountries;
+      buildQuestions(state.selectedCountries);
+    }
+    updateSelectedDisplay();
+    document.getElementById('loading-overlay').style.display='none';
+  });
+  // Fallback: remove loading after 5s
+  setTimeout(()=>{document.getElementById('loading-overlay').style.display='none'},5000);
+})();
 </script>
 </body>
 </html>
