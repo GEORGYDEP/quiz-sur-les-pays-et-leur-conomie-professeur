@@ -283,7 +283,7 @@ questions:[
 
 const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwN9mKpjuKCLnaPK0ut-YwVEjYvu6EzR7vEUVwlvxZZ0sgsS-vPkGeoJB9IxxMC4Y_j/exec';
 const SHEETS_ENABLED=SCRIPT_URL&&!SCRIPT_URL.includes('%%');
-const POLL_INTERVAL=3000,PROF_CODE='';
+const POLL_INTERVAL=1500,PROF_CODE='';
 const FN={'flag-fr':'France','flag-be':'Belgique','flag-de':'Allemagne','flag-it':'Italie','flag-gb':'Royaume-Uni','flag-nl':'Pays-Bas','flag-lu':'Luxembourg','flag-at':'Autriche','flag-ie':'Irlande','flag-ro':'Roumanie','flag-hu':'Hongrie','flag-no':'Norvège','flag-pt':'Portugal','flag-gr':'Grèce','flag-ch':'Suisse','flag-pl':'Pologne','flag-se':'Suède','flag-dk':'Danemark','flag-ua':'Ukraine','flag-ee':'Estonie','flag-ge':'Géorgie','flag-sy':'Syrie'};
 
 // Active countries & questions (set after loading selection from Sheets)
@@ -317,7 +317,7 @@ function fetchFromSheets(cb){
   s.onerror=()=>{delete window[n];s.remove();cb(null)};document.head.appendChild(s);
   setTimeout(()=>{if(window[n])delete window[n];s.parentNode&&s.remove()},10000);
 }
-function startPolling(){stopPolling();pollTimer=setInterval(pollState,POLL_INTERVAL);pollState()}
+function startPolling(fast){stopPolling();pollTimer=setInterval(pollState,fast?800:POLL_INTERVAL);pollState()}
 function stopPolling(){if(pollTimer){clearInterval(pollTimer);pollTimer=null}}
 function pollState(){
   fetchFromSheets(data=>{
@@ -334,7 +334,7 @@ function pollState(){
     const nq=Number(data.questionActuelle)||0,ns=data.statut||'lobby';
     if(state.mode==='student'){
       if(state.gameStatus==='lobby'&&ns==='playing'){state.gameStatus='playing';state.currentQuestion=nq;showScreen('screen-student-quiz');renderStudentQuestion()}
-      else if(state.gameStatus==='playing'&&nq!==state.currentQuestion){state.currentQuestion=nq;if(ns==='finished'){state.gameStatus='finished';showResults()}else renderStudentQuestion()}
+      else if(state.gameStatus==='playing'&&nq!==state.currentQuestion){state.currentQuestion=nq;if(ns==='finished'){state.gameStatus='finished';showResults()}else{renderStudentQuestion();startPolling()}}
       if(ns==='finished'&&state.gameStatus!=='finished'){state.gameStatus='finished';showResults()}
     }
     if(state.mode==='prof'){updateProfLobby();updateProfCounter()}
@@ -477,7 +477,7 @@ function showStudentAnswered(qi){
   const ci=state.studentAnswered[qi];document.getElementById('sq-choices').querySelectorAll('.choice-btn').forEach((b,i)=>{b.disabled=true;b.onclick=null;if(i===ci)b.classList.add('selected-answer')});
   const fb=document.getElementById('sq-feedback');fb.style.display='block';fb.className='student-feedback neutral';
   fb.innerHTML='✅ Ta réponse a été enregistrée !<br><small style="opacity:.7">Le résultat sera dévoilé par le professeur.</small>';
-  document.getElementById('sq-score').textContent=Object.keys(state.studentAnswered).length;document.getElementById('sq-wait').style.display='block';
+  document.getElementById('sq-score').textContent=Object.keys(state.studentAnswered).length;document.getElementById('sq-wait').style.display='block';startPolling(true);
 }
 
 function launchConfetti(){const cv=document.getElementById('confetti');if(!cv)return;const ctx=cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;const P=[],C=['#ffd700','#ff6b6b','#4ecdc4','#a855f7','#3498db','#2ecc71','#f39c12'];for(let i=0;i<120;i++)P.push({x:Math.random()*cv.width,y:Math.random()*cv.height-cv.height,w:Math.random()*10+5,h:Math.random()*6+3,c:C[~~(Math.random()*C.length)],vx:(Math.random()-.5)*4,vy:Math.random()*3+2,r:Math.random()*360,vr:(Math.random()-.5)*10});let f=0;(function a(){if(f>200){ctx.clearRect(0,0,cv.width,cv.height);return}ctx.clearRect(0,0,cv.width,cv.height);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.vy+=.05;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r*Math.PI/180);ctx.fillStyle=p.c;ctx.globalAlpha=Math.max(0,1-f/200);ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore()});f++;requestAnimationFrame(a)})()}
