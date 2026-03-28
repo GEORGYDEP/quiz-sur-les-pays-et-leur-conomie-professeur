@@ -82,7 +82,7 @@ h1,h2{font-family:'Fredoka',sans-serif;font-weight:700}
 <div id="screen-home" class="screen active"><div style="text-align:center;padding:40px 20px"><div class="emoji-big" style="margin-bottom:16px">🌍</div><h1 class="title-xl">Tour d'Europe<br>Économique</h1><p class="subtitle">Quiz interactif — Économie & Géographie</p><div style="margin-top:48px;display:flex;flex-direction:column;gap:16px;align-items:center"><button class="btn btn-gold" style="width:280px;font-size:1.2rem;padding:20px" onclick="enterProfessor()">🎓 Professeur</button><button class="btn btn-purple" style="width:280px;font-size:1.2rem;padding:20px" onclick="showScreen('screen-student-join')">🎮 Élève</button></div><p style="margin-top:40px;font-size:.75rem;color:rgba(255,255,255,.25)">Institut Saint-Luc de Frameries — Comptabilité</p></div></div>
 <div id="screen-prof-password" class="screen"><div class="card fadeIn" style="text-align:center"><div class="emoji-big" style="margin-bottom:16px">🔐</div><h2 style="margin-bottom:24px">Accès Professeur</h2><input type="password" id="prof-password" class="input-field" placeholder="Code d'accès" onkeydown="if(event.key==='Enter')checkPassword()"><div style="margin-top:20px;display:flex;gap:12px"><button class="btn btn-sm btn-coral" onclick="showScreen('screen-home')" style="flex:1">Retour</button><button class="btn btn-sm btn-gold" onclick="checkPassword()" style="flex:1">Entrer</button></div><p id="pwd-error" style="color:var(--coral);font-size:.85rem;margin-top:12px;display:none">Code incorrect</p></div></div>
 <div id="screen-student-join" class="screen"><div class="card fadeIn" style="text-align:center"><div class="emoji-big" style="margin-bottom:16px">👋</div><h2 style="margin-bottom:8px">Rejoindre le quiz</h2><p class="subtitle" style="margin-bottom:24px">Entre ton prénom</p><input type="text" id="student-name" class="input-field" placeholder="Ton prénom" maxlength="20" autocomplete="off" onkeydown="if(event.key==='Enter')registerStudent()"><div style="margin-top:20px;display:flex;gap:12px"><button class="btn btn-sm btn-coral" onclick="showScreen('screen-home')" style="flex:1">Retour</button><button class="btn btn-sm btn-purple" onclick="registerStudent()" style="flex:1">C'est parti !</button></div><p id="join-error" style="color:var(--coral);font-size:.85rem;margin-top:12px;display:none"></p></div></div>
-<div id="screen-student-wait" class="screen"><div class="card fadeIn" style="text-align:center"><div class="emoji-big pulse" style="margin-bottom:16px">⏳</div><h2>Bienvenue <span id="wait-name"></span> !</h2><p class="subtitle" style="margin-top:8px">En attente du professeur...</p><div style="margin-top:32px"><div style="width:60px;height:60px;border-radius:50%;border:3px solid var(--gold);border-top-color:transparent;animation:spin 1s linear infinite;margin:0 auto"></div></div></div></div>
+<div id="screen-student-wait" class="screen"><div class="card fadeIn" style="text-align:center"><div class="emoji-big pulse" style="margin-bottom:16px">⏳</div><h2>Bienvenue <span id="wait-name"></span> !</h2><p class="subtitle" style="margin-top:8px">En attente du professeur...</p><div style="margin-top:32px"><div style="width:60px;height:60px;border-radius:50%;border:3px solid var(--gold);border-top-color:transparent;animation:spin 1s linear infinite;margin:0 auto"></div></div><p id="poll-status" style="margin-top:16px;font-size:.7rem;color:rgba(255,255,255,.2)"></p></div></div>
 <div id="screen-student-quiz" class="screen"><div class="student-quiz-container"><div class="student-header"><div class="q-label" id="sq-label">Question 1</div><div class="q-text" id="sq-text"></div></div><div class="choices-grid" id="sq-choices"></div><div class="timer-container" id="sq-timer"><div class="timer-num" id="sq-timer-num">30</div><div class="timer-bar-wrap"><div class="timer-bar-fill" id="sq-timer-bar" style="width:100%"></div></div></div><div id="sq-feedback" style="display:none"></div><div class="student-wait-msg" id="sq-wait" style="display:none"><div class="pulse">⏳</div><p>En attente de la question suivante...</p></div><div class="student-score-display"><span style="font-size:.85rem;color:rgba(255,255,255,.5)">Réponses : </span><span class="score-num" id="sq-score">0</span><span style="font-size:.85rem;color:rgba(255,255,255,.3)"> / <span id="sq-total">40</span></span></div></div></div>
 <div id="screen-prof-lobby" class="screen"><div style="text-align:center;padding:40px 20px;width:100%;max-width:800px"><div class="emoji-big" style="margin-bottom:12px">🌍</div><h1 class="title-xl" style="font-size:2.5rem">Tour d'Europe Économique</h1><p class="subtitle">Les joueurs rejoignent la partie...</p><div style="margin:16px 0"><button class="btn btn-sm btn-dark" onclick="toggleCountries()" id="btn-toggle-countries">👁 Voir les pays sélectionnés</button><div id="selected-countries-display" style="margin-top:12px;color:var(--cyan);font-size:.9rem;display:none"></div></div><div class="lobby-count"><span id="lobby-count">0</span> joueur(s)</div><div class="lobby-players" id="lobby-players"></div><div class="lobby-waiting" id="lobby-waiting">En attente de joueurs...</div><div style="margin-top:32px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap"><button class="btn btn-gold" onclick="startQuiz()" id="btn-start-quiz" disabled>🚀 Démarrer le Quiz</button><button class="btn btn-sm btn-coral" onclick="resetGame()">🔄 Réinitialiser</button></div></div></div>
 <div id="screen-prof-map" class="screen" style="padding:0"><div class="prof-map-page"><div class="prof-topbar"><span class="q-num" id="pq-num">Q1</span><span class="country-badge mystery" id="pq-country">❓ Pays mystère</span></div><div class="prof-progress"><div class="bar" id="pq-bar" style="width:0%"></div></div><div id="map-container"><div id="prof-map"></div><div class="map-choices-overlay" id="pq-choices"></div><div class="map-question-overlay"><div class="map-question-box"><h3 id="pq-question-text"></h3></div></div></div><div class="prof-bottombar"><div class="response-counter" id="pq-counter"><span>📝</span><span class="count-num" id="pq-count-num">0</span><span style="color:rgba(255,255,255,.4)">/ <span id="pq-count-total">0</span></span></div><div class="spacer"></div><button class="btn btn-sm btn-purple" onclick="showProfResponses()">📝 Réponses</button><button class="btn btn-sm btn-cyan" onclick="showProfLeaderboard()">🏆 Classement</button><button class="btn btn-sm btn-gold" onclick="nextQuestion()" id="btn-next">Suivant ➜</button></div></div></div>
@@ -289,7 +289,7 @@ questions:[
 ];
 
 
-const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwN9mKpjuKCLnaPK0ut-YwVEjYvu6EzR7vEUVwlvxZZ0sgsS-vPkGeoJB9IxxMC4Y_j/exec';
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwZ7O15X1TTU5NpwsIXxTg1F-fM-cGChhj01ETo2GKDQA4cwt8WtLmPY35TbgDiBOnE/exec';
 const SHEETS_ENABLED=SCRIPT_URL&&!SCRIPT_URL.includes('%%');
 const POLL_INTERVAL=1200,PROF_CODE='';
 const FN={'flag-fr':'France','flag-be':'Belgique','flag-de':'Allemagne','flag-it':'Italie','flag-gb':'Royaume-Uni','flag-nl':'Pays-Bas','flag-lu':'Luxembourg','flag-at':'Autriche','flag-ie':'Irlande','flag-ro':'Roumanie','flag-hu':'Hongrie','flag-no':'Norvège','flag-pt':'Portugal','flag-gr':'Grèce','flag-ch':'Suisse','flag-pl':'Pologne','flag-se':'Suède','flag-dk':'Danemark','flag-ua':'Ukraine','flag-ee':'Estonie','flag-ge':'Géorgie','flag-sy':'Syrie'};
@@ -318,26 +318,32 @@ function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classL
 function escapeHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
 
 function postToSheets(d){if(!SHEETS_ENABLED){console.log('[DEMO]',d);return}fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)}).catch(e=>console.error(e))}
-let fetchInProgress=false;
+let _pollCount=0,_fetchBusy=false;
 function fetchFromSheets(cb){
   if(!SHEETS_ENABLED){cb({questionActuelle:state.currentQuestion,statut:state.gameStatus,joueurs:state.players,reponses:state.responses,scores:state.scores,selectedCountries:state.selectedCountries});return}
-  if(fetchInProgress){return}
-  fetchInProgress=true;
-  const n='_gs_'+Date.now()+'_'+Math.random().toString(36).substr(2,5);
-  const cleanup=()=>{fetchInProgress=false;delete window[n];if(s&&s.parentNode)s.parentNode.removeChild(s)};
-  window[n]=d=>{cleanup();cb(d)};
-  const s=document.createElement('script');
-  s.src=SCRIPT_URL+'?action=getState&callback='+n+'&t='+Date.now();
-  s.onload=()=>{setTimeout(()=>{if(window[n]){cleanup();cb(null)}},2000)};
-  s.onerror=()=>{cleanup();cb(null)};
-  document.head.appendChild(s);
-  setTimeout(()=>{if(window[n]){cleanup()}},8000);
+  if(_fetchBusy)return;
+  _fetchBusy=true;
+  fetch(SCRIPT_URL+'?action=getState&t='+Date.now(),{method:'GET',redirect:'follow'})
+    .then(function(r){return r.text()})
+    .then(function(txt){
+      _fetchBusy=false;
+      try{var d=JSON.parse(txt);_pollCount++;cb(d)}
+      catch(e){
+        // Try to extract JSON from JSONP response: callback({...})
+        var m=txt.match(/\((.*)\)\s*$/s);
+        if(m){try{var d2=JSON.parse(m[1]);_pollCount++;cb(d2)}catch(e2){cb(null)}}
+        else{cb(null)}
+      }
+    })
+    .catch(function(){_fetchBusy=false;cb(null)});
 }
-function startPolling(fast){stopPolling();pollTimer=setInterval(pollState,fast?600:POLL_INTERVAL);pollState()}
+function startPolling(fast){stopPolling();pollTimer=setInterval(pollState,fast?1000:POLL_INTERVAL);pollState()}
 function stopPolling(){if(pollTimer){clearInterval(pollTimer);pollTimer=null}}
 function pollState(){
   fetchFromSheets(data=>{
-    if(!data)return;state.players=data.joueurs||[];state.responses=data.reponses||[];state.scores=data.scores||{};
+    if(!data){const ps=document.getElementById('poll-status');if(ps)ps.textContent='Connexion... (tentative '+(_pollCount)+')';return}
+    _pollCount++;const ps=document.getElementById('poll-status');if(ps)ps.textContent='Connecté ✓ ('+_pollCount+')';
+    state.players=data.joueurs||[];state.responses=data.reponses||[];state.scores=data.scores||{};
     // Update selected countries if changed
     if(data.selectedCountries&&data.selectedCountries.length>0){
       const newSel=data.selectedCountries.join(',');
