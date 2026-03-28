@@ -318,12 +318,20 @@ function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classL
 function escapeHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
 
 function postToSheets(d){if(!SHEETS_ENABLED){console.log('[DEMO]',d);return}fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(d)}).catch(e=>console.error(e))}
+let fetchInProgress=false;
 function fetchFromSheets(cb){
   if(!SHEETS_ENABLED){cb({questionActuelle:state.currentQuestion,statut:state.gameStatus,joueurs:state.players,reponses:state.responses,scores:state.scores,selectedCountries:state.selectedCountries});return}
-  const n='_gs_'+Date.now()+'_'+Math.random().toString(36).substr(2,5);window[n]=d=>{cb(d);delete window[n]};
-  const s=document.createElement('script');s.src=SCRIPT_URL+'?action=getState&callback='+n+'&t='+Date.now();
-  s.onerror=()=>{delete window[n];s.remove();cb(null)};document.head.appendChild(s);
-  setTimeout(()=>{if(window[n])delete window[n];s.parentNode&&s.remove()},10000);
+  if(fetchInProgress){return}
+  fetchInProgress=true;
+  const n='_gs_'+Date.now()+'_'+Math.random().toString(36).substr(2,5);
+  const cleanup=()=>{fetchInProgress=false;delete window[n];if(s&&s.parentNode)s.parentNode.removeChild(s)};
+  window[n]=d=>{cleanup();cb(d)};
+  const s=document.createElement('script');
+  s.src=SCRIPT_URL+'?action=getState&callback='+n+'&t='+Date.now();
+  s.onload=()=>{setTimeout(()=>{if(window[n]){cleanup();cb(null)}},2000)};
+  s.onerror=()=>{cleanup();cb(null)};
+  document.head.appendChild(s);
+  setTimeout(()=>{if(window[n]){cleanup()}},8000);
 }
 function startPolling(fast){stopPolling();pollTimer=setInterval(pollState,fast?600:POLL_INTERVAL);pollState()}
 function stopPolling(){if(pollTimer){clearInterval(pollTimer);pollTimer=null}}
